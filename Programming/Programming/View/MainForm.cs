@@ -11,8 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-using Programming.Model;
-
 namespace Programming
 {
     public partial class MainForm : Form
@@ -33,21 +31,54 @@ namespace Programming
       
             this.listBoxEnums.Items.AddRange(Models.Select(e => e.Name).ToArray());
             this.listBoxEnums.SelectedIndex = 0;
+
+            this.comboBoxSeason.Items.AddRange(Enum.GetNames(Models[3]));
         }
 
         private void buttonParse_Click(object sender, EventArgs e)
         {
+            if (this.textBoxParse.Text == "")
+            {
+                return;
+            }
 
+            Model.Weekday parsedValue;
+
+            if (!Enum.TryParse(this.textBoxParse.Text, out parsedValue))
+            {
+                this.labelParseOutput.Text = "Нет такого дня недели";
+                return;
+            }
+
+            this.labelParseOutput.Text = $"Это день недели ({parsedValue.ToString()} = {(int)parsedValue + 1})";
         }
 
         private void buttonSeason_Click(object sender, EventArgs e)
         {
+            groupBoxSeason.BackColor = Color.Transparent;
 
+            switch (comboBoxSeason.SelectedIndex) {
+                case 0:     //Summer
+                    MessageBox.Show("Ура! Солнце!");
+                    return;
+
+                case 1:     //Autumn
+                    groupBoxSeason.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    return;
+
+                case 2:     //Winter
+                    MessageBox.Show("Брррр! Холодно!");
+                    return;
+
+                case 3:     //Spring
+                    groupBoxSeason.BackColor = ColorTranslator.FromHtml("#559c45");
+                    return;
+            }
         }
 
         private void listBoxEnumsValues_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listBoxEnumsValues.SelectedIndex == -1)
+            if (listBoxEnumsValues.SelectedIndex == -1)
             {
                 return;
             }
@@ -64,7 +95,7 @@ namespace Programming
 
             this.listBoxEnumsValues.Items.Clear();
 
-            this.listBoxEnumsValues.Items.AddRange(Models[this.listBoxEnums.SelectedIndex].GetEnumNames());
+            this.listBoxEnumsValues.Items.AddRange(Enum.GetNames(Models[this.listBoxEnums.SelectedIndex]));
             this.listBoxEnumsValues.SelectedIndex = 0;
 
             this.textBoxIntValue.Text = "0";
