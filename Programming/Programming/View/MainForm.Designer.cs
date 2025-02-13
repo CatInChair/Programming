@@ -30,26 +30,26 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageEnums = new System.Windows.Forms.TabPage();
+            this.groupBoxSeason = new System.Windows.Forms.GroupBox();
+            this.buttonSeason = new System.Windows.Forms.Button();
+            this.comboBoxSeason = new System.Windows.Forms.ComboBox();
+            this.labelSeason = new System.Windows.Forms.Label();
             this.labelParseOutput = new System.Windows.Forms.Label();
             this.labelParse = new System.Windows.Forms.Label();
             this.buttonParse = new System.Windows.Forms.Button();
             this.textBoxParse = new System.Windows.Forms.TextBox();
-            this.labelIntValue = new System.Windows.Forms.Label();
-            this.textBoxIntValue = new System.Windows.Forms.TextBox();
-            this.labelEnumsValues = new System.Windows.Forms.Label();
-            this.listBoxEnumsValues = new System.Windows.Forms.ListBox();
             this.labelEnums = new System.Windows.Forms.Label();
             this.listBoxEnums = new System.Windows.Forms.ListBox();
             this.groupBoxEnums = new System.Windows.Forms.GroupBox();
+            this.listBoxEnumsValues = new System.Windows.Forms.ListBox();
+            this.labelEnumsValues = new System.Windows.Forms.Label();
+            this.textBoxIntValue = new System.Windows.Forms.TextBox();
+            this.labelIntValue = new System.Windows.Forms.Label();
             this.groupBoxParse = new System.Windows.Forms.GroupBox();
-            this.groupBoxSeason = new System.Windows.Forms.GroupBox();
-            this.labelSeason = new System.Windows.Forms.Label();
-            this.comboBoxSeason = new System.Windows.Forms.ComboBox();
-            this.buttonSeason = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageEnums.SuspendLayout();
-            this.groupBoxEnums.SuspendLayout();
             this.groupBoxSeason.SuspendLayout();
+            this.groupBoxEnums.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -81,6 +81,45 @@
             this.tabPageEnums.Text = "Enums";
             this.tabPageEnums.UseVisualStyleBackColor = true;
             // 
+            // groupBoxSeason
+            // 
+            this.groupBoxSeason.Controls.Add(this.buttonSeason);
+            this.groupBoxSeason.Controls.Add(this.comboBoxSeason);
+            this.groupBoxSeason.Controls.Add(this.labelSeason);
+            this.groupBoxSeason.Location = new System.Drawing.Point(410, 325);
+            this.groupBoxSeason.Name = "groupBoxSeason";
+            this.groupBoxSeason.Size = new System.Drawing.Size(374, 184);
+            this.groupBoxSeason.TabIndex = 12;
+            this.groupBoxSeason.TabStop = false;
+            this.groupBoxSeason.Text = "Season handling";
+            // 
+            // buttonSeason
+            // 
+            this.buttonSeason.Location = new System.Drawing.Point(243, 45);
+            this.buttonSeason.Name = "buttonSeason";
+            this.buttonSeason.Size = new System.Drawing.Size(75, 21);
+            this.buttonSeason.TabIndex = 11;
+            this.buttonSeason.Text = "Go!";
+            this.buttonSeason.UseVisualStyleBackColor = true;
+            this.buttonSeason.Click += new System.EventHandler(this.buttonSeason_Click);
+            // 
+            // comboBoxSeason
+            // 
+            this.comboBoxSeason.FormattingEnabled = true;
+            this.comboBoxSeason.Location = new System.Drawing.Point(17, 44);
+            this.comboBoxSeason.Name = "comboBoxSeason";
+            this.comboBoxSeason.Size = new System.Drawing.Size(220, 21);
+            this.comboBoxSeason.TabIndex = 10;
+            // 
+            // labelSeason
+            // 
+            this.labelSeason.AutoSize = true;
+            this.labelSeason.Location = new System.Drawing.Point(14, 29);
+            this.labelSeason.Name = "labelSeason";
+            this.labelSeason.Size = new System.Drawing.Size(84, 13);
+            this.labelSeason.TabIndex = 9;
+            this.labelSeason.Text = "Change season:";
+            // 
             // labelParseOutput
             // 
             this.labelParseOutput.AutoSize = true;
@@ -107,6 +146,7 @@
             this.buttonParse.TabIndex = 7;
             this.buttonParse.Text = "Parse";
             this.buttonParse.UseVisualStyleBackColor = true;
+            this.buttonParse.Click += new System.EventHandler(this.buttonParse_Click);
             // 
             // textBoxParse
             // 
@@ -114,39 +154,7 @@
             this.textBoxParse.Name = "textBoxParse";
             this.textBoxParse.Size = new System.Drawing.Size(250, 20);
             this.textBoxParse.TabIndex = 6;
-            // 
-            // labelIntValue
-            // 
-            this.labelIntValue.AutoSize = true;
-            this.labelIntValue.Location = new System.Drawing.Point(416, 24);
-            this.labelIntValue.Name = "labelIntValue";
-            this.labelIntValue.Size = new System.Drawing.Size(51, 13);
-            this.labelIntValue.TabIndex = 5;
-            this.labelIntValue.Text = "Int value:";
-            // 
-            // textBoxIntValue
-            // 
-            this.textBoxIntValue.Location = new System.Drawing.Point(419, 40);
-            this.textBoxIntValue.Name = "textBoxIntValue";
-            this.textBoxIntValue.Size = new System.Drawing.Size(158, 20);
-            this.textBoxIntValue.TabIndex = 4;
-            // 
-            // labelEnumsValues
-            // 
-            this.labelEnumsValues.AutoSize = true;
-            this.labelEnumsValues.Location = new System.Drawing.Point(213, 24);
-            this.labelEnumsValues.Name = "labelEnumsValues";
-            this.labelEnumsValues.Size = new System.Drawing.Size(75, 13);
-            this.labelEnumsValues.TabIndex = 3;
-            this.labelEnumsValues.Text = "Choose value:";
-            // 
-            // listBoxEnumsValues
-            // 
-            this.listBoxEnumsValues.FormattingEnabled = true;
-            this.listBoxEnumsValues.Location = new System.Drawing.Point(216, 40);
-            this.listBoxEnumsValues.Name = "listBoxEnumsValues";
-            this.listBoxEnumsValues.Size = new System.Drawing.Size(158, 251);
-            this.listBoxEnumsValues.TabIndex = 2;
+            this.textBoxParse.Text = "Monday";
             // 
             // labelEnums
             // 
@@ -164,6 +172,7 @@
             this.listBoxEnums.Name = "listBoxEnums";
             this.listBoxEnums.Size = new System.Drawing.Size(158, 251);
             this.listBoxEnums.TabIndex = 0;
+            this.listBoxEnums.SelectedIndexChanged += listBoxEnums_SelectedIndexChanged;
             // 
             // groupBoxEnums
             // 
@@ -178,6 +187,42 @@
             this.groupBoxEnums.TabStop = false;
             this.groupBoxEnums.Text = "Enumerations";
             // 
+            // listBoxEnumsValues
+            // 
+            this.listBoxEnumsValues.FormattingEnabled = true;
+            this.listBoxEnumsValues.Location = new System.Drawing.Point(216, 40);
+            this.listBoxEnumsValues.Name = "listBoxEnumsValues";
+            this.listBoxEnumsValues.Size = new System.Drawing.Size(158, 251);
+            this.listBoxEnumsValues.TabIndex = 2;
+            this.listBoxEnumsValues.SelectedIndexChanged += listBoxEnumsValues_SelectedIndexChanged;
+            // 
+            // labelEnumsValues
+            // 
+            this.labelEnumsValues.AutoSize = true;
+            this.labelEnumsValues.Location = new System.Drawing.Point(213, 24);
+            this.labelEnumsValues.Name = "labelEnumsValues";
+            this.labelEnumsValues.Size = new System.Drawing.Size(75, 13);
+            this.labelEnumsValues.TabIndex = 3;
+            this.labelEnumsValues.Text = "Choose value:";
+            // 
+            // textBoxIntValue
+            // 
+            this.textBoxIntValue.Location = new System.Drawing.Point(419, 40);
+            this.textBoxIntValue.MaxLength = 1;
+            this.textBoxIntValue.Name = "textBoxIntValue";
+            this.textBoxIntValue.Size = new System.Drawing.Size(158, 20);
+            this.textBoxIntValue.TabIndex = 4;
+            this.textBoxIntValue.TextChanged += textBoxIntValue_TextChanged;
+            // 
+            // labelIntValue
+            // 
+            this.labelIntValue.AutoSize = true;
+            this.labelIntValue.Location = new System.Drawing.Point(416, 24);
+            this.labelIntValue.Name = "labelIntValue";
+            this.labelIntValue.Size = new System.Drawing.Size(51, 13);
+            this.labelIntValue.TabIndex = 5;
+            this.labelIntValue.Text = "Int value:";
+            // 
             // groupBoxParse
             // 
             this.groupBoxParse.Location = new System.Drawing.Point(8, 325);
@@ -186,44 +231,6 @@
             this.groupBoxParse.TabIndex = 11;
             this.groupBoxParse.TabStop = false;
             this.groupBoxParse.Text = "Weekday parsing";
-            // 
-            // groupBoxSeason
-            // 
-            this.groupBoxSeason.Controls.Add(this.buttonSeason);
-            this.groupBoxSeason.Controls.Add(this.comboBoxSeason);
-            this.groupBoxSeason.Controls.Add(this.labelSeason);
-            this.groupBoxSeason.Location = new System.Drawing.Point(410, 325);
-            this.groupBoxSeason.Name = "groupBoxSeason";
-            this.groupBoxSeason.Size = new System.Drawing.Size(374, 184);
-            this.groupBoxSeason.TabIndex = 12;
-            this.groupBoxSeason.TabStop = false;
-            this.groupBoxSeason.Text = "Season handling";
-            // 
-            // labelSeason
-            // 
-            this.labelSeason.AutoSize = true;
-            this.labelSeason.Location = new System.Drawing.Point(14, 29);
-            this.labelSeason.Name = "labelSeason";
-            this.labelSeason.Size = new System.Drawing.Size(84, 13);
-            this.labelSeason.TabIndex = 9;
-            this.labelSeason.Text = "Change season:";
-            // 
-            // comboBoxSeason
-            // 
-            this.comboBoxSeason.FormattingEnabled = true;
-            this.comboBoxSeason.Location = new System.Drawing.Point(17, 44);
-            this.comboBoxSeason.Name = "comboBoxSeason";
-            this.comboBoxSeason.Size = new System.Drawing.Size(220, 21);
-            this.comboBoxSeason.TabIndex = 10;
-            // 
-            // buttonSeason
-            // 
-            this.buttonSeason.Location = new System.Drawing.Point(243, 45);
-            this.buttonSeason.Name = "buttonSeason";
-            this.buttonSeason.Size = new System.Drawing.Size(75, 21);
-            this.buttonSeason.TabIndex = 11;
-            this.buttonSeason.Text = "Go!";
-            this.buttonSeason.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -236,10 +243,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageEnums.ResumeLayout(false);
             this.tabPageEnums.PerformLayout();
-            this.groupBoxEnums.ResumeLayout(false);
-            this.groupBoxEnums.PerformLayout();
             this.groupBoxSeason.ResumeLayout(false);
             this.groupBoxSeason.PerformLayout();
+            this.groupBoxEnums.ResumeLayout(false);
+            this.groupBoxEnums.PerformLayout();
             this.ResumeLayout(false);
 
         }
