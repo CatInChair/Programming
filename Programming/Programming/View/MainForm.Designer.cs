@@ -50,6 +50,10 @@ namespace Programming
             this.labelEnums = new System.Windows.Forms.Label();
             this.tabPageRectangles = new System.Windows.Forms.TabPage();
             this.groupBoxRectangles = new System.Windows.Forms.GroupBox();
+            this.textBoxCenterY = new System.Windows.Forms.TextBox();
+            this.labelCenterY = new System.Windows.Forms.Label();
+            this.textBoxCenterX = new System.Windows.Forms.TextBox();
+            this.labelCenterX = new System.Windows.Forms.Label();
             this.buttonFind = new System.Windows.Forms.Button();
             this.textBoxColor = new System.Windows.Forms.TextBox();
             this.labelColor = new System.Windows.Forms.Label();
@@ -72,6 +76,8 @@ namespace Programming
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.listBoxFilms = new System.Windows.Forms.ListBox();
+            this.labelId = new System.Windows.Forms.Label();
+            this.textBoxId = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPageEnums.SuspendLayout();
             this.groupBoxSeason.SuspendLayout();
@@ -273,6 +279,12 @@ namespace Programming
             // 
             // groupBoxRectangles
             // 
+            this.groupBoxRectangles.Controls.Add(this.textBoxId);
+            this.groupBoxRectangles.Controls.Add(this.labelId);
+            this.groupBoxRectangles.Controls.Add(this.textBoxCenterY);
+            this.groupBoxRectangles.Controls.Add(this.labelCenterY);
+            this.groupBoxRectangles.Controls.Add(this.textBoxCenterX);
+            this.groupBoxRectangles.Controls.Add(this.labelCenterX);
             this.groupBoxRectangles.Controls.Add(this.buttonFind);
             this.groupBoxRectangles.Controls.Add(this.textBoxColor);
             this.groupBoxRectangles.Controls.Add(this.labelColor);
@@ -287,6 +299,40 @@ namespace Programming
             this.groupBoxRectangles.TabIndex = 1;
             this.groupBoxRectangles.TabStop = false;
             this.groupBoxRectangles.Text = "Rectangles";
+            // 
+            // textBoxCenterY
+            // 
+            this.textBoxCenterY.Location = new System.Drawing.Point(289, 198);
+            this.textBoxCenterY.Name = "textBoxCenterY";
+            this.textBoxCenterY.ReadOnly = true;
+            this.textBoxCenterY.Size = new System.Drawing.Size(119, 20);
+            this.textBoxCenterY.TabIndex = 14;
+            // 
+            // labelCenterY
+            // 
+            this.labelCenterY.AutoSize = true;
+            this.labelCenterY.Location = new System.Drawing.Point(286, 182);
+            this.labelCenterY.Name = "labelCenterY";
+            this.labelCenterY.Size = new System.Drawing.Size(51, 13);
+            this.labelCenterY.TabIndex = 13;
+            this.labelCenterY.Text = "Center Y:";
+            // 
+            // textBoxCenterX
+            // 
+            this.textBoxCenterX.Location = new System.Drawing.Point(289, 159);
+            this.textBoxCenterX.Name = "textBoxCenterX";
+            this.textBoxCenterX.ReadOnly = true;
+            this.textBoxCenterX.Size = new System.Drawing.Size(119, 20);
+            this.textBoxCenterX.TabIndex = 12;
+            // 
+            // labelCenterX
+            // 
+            this.labelCenterX.AutoSize = true;
+            this.labelCenterX.Location = new System.Drawing.Point(286, 143);
+            this.labelCenterX.Name = "labelCenterX";
+            this.labelCenterX.Size = new System.Drawing.Size(51, 13);
+            this.labelCenterX.TabIndex = 11;
+            this.labelCenterX.Text = "Center X:";
             // 
             // buttonFind
             // 
@@ -481,6 +527,23 @@ namespace Programming
             this.listBoxFilms.Size = new System.Drawing.Size(176, 264);
             this.listBoxFilms.TabIndex = 1;
             // 
+            // labelId
+            // 
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(286, 221);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(21, 13);
+            this.labelId.TabIndex = 15;
+            this.labelId.Text = "ID:";
+            // 
+            // textBoxId
+            // 
+            this.textBoxId.Location = new System.Drawing.Point(289, 237);
+            this.textBoxId.Name = "textBoxId";
+            this.textBoxId.ReadOnly = true;
+            this.textBoxId.Size = new System.Drawing.Size(119, 20);
+            this.textBoxId.TabIndex = 16;
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(584, 561);
@@ -572,6 +635,12 @@ namespace Programming
         private Label labelRating;
         private TextBox textBoxGenre;
         private TextBox textBoxRating;
+        private TextBox textBoxCenterY;
+        private Label labelCenterY;
+        private TextBox textBoxCenterX;
+        private Label labelCenterX;
+        private TextBox textBoxId;
+        private Label labelId;
     }
 }
 

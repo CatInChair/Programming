@@ -27,30 +27,21 @@ namespace Programming.Model
 
         public void SetHours(int value)
         {
-            if (value < 0 || value > 24)
-            {
-                throw new ArgumentException("Hours must be in the range from 0 to 24");
-            }
+            Model.Validator.AssertValueInRange(value, 0, 24, "Time.Hours");
 
             _hours = value;
         }
 
         public void SetMinutes(int value) 
         {
-            if (value < 0 || value > 60)
-            {
-                throw new ArgumentException("Minutes must be in the range from 0 to 60");
-            }
+            Model.Validator.AssertValueInRange(value, 0, 60, "Time.Minutes");
 
             _minutes = value;
         }
 
         public void SetSeconds(int value)
         {
-            if (value < 0 || value > 60)
-            {
-                throw new ArgumentException("Seconds must be in the range from 0 to 60");
-            }
+            Model.Validator.AssertValueInRange(value, 0, 60, "Time.Seconds");
 
             _seconds = value;
         }

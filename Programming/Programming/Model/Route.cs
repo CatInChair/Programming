@@ -35,10 +35,7 @@ namespace Programming.Model
         }
         public void SetFlightDuration(int value) 
         {
-            if (value < 0) 
-            {
-                throw new ArgumentException("FlightDuration must be more than 0");
-            }
+            Model.Validator.AssertOnPositiveValue(value, "Route.FlightDuration");
 
             _flightDuration = value;
         }

@@ -31,11 +31,8 @@ namespace Programming.Model
             _name = value;
         }
         public void SetGrade(int value) 
-        { 
-            if (value < 1 || value > 5)
-            {
-                throw new ArgumentException("Grade must be more than 0 and less than 6");
-            }
+        {
+            Model.Validator.AssertValueInRange(value, 1, 5, "Discipline.Grade");
 
             _grade = value;
         }

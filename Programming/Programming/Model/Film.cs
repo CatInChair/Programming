@@ -40,20 +40,14 @@ namespace Programming.Model
             _name = value;
         }
         public void SetDuration(int value) 
-        { 
-            if (value < 0)
-            {
-                throw new ArgumentException("Duration must be more than 0");
-            }
+        {
+            Model.Validator.AssertOnPositiveValue(value, "Film.Duration");
 
             _duration = value;
         }
         public void SetReleaseYear(int value)
         {
-            if (value < 1900 || value > 2025)
-            {
-                throw new ArgumentException("ReleaseYear must be more than 1899 and less than 2026");
-            }
+            Model.Validator.AssertValueInRange(value, 1900, 2025, "Film.ReleaseYear");
 
             _releaseYear = value;
         }
@@ -63,10 +57,7 @@ namespace Programming.Model
         }
         public void SetRating(double value)
         {
-            if (value < 0.0 || value > 10.0)
-            {
-                throw new ArgumentException("Rating must be more than 0.0 and less than 10.0");
-            }
+            Model.Validator.AssertValueInRange(value, 0.0, 10.0, "Film.Rating");
 
             _rating = value;
         }

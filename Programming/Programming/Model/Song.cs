@@ -35,10 +35,7 @@ namespace Programming.Model
         }
         public void SetDuration(int value)
         {
-            if (value < 0)
-            {
-                throw new ArgumentException("Duration must be more than 0");
-            }
+            Model.Validator.AssertOnPositiveValue(value, "Song.Duration");
 
             _duration = value;
         }

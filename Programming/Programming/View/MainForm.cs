@@ -45,11 +45,11 @@ namespace Programming
 
             _rectangles = new Model.Rectangle[]
             {
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)]),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)]),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)]),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)]),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)])
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next()))
             };
 
             _films = new Model.Film[]
@@ -81,6 +81,9 @@ namespace Programming
             this.textBoxLength.Text = _currentRectangle.GetLength().ToString();
             this.textBoxWidth.Text = _currentRectangle.GetWidth().ToString();
             this.textBoxColor.Text = _currentRectangle.GetColor();
+            this.textBoxCenterX.Text = _currentRectangle.GetCenter().X.ToString();
+            this.textBoxCenterY.Text = _currentRectangle.GetCenter().Y.ToString();
+            this.textBoxId.Text = _currentRectangle.Id.ToString();
         }
 
         public void ListBoxFilms_SelectedIndexChanged(object sender, EventArgs arg)

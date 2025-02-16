@@ -11,6 +11,10 @@ namespace Programming.Model
         private double _length;
         private double _width;
         private string _color;
+        private Point2D _center;
+        public int Id { get; }  
+
+        private static int _allRectanglesCount;
 
         public double GetLength()
         {
@@ -24,22 +28,24 @@ namespace Programming.Model
         { 
             return _color; 
         }
+        public Point2D GetCenter()
+        {
+            return _center;
+        }
+        public static int AllRectanglesCount()
+        {
+            return _allRectanglesCount;
+        }
 
         public void SetLength(double value)
         {
-            if (value < 0.0)
-            {
-                throw new ArgumentException("Length must be more than 0.0");
-            }
+            Model.Validator.AssertOnPositiveValue(value, "Rectangle.Length");
 
             _length = value;
         }
         public void SetWidth(double value)
         {
-            if (value < 0.0)
-            {
-                throw new ArgumentException("Width must be more than 0.0");
-            }
+            Model.Validator.AssertOnPositiveValue(value, "Rectangle.Width");
 
             _width = value;
         }
@@ -48,13 +54,20 @@ namespace Programming.Model
             _color = value;
         }
 
-        public Rectangle(double length, double width, string color)
+        public Rectangle(double length, double width, string color, Point2D center)
         {
             this.SetLength(length);
             this.SetWidth(width);
             this.SetColor(color);
+            _center = center;
+            Id = AllRectanglesCount();
+
+            _allRectanglesCount++;
         }
 
-        public Rectangle() { }
+        public Rectangle() 
+        {
+            _allRectanglesCount++;
+        }
     }
 }
