@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming3.Model
+namespace Programming.Model
 {
     public class Contacts
     {
@@ -31,7 +31,7 @@ namespace Programming3.Model
         }
         public void SetSurname(string value) 
         { 
-            _forename = value;
+            _surname = value;
         }
         public void SetForename(string value) 
         { 

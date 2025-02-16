@@ -47,10 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Color.cs" />
+    <Compile Include="Model\Contacts.cs" />
+    <Compile Include="Model\Discipline.cs" />
     <Compile Include="Model\EducationForm.cs" />
+    <Compile Include="Model\Film.cs" />
     <Compile Include="Model\Genre.cs" />
+    <Compile Include="Model\Rectangle.cs" />
+    <Compile Include="Model\Route.cs" />
     <Compile Include="Model\Season.cs" />
     <Compile Include="Model\SmartphoneManufactures.cs" />
+    <Compile Include="Model\Song.cs" />
+    <Compile Include="Model\Time.cs" />
     <Compile Include="Model\Weekday.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
