@@ -45,11 +45,11 @@ namespace Programming
 
             _rectangles = new Model.Rectangle[]
             {
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next())),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(), random.Next()))
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
+                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100)))
             };
 
             _films = new Model.Film[]
@@ -78,7 +78,7 @@ namespace Programming
         {
             _currentRectangle = _rectangles[this.listBoxRectangles.SelectedIndex];
 
-            this.textBoxLength.Text = _currentRectangle.GetLength().ToString();
+            this.textBoxLength.Text = _currentRectangle.GetHeight().ToString();
             this.textBoxWidth.Text = _currentRectangle.GetWidth().ToString();
             this.textBoxColor.Text = _currentRectangle.GetColor();
             this.textBoxCenterX.Text = _currentRectangle.GetCenter().X.ToString();
@@ -103,7 +103,7 @@ namespace Programming
 
             try
             {
-                _currentRectangle.SetLength(Double.Parse(this.textBoxLength.Text));
+                _currentRectangle.SetHeight(Double.Parse(this.textBoxLength.Text));
             }
             catch
             {

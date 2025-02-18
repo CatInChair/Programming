@@ -63,6 +63,9 @@
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\Validator.cs" />
     <Compile Include="Model\Weekday.cs" />
+    <Compile Include="View\MainFomRectangles.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

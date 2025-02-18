@@ -10,7 +10,7 @@ namespace Programming.Model
     {
         static public bool IsCollision(Rectangle r1, Rectangle r2)
         {
-            return Math.Abs(r1.GetCenter().X - r2.GetCenter().X) < (r1.GetLength() + r2.GetLength())/2 || Math.Abs(r1.GetCenter().Y - r2.GetCenter().Y) < (r1.GetWidth() + r2.GetWidth()) / 2;
+            return Math.Abs(r1.GetCenter().X - r2.GetCenter().X) < (r1.GetHeight() + r2.GetHeight())/2 || Math.Abs(r1.GetCenter().Y - r2.GetCenter().Y) < (r1.GetWidth() + r2.GetWidth()) / 2;
         }
 
         static public bool IsCollision(Ring r1, Ring r2)
