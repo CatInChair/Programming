@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Programming.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using Color = System.Drawing.Color;
 
 namespace Programming
 { 
@@ -17,15 +19,26 @@ namespace Programming
     {
         private Model.Rectangle _currentRectangleCanva;
         private List<Model.Rectangle> _rectangleList = new List<Model.Rectangle> { };
+        private List<Panel> _rectanglePanels = new List<Panel> { };
 
         public void ButtonRectangleAdd_Click(object sender, EventArgs arg)
         {
             Random random = new Random();
-            Model.Rectangle rectangle = new Model.Rectangle(random.Next(0, 20), random.Next(0, 20), _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100)));
+            Panel panel = new Panel();
+            Model.Rectangle rectangle = Model.RectangleFactory.Randomize();
 
+            panel.Width = (int)rectangle.GetWidth();
+            panel.Height = (int)rectangle.GetHeight();
+            panel.Location = new Point(rectangle.GetCenter().X - (int)(rectangle.GetWidth()/2), rectangle.GetCenter().Y - (int)(rectangle.GetHeight()/2));
+            panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+
+            _rectanglePanels.Add(panel);
             _rectangleList.Add(rectangle);
 
+            this.panelRectangles.Controls.Add(panel);
             AddRectangleToListBox(rectangle);
+
+            FindCollisions();
         }
 
         public void ButtonRectangleRemove_Click(object sender, EventArgs arg)
@@ -34,16 +47,13 @@ namespace Programming
             {
                 _currentRectangle = null;
                 _rectangleList.RemoveAt(this.listBoxRectangleList.SelectedIndex);
+                _rectanglePanels.RemoveAt(this.listBoxRectangleList.SelectedIndex);
 
-                this.textBoxSelectedRectangleX.Clear();
-                this.textBoxCenterY.Clear();
-                this.textBoxSelectedRectangleY.Clear();
-                this.textBoxSelectedRectangleWidth.Clear();
-                this.textBoxSelectedRectangleHeight.Clear();
-                this.textBoxSelectedRectangleId.Clear();
+                ClearRectangleInfo();
 
-
+                this.panelRectangles.Controls.RemoveAt(this.listBoxRectangleList.SelectedIndex);
                 RemoveRectangleFromListBox(this.listBoxRectangleList.SelectedIndex);
+                FindCollisions();
             }
             else
             {
@@ -60,11 +70,8 @@ namespace Programming
 
             _currentRectangleCanva = _rectangleList[this.listBoxRectangleList.SelectedIndex];
 
-            this.textBoxSelectedRectangleId.Text = _currentRectangleCanva.Id.ToString();
-            this.textBoxSelectedRectangleHeight.Text = _currentRectangleCanva.GetHeight().ToString();
-            this.textBoxSelectedRectangleWidth.Text = _currentRectangleCanva.GetWidth().ToString();
-            this.textBoxSelectedRectangleX.Text = _currentRectangleCanva.GetCenter().X.ToString();
-            this.textBoxSelectedRectangleY.Text = _currentRectangleCanva.GetCenter().Y.ToString();
+            FindCollisions();
+            UpdateRectangleInfo(_currentRectangleCanva);
         }
 
         public  void TextBoxSelectedRectangleHeight_TextChanged(object sender, EventArgs arg)
@@ -90,6 +97,7 @@ namespace Programming
 
                 _currentRectangleCanva.SetHeight(value);
                 this.listBoxRectangleList.Items[this.listBoxRectangleList.SelectedIndex] = $"{_currentRectangleCanva.Id} (X={_currentRectangleCanva.GetCenter().X}, Y={_currentRectangleCanva.GetCenter().Y}), W={_currentRectangleCanva.GetWidth()}, H={_currentRectangleCanva.GetHeight()}";
+                RedrawRectangle();
             }
             catch
             {
@@ -120,6 +128,7 @@ namespace Programming
 
                 _currentRectangleCanva.SetWidth(value);
                 this.listBoxRectangleList.Items[this.listBoxRectangleList.SelectedIndex] = $"{_currentRectangleCanva.Id} (X={_currentRectangleCanva.GetCenter().X}, Y={_currentRectangleCanva.GetCenter().Y}), W={_currentRectangleCanva.GetWidth()}, H={_currentRectangleCanva.GetHeight()}";
+                RedrawRectangle();
             }
             catch
             {
@@ -150,6 +159,7 @@ namespace Programming
 
                 _currentRectangleCanva.SetCenter(new Model.Point2D(value, _currentRectangleCanva.GetCenter().Y));
                 this.listBoxRectangleList.Items[this.listBoxRectangleList.SelectedIndex] = $"{_currentRectangleCanva.Id} (X={_currentRectangleCanva.GetCenter().X}, Y={_currentRectangleCanva.GetCenter().Y}), W={_currentRectangleCanva.GetWidth()}, H={_currentRectangleCanva.GetHeight()}";
+                RedrawRectangle();
             }
             catch
             {
@@ -180,6 +190,7 @@ namespace Programming
 
                 _currentRectangleCanva.SetCenter(new Model.Point2D(_currentRectangleCanva.GetCenter().X, value));
                 this.listBoxRectangleList.Items[this.listBoxRectangleList.SelectedIndex] = $"{_currentRectangleCanva.Id} (X={_currentRectangleCanva.GetCenter().X}, Y={_currentRectangleCanva.GetCenter().Y}, W={_currentRectangleCanva.GetWidth()}, H={_currentRectangleCanva.GetHeight()}";
+                RedrawRectangle();
             }
             catch
             {
@@ -195,6 +206,72 @@ namespace Programming
         private void RemoveRectangleFromListBox(int index)
         {
             this.listBoxRectangleList.Items.RemoveAt(index);
+        }
+
+        private void FindCollisions()
+        {
+            foreach (Panel panel in this.panelRectangles.Controls)
+            {
+                panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+            }
+
+            for (int i = 0; i < _rectangleList.Count - 1; i++)
+            {
+                for (int j = i + 1; j < _rectangleList.Count; j++)
+                {
+                    Console.WriteLine(Model.CollisionManager.IsCollision(_rectangleList[i], _rectangleList[j]));
+
+                    if (Model.CollisionManager.IsCollision(_rectangleList[i], _rectangleList[j]))
+                    {
+                        this.panelRectangles.Controls[i].BackColor = Color.FromArgb(127, 255, 127, 127);
+                        this.panelRectangles.Controls[j].BackColor = Color.FromArgb(127, 255, 127, 127);
+                    }
+                }
+            }
+
+            HighlightSelectedRectangle();
+        }
+
+        private void HighlightSelectedRectangle()
+        {
+            if (this.listBoxRectangleList.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            this.panelRectangles.Controls[this.listBoxRectangleList.SelectedIndex].BackColor = Color.LightGoldenrodYellow;
+        }
+
+        private void RedrawRectangle()
+        {
+            Panel panel = (Panel)this.panelRectangles.Controls[this.listBoxRectangleList.SelectedIndex];
+
+            panel.Width = (int)_currentRectangleCanva.GetWidth();
+            panel.Height = (int)_currentRectangleCanva.GetHeight();
+            panel.Location = new Point(_currentRectangleCanva.GetCenter().X - (int)(_currentRectangleCanva.GetWidth() / 2), _currentRectangleCanva.GetCenter().Y - (int)(_currentRectangleCanva.GetHeight() / 2));
+            panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+
+            _rectanglePanels[this.listBoxRectangleList.SelectedIndex] = panel;
+            FindCollisions();
+        }
+
+        private void ClearRectangleInfo()
+        {
+            this.textBoxSelectedRectangleX.Clear();
+            this.textBoxCenterY.Clear();
+            this.textBoxSelectedRectangleY.Clear();
+            this.textBoxSelectedRectangleWidth.Clear();
+            this.textBoxSelectedRectangleHeight.Clear();
+            this.textBoxSelectedRectangleId.Clear();
+        }
+
+        private void UpdateRectangleInfo(Model.Rectangle r) 
+        {
+            this.textBoxSelectedRectangleId.Text = r.Id.ToString();
+            this.textBoxSelectedRectangleHeight.Text = r.GetHeight().ToString();
+            this.textBoxSelectedRectangleWidth.Text = r.GetWidth().ToString();
+            this.textBoxSelectedRectangleX.Text = r.GetCenter().X.ToString();
+            this.textBoxSelectedRectangleY.Text = r.GetCenter().Y.ToString();
         }
     }
 }

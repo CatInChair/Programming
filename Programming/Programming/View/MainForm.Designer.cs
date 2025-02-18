@@ -714,6 +714,11 @@ namespace Programming
             // buttonRectangleRemove
             // 
             this.buttonRectangleRemove.BackColor = System.Drawing.Color.Transparent;
+            this.buttonRectangleRemove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRectangleRemove.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.buttonRectangleRemove.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonRectangleRemove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonRectangleRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRectangleRemove.Location = new System.Drawing.Point(162, 258);
             this.buttonRectangleRemove.Name = "buttonRectangleRemove";
             this.buttonRectangleRemove.Size = new System.Drawing.Size(75, 25);
@@ -724,6 +729,11 @@ namespace Programming
             // buttonRectangleAdd
             // 
             this.buttonRectangleAdd.BackColor = System.Drawing.Color.Transparent;
+            this.buttonRectangleAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRectangleAdd.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.buttonRectangleAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonRectangleAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonRectangleAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRectangleAdd.Location = new System.Drawing.Point(42, 258);
             this.buttonRectangleAdd.Name = "buttonRectangleAdd";
             this.buttonRectangleAdd.Size = new System.Drawing.Size(75, 25);

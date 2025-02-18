@@ -17,7 +17,6 @@ namespace Programming
     {
         private Model.Rectangle[] _rectangles;
         private Model.Rectangle _currentRectangle;
-        private string[] _colors = new string[] { "Red", "Yellow", "Orange", "Blue" };
         private Model.Film[] _films;
         private Model.Film _currentFilm;
 
@@ -45,11 +44,11 @@ namespace Programming
 
             _rectangles = new Model.Rectangle[]
             {
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100))),
-                new Model.Rectangle(random.NextDouble() * 100, random.NextDouble() * 100, _colors[random.Next(0, 4)], new Model.Point2D(random.Next(0, 100), random.Next(0, 100)))
+                Model.RectangleFactory.Randomize(),
+                Model.RectangleFactory.Randomize(),
+                Model.RectangleFactory.Randomize(),
+                Model.RectangleFactory.Randomize(),
+                Model.RectangleFactory.Randomize()
             };
 
             _films = new Model.Film[]
