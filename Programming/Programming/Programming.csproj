@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AppColors.cs" />
     <Compile Include="Model\Geometry\CollisionManager.cs" />
     <Compile Include="Model\Color.cs" />
     <Compile Include="Model\Contact.cs" />
@@ -64,9 +65,6 @@
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\Validator.cs" />
     <Compile Include="Model\Weekday.cs" />
-    <Compile Include="View\MainFomRectangles.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +73,31 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Pages\ClassesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Pages\ClassesControl.Designer.cs">
+      <DependentUpon>ClassesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EnumsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Pages\EnumsControl.Designer.cs">
+      <DependentUpon>EnumsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\FilmsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Pages\FilmsControl.Designer.cs">
+      <DependentUpon>FilmsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\RectangleCollisionControl.cs">
+      <SubType>UserControl</SubType>
+      <CustomToolNamespace>Programming</CustomToolNamespace>
+    </Compile>
+    <Compile Include="View\Pages\RectangleCollisionControl.Designer.cs">
+      <DependentUpon>RectangleCollisionControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -86,6 +109,18 @@
     </Compile>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\ClassesControl.resx">
+      <DependentUpon>ClassesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\EnumsControl.resx">
+      <DependentUpon>EnumsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\FilmsControl.resx">
+      <DependentUpon>FilmsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\RectangleCollisionControl.resx">
+      <DependentUpon>RectangleCollisionControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
