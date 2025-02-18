@@ -18,7 +18,7 @@ namespace Programming.Model
         {
             get
             {
-                return InnerR;
+                return _innerR;
             }
             set
             {
@@ -29,9 +29,10 @@ namespace Programming.Model
                     throw new ArgumentException("Ring.InnerR must be less than OuterR value");
                 }
 
-                InnerR = value;
+                _innerR = value;
             }
         }
+        private double _innerR;
         /// <summary>
         /// Радиус внешнего круга.
         /// </summary>
@@ -39,7 +40,7 @@ namespace Programming.Model
         {
             get
             {
-                return OuterR;
+                return _outerR;
             }
             set
             {
@@ -50,9 +51,10 @@ namespace Programming.Model
                     throw new ArgumentException("Ring.OuterR must be more than InnerR value");
                 }
 
-                OuterR = value;
+                _outerR = value;
             }
         }
+        private double _outerR;
         /// <summary>
         /// Площадь данного кольца.
         /// </summary>

@@ -15,15 +15,16 @@ namespace Programming.Model
         {
             get
             {
-                return PhoneNumber;
+                return _phoneNumber;
             }
             set
             {
                 Validator.AssertOnPositiveValue(value, "Contact.PhoneNumber");
 
-                PhoneNumber = value;
+                _phoneNumber = value;
             }
         }
+        private int _phoneNumber;
         /// <summary>
         /// Фамилия контакта.
         /// </summary>
@@ -31,15 +32,16 @@ namespace Programming.Model
         {
             get
             {
-                return Surname;
+                return _surname;
             }
             set
             {
                 AssertStringContainsOnlyLetters(value, "Contact.Surname");
 
-                Surname = value;
+                _surname = value;
             }
         }
+        private string _surname;
         /// <summary>
         /// Имя контакта.
         /// </summary>
@@ -47,15 +49,16 @@ namespace Programming.Model
         {
             get
             {
-                return Name;
+                return _name;
             }
             set
             {
                 AssertStringContainsOnlyLetters(value, "Contact.Name");
 
-                Name = value;
+                _name = value;
             }
         }
+        private string _name;
 
         /// <summary>
         /// Проверяет, содержит ли строка лишь символы английского алфавита.

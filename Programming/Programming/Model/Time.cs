@@ -12,15 +12,16 @@
         {
             get
             {
-                return Hours;
+                return _hours;
             }
             set
             {
                 Model.Validator.AssertValueInRange(value, 0, 24, "Time.Hours");
 
-                Hours = value;
+                _hours = value;
             }
         }
+        private int _hours;
         /// <summary>
         /// Минуты.
         /// </summary>
@@ -28,15 +29,16 @@
         {
             get
             {
-                return Minutes;
+                return _minutes;
             }
             set
             {
                 Model.Validator.AssertValueInRange(value, 0, 60, "Time.Minutes");
 
-                Minutes = value;
+                _minutes = value;
             }
         }
+        private int _minutes;
         /// <summary>
         /// Секунды.
         /// </summary>
@@ -44,15 +46,16 @@
         { 
             get
             {
-                return Seconds;
+                return _seconds;
             } 
             set
             {
                 Model.Validator.AssertValueInRange(value, 0, 60, "Time.Seconds");
 
-                Seconds = value;
+                _seconds = value;
             }
         }
+        private int _seconds;
 
         /// <summary>
         /// Конструктор класса <see cref="Time"/>.

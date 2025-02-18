@@ -47,7 +47,7 @@ namespace Programming.View.Pages
 
             Model.Weekday parsedValue;
 
-            if (!Enum.TryParse(this.textBoxParse.Text, out parsedValue))
+            if (!Enum.TryParse(this.textBoxParse.Text, out parsedValue) || !Enum.GetNames(Models[5]).Contains(this.textBoxParse.Text))
             {
                 this.labelParseOutput.Text = "Нет такого дня недели";
                 return;

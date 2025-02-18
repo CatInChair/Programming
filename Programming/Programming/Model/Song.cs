@@ -20,15 +20,16 @@
         {
             get
             {
-                return Duration;
+                return _duration;
             }
             set
             {
                 Model.Validator.AssertOnPositiveValue(value, "Song.Duration");
 
-                Duration = value;
+                _duration = value;
             }
         }
+        private int _duration;
 
         /// <summary>
         /// Конструктор класса <see cref="Song"/>.

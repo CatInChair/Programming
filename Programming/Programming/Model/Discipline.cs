@@ -16,15 +16,16 @@
         {
             get
             {
-                return Grade;
+                return _grade;
             }
             set
             {
                 Model.Validator.AssertValueInRange(value, 1, 5, "Discipline.Grade");
 
-                Grade = value;
+                _grade = value;
             }
         }
+        private int _grade;
         /// <summary>
         /// ФИО преподавателя.
         /// </summary>

@@ -11,15 +11,16 @@
         public double Height { 
             get
             {
-                return Height;
+                return _height;
             }
             set
             {
                 Model.Validator.AssertOnPositiveValue(value, "Rectangle.Length");
 
-                Height = value;
+                _height = value;
             }
         }
+        private double _height;
         /// <summary>
         /// Положительное не-нулевое число, представляющее ширину данного прямоугольника.
         /// </summary>
@@ -27,15 +28,16 @@
         {
             get
             {
-                return Width;
+                return _width;
             }
             set
             {
                 Model.Validator.AssertOnPositiveValue(value, "Rectangle.Length");
 
-                Width = value;
+                _width = value;
             }
         }
+        private double _width;
         /// <summary>
         /// Цвет данного прямоугольника.
         /// </summary>

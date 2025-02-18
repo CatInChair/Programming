@@ -20,15 +20,16 @@
         {
             get
             {
-                return FlightDuration;
+                return _flightDuration;
             }
             set
             {
                 Model.Validator.AssertOnPositiveValue(value, "Route.FlightDuration");
 
-                FlightDuration = value;
+                _flightDuration = value;
             }
         }
+        private int _flightDuration;
        
         /// <summary>
         /// Конструктор класса <see cref="Route"/>.
