@@ -80,6 +80,12 @@ namespace Programming.View.Pages
         {
             this.listBoxRectangles.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
         }
+
+        /// <summary>
+        /// Поиск экземпляра <see cref="Model.Rectangle"/> с наибольшей шириной.
+        /// </summary>
+        /// <param name="rectangles">Массив экземпляров <see cref="Model.Rectangle"/>, по которому производится поиск.</param>
+        /// <returns>Возвращает индекс в изначальном массиве экземпляра <see cref="Model.Rectangle"/> с наибольшей шириной.</returns>
         private int FindRectangleWithMaxWidth(Model.Rectangle[] rectangles)
         {
             int maxIndex = 0;

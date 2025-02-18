@@ -14,6 +14,9 @@ namespace Programming.View.Pages
 {
     public partial class EnumsControl : UserControl
     {
+        /// <summary>
+        /// Массив перечислений, существующих в приложении
+        /// </summary>
         Type[] Models = new Type[]
         {
             typeof(Model.Color),
@@ -38,6 +41,7 @@ namespace Programming.View.Pages
 
             this.comboBoxSeason.Items.AddRange(Enum.GetNames(Models[3]));
         }
+
         private void ButtonParse_Click(object sender, EventArgs e)
         {
             if (this.textBoxParse.Text == "")

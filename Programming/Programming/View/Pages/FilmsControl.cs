@@ -100,6 +100,11 @@ namespace Programming.View.Pages
             this.listBoxFilms.SelectedIndex = FindFilmWithMaxRating(_films);
         }
 
+        /// <summary>
+        /// Поиск экземпляра <see cref="Model.Film"/> с наивысшим рейтингом.
+        /// </summary>
+        /// <param name="films">Массив экземпляров <see cref="Model.Film"/>, по которому производится поиск.</param>
+        /// <returns>Возвращает индекс в изначальном массиве экземпляра <see cref="Model.Film"/> с наивысшим рейтингом.</returns>
         private int FindFilmWithMaxRating(Model.Film[] films)
         {
             int maxIndex = 0;

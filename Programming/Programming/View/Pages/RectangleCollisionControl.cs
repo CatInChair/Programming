@@ -195,16 +195,27 @@ namespace Programming.View.Pages
             }
         }
 
+        /// <summary>
+        /// Добавляет экземпляр <see cref="Model.Rectangle"/> в ListBox элемент.
+        /// </summary>
+        /// <param name="r">Экземпляр <see cref="Model.Rectangle"/>, который необходимо добавить в ListBox.</param>
         private void AddRectangleToListBox(Model.Rectangle r)
         {
             this.listBoxRectangles.Items.Add($"{r.Id} (X={r.Center.X}, Y={r.Center.Y}, W={r.Width}, H={r.Height}");
         }
 
+        /// <summary>
+        /// Удалить элемент из ListBox.
+        /// </summary>
+        /// <param name="index">Индекс элемента в ListBox.</param>
         private void RemoveRectangleFromListBox(int index)
         {
             this.listBoxRectangles.Items.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Поиск и отображение пересечений прямоугольников в элементе Panel.
+        /// </summary>
         private void FindCollisions()
         {
             foreach (Panel panel in this.panelRectangles.Controls)
@@ -229,6 +240,9 @@ namespace Programming.View.Pages
             HighlightSelectedRectangle();
         }
 
+        /// <summary>
+        /// Подсветить выбранный прямоугольник в элементе Panel.
+        /// </summary>
         private void HighlightSelectedRectangle()
         {
             if (this.listBoxRectangles.SelectedIndex == -1)
@@ -239,6 +253,9 @@ namespace Programming.View.Pages
             this.panelRectangles.Controls[this.listBoxRectangles.SelectedIndex].BackColor = AppColors.HighlightColor;
         }
 
+        /// <summary>
+        /// Обновить элемент в ListBox, соответствующий экземпляру <see cref="Model.Rectangle"/>.
+        /// </summary>
         private void RedrawRectangle()
         {
             Panel panel = (Panel)this.panelRectangles.Controls[this.listBoxRectangles.SelectedIndex];
@@ -252,6 +269,9 @@ namespace Programming.View.Pages
             FindCollisions();
         }
 
+        /// <summary>
+        /// Очистить TextBox поля.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             this.textBoxX.Clear();
@@ -261,6 +281,10 @@ namespace Programming.View.Pages
             this.textBoxId.Clear();
         }
 
+        /// <summary>
+        /// Обновить информацию о выбранном экземпляре <see cref="Model.Rectangle"/> в TextBox полях.
+        /// </summary>
+        /// <param name="r">Экземпляр <see cref="Model.Rectangle"/>, информацию о котором необходимо отобразить в TextBox полях.</param>
         private void UpdateRectangleInfo(Model.Rectangle r)
         {
             this.textBoxId.Text = r.Id.ToString();
