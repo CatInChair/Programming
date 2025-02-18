@@ -1,18 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Класс, представляющий собой контакт в телефонной книге.
+    /// </summary>
     public class Contact
     {
-        private int _phoneNumber;
-        private string _surname;
-        private string _name;
+        /// <summary>
+        /// Номер телефона контакта.
+        /// </summary>
+        public int PhoneNumber
+        {
+            get
+            {
+                return PhoneNumber;
+            }
+            set
+            {
+                Validator.AssertOnPositiveValue(value, "Contact.PhoneNumber");
 
+                PhoneNumber = value;
+            }
+        }
+        /// <summary>
+        /// Фамилия контакта.
+        /// </summary>
+        public string Surname
+        {
+            get
+            {
+                return Surname;
+            }
+            set
+            {
+                AssertStringContainsOnlyLetters(value, "Contact.Surname");
+
+                Surname = value;
+            }
+        }
+        /// <summary>
+        /// Имя контакта.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return Name;
+            }
+            set
+            {
+                AssertStringContainsOnlyLetters(value, "Contact.Name");
+
+                Name = value;
+            }
+        }
+
+        /// <summary>
+        /// Проверяет, содержит ли строка лишь символы английского алфавита.
+        /// </summary>
+        /// <param name="value">Строка, требующая проверки.</param>
+        /// <param name="property">Свойство, на которое будет ссылаться ArgumentException при наличии в переданной строке символов, не принадлежащих английскому алфавиту.</param>
+        /// <returns>Возвращает true, если строка соддержит лишь символы английского алфавита, иначе метод вызовет <see cref="ArgumentException"/> исключение.</returns>
+        /// <exception cref="ArgumentException"></exception>
         private bool AssertStringContainsOnlyLetters(string value, string property)
         {
             if (!(Regex.Match(value, @"[a-zA-Z]+").Length == value.Length))
@@ -23,43 +74,22 @@ namespace Programming.Model
             return true;
         }
 
-        public int GetPhoneNumber()
+        /// <summary>
+        /// Конструктор класса <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="phone">Телефонный номер контакта.</param>
+        /// <param name="name">Имя контакта.</param>
+        /// <param name="surname">Фамилия контакта.</param>
+        public Contact(int phone, string name, string surname)
         {
-            return _phoneNumber;
-        }
-        public string GetSurname() 
-        { 
-            return _surname;
-        }
-        public string GetName() 
-        {
-            return _name;
+            Name = name;
+            Name = surname;
+            PhoneNumber = phone;
         }
 
-        public void SetPhoneNumber(int value)
-        {
-            _phoneNumber = value;
-        }
-        public void SetSurname(string value) 
-        {
-            AssertStringContainsOnlyLetters(value, "Contact.Surname");
-
-            _surname = value;
-        }
-        public void SetName(string value) 
-        {
-            AssertStringContainsOnlyLetters(value, "Contact.Name");
-
-            _name = value; 
-        }
-
-        public Contact(int phone, string forename, string surname)
-        {
-            this.SetName(forename);
-            this.SetSurname(surname);
-            this.SetPhoneNumber(phone);
-        }
-
+        /// <summary>
+        /// Конструктор пустого экземпляра класса <see cref="Contact"/>.
+        /// </summary>
         public Contact() { }
     }
 }

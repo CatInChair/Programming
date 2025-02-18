@@ -1,12 +1,6 @@
 ﻿using Programming.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Programming.View.Pages
@@ -43,11 +37,11 @@ namespace Programming.View.Pages
         {
             _currentRectangle = _rectangles[this.listBoxRectangles.SelectedIndex];
 
-            this.textBoxLength.Text = _currentRectangle.GetHeight().ToString();
-            this.textBoxWidth.Text = _currentRectangle.GetWidth().ToString();
-            this.textBoxColor.Text = _currentRectangle.GetColor();
-            this.textBoxCenterX.Text = _currentRectangle.GetCenter().X.ToString();
-            this.textBoxCenterY.Text = _currentRectangle.GetCenter().Y.ToString();
+            this.textBoxLength.Text = _currentRectangle.Height.ToString();
+            this.textBoxWidth.Text = _currentRectangle.Width.ToString();
+            this.textBoxColor.Text = _currentRectangle.Color;
+            this.textBoxCenterX.Text = _currentRectangle.Center.X.ToString();
+            this.textBoxCenterY.Text = _currentRectangle.Center.Y.ToString();
             this.textBoxId.Text = _currentRectangle.Id.ToString();
         }
         public void TextBoxLength_TextChanged(object sender, EventArgs arg)
@@ -56,7 +50,7 @@ namespace Programming.View.Pages
 
             try
             {
-                _currentRectangle.SetHeight(Double.Parse(this.textBoxLength.Text));
+                _currentRectangle.Height = Double.Parse(this.textBoxLength.Text);
             }
             catch
             {
@@ -70,7 +64,7 @@ namespace Programming.View.Pages
 
             try
             {
-                _currentRectangle.SetWidth(Double.Parse(this.textBoxWidth.Text));
+                _currentRectangle.Width = Double.Parse(this.textBoxWidth.Text);
             }
             catch
             {
@@ -80,7 +74,7 @@ namespace Programming.View.Pages
 
         public void TextBoxColor_TextChanged(object sender, EventArgs arg)
         {
-            _currentRectangle.SetColor(this.textBoxColor.Text);
+            _currentRectangle.Color = this.textBoxColor.Text;
         }
         public void ButtonFind_Click(object sender, EventArgs arg)
         {
@@ -92,7 +86,7 @@ namespace Programming.View.Pages
 
             for (int i = 1; i < rectangles.Length; i++)
             {
-                if (rectangles[i].GetWidth() > rectangles[maxIndex].GetWidth())
+                if (rectangles[i].Width > rectangles[maxIndex].Width)
                 {
                     maxIndex = i;
                 }

@@ -1,52 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Programming.Model
+﻿namespace Programming.Model
 {
+    /// <summary>
+    /// Класс, содержащий информацию об авиа-перелете.
+    /// </summary>
     public class Route
     {
-        private string _departurePoint;
-        private string _destinationPoint;
-        private int _flightDuration;
-
-        public string GetDeparturePoint()
+        /// <summary>
+        /// Пункт вылета.
+        /// </summary>
+        public string DeparturePoint;
+        /// <summary>
+        /// Пункт прибытия.
+        /// </summary>
+        public string DestinationPoint;
+        /// <summary>
+        /// Длительность полета.
+        /// </summary>
+        public int FlightDuration
         {
-            return _departurePoint;
-        }
-        public string GetDestinationPoint() 
-        { 
-            return _destinationPoint; 
-        }
-        public int GetFlightDuration() 
-        { 
-            return _flightDuration; 
-        }
+            get
+            {
+                return FlightDuration;
+            }
+            set
+            {
+                Model.Validator.AssertOnPositiveValue(value, "Route.FlightDuration");
 
-        public void SetDeparturePoint(string value)
-        {
-            _departurePoint = value;
+                FlightDuration = value;
+            }
         }
-        public void SetDestinationPoint(string value) 
-        { 
-            _destinationPoint = value; 
-        }
-        public void SetFlightDuration(int value) 
-        {
-            Model.Validator.AssertOnPositiveValue(value, "Route.FlightDuration");
-
-            _flightDuration = value;
-        }
-
+       
+        /// <summary>
+        /// Конструктор класса <see cref="Route"/>.
+        /// </summary>
+        /// <param name="departurePoint">Пункт вылета.</param>
+        /// <param name="destinationPoint">Пункт прибытия.</param>
+        /// <param name="duration">Длительность полета.</param>
         public Route(string departurePoint, string destinationPoint, int duration) 
         { 
-            this.SetDestinationPoint(destinationPoint);
-            this.SetDeparturePoint(departurePoint);
-            this.SetFlightDuration(duration);
+            DestinationPoint = destinationPoint;
+            DeparturePoint = departurePoint;
+            FlightDuration = duration;
         }
 
+        /// <summary>
+        /// Конструктор пустого экземпляра класса <see cref="Route"/>.
+        /// </summary>
         public Route() { }
     }
 }

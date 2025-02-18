@@ -1,12 +1,7 @@
 ﻿using Programming.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Programming.View.Pages
@@ -29,9 +24,9 @@ namespace Programming.View.Pages
             Panel panel = new Panel();
             Model.Rectangle rectangle = Model.RectangleFactory.Randomize();
 
-            panel.Width = (int)rectangle.GetWidth();
-            panel.Height = (int)rectangle.GetHeight();
-            panel.Location = new Point(rectangle.GetCenter().X - (int)(rectangle.GetWidth() / 2), rectangle.GetCenter().Y - (int)(rectangle.GetHeight() / 2));
+            panel.Width = (int)rectangle.Width;
+            panel.Height = (int)rectangle.Height;
+            panel.Location = new Point(rectangle.Center.X - (int)(rectangle.Width / 2), rectangle.Center.Y - (int)(rectangle.Height / 2));
             panel.BackColor = AppColors.OkColor;
 
             _rectanglePanels.Add(panel);
@@ -97,8 +92,8 @@ namespace Programming.View.Pages
             {
                 double value = double.Parse(this.textBoxHeight.Text);
 
-                _currentRectangle.SetHeight(value);
-                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.GetCenter().X}, Y={_currentRectangle.GetCenter().Y}), W={_currentRectangle.GetWidth()}, H={_currentRectangle.GetHeight()}";
+                _currentRectangle.Height = value;
+                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.Center.X}, Y={_currentRectangle.Center.Y}), W={_currentRectangle.Width}, H={_currentRectangle.Height}";
                 RedrawRectangle();
             }
             catch
@@ -128,8 +123,8 @@ namespace Programming.View.Pages
             {
                 double value = double.Parse(this.textBoxWidth.Text);
 
-                _currentRectangle.SetWidth(value);
-                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.GetCenter().X}, Y={_currentRectangle.GetCenter().Y}), W={_currentRectangle.GetWidth()}, H={_currentRectangle.GetHeight()}";
+                _currentRectangle.Width = value;
+                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.Center.X}, Y={_currentRectangle.Center.Y}), W={_currentRectangle.Width}, H={_currentRectangle.Height}";
                 RedrawRectangle();
             }
             catch
@@ -159,8 +154,8 @@ namespace Programming.View.Pages
             {
                 int value = Int32.Parse(this.textBoxX.Text);
 
-                _currentRectangle.SetCenter(new Model.Point2D(value, _currentRectangle.GetCenter().Y));
-                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.GetCenter().X}, Y={_currentRectangle.GetCenter().Y}), W={_currentRectangle.GetWidth()}, H={_currentRectangle.GetHeight()}";
+                _currentRectangle.Center = new Model.Point2D(value, _currentRectangle.Center.Y);
+                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.Center.X}, Y={_currentRectangle.Center.Y}), W={_currentRectangle.Width}, H={_currentRectangle.Height}";
                 RedrawRectangle();
             }
             catch
@@ -190,8 +185,8 @@ namespace Programming.View.Pages
             {
                 int value = Int32.Parse(this.textBoxY.Text);
 
-                _currentRectangle.SetCenter(new Model.Point2D(_currentRectangle.GetCenter().X, value));
-                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.GetCenter().X}, Y={_currentRectangle.GetCenter().Y}, W={_currentRectangle.GetWidth()}, H={_currentRectangle.GetHeight()}";
+                _currentRectangle.Center = new Model.Point2D(_currentRectangle.Center.X, value);
+                this.listBoxRectangles.Items[this.listBoxRectangles.SelectedIndex] = $"{_currentRectangle.Id} (X={_currentRectangle.Center.X}, Y={_currentRectangle.Center.Y}, W={_currentRectangle.Width}, H={_currentRectangle.Height}";
                 RedrawRectangle();
             }
             catch
@@ -202,7 +197,7 @@ namespace Programming.View.Pages
 
         private void AddRectangleToListBox(Model.Rectangle r)
         {
-            this.listBoxRectangles.Items.Add($"{r.Id} (X={r.GetCenter().X}, Y={r.GetCenter().Y}, W={r.GetWidth()}, H={r.GetHeight()}");
+            this.listBoxRectangles.Items.Add($"{r.Id} (X={r.Center.X}, Y={r.Center.Y}, W={r.Width}, H={r.Height}");
         }
 
         private void RemoveRectangleFromListBox(int index)
@@ -248,9 +243,9 @@ namespace Programming.View.Pages
         {
             Panel panel = (Panel)this.panelRectangles.Controls[this.listBoxRectangles.SelectedIndex];
 
-            panel.Width = (int)_currentRectangle.GetWidth();
-            panel.Height = (int)_currentRectangle.GetHeight();
-            panel.Location = new Point(_currentRectangle.GetCenter().X - (int)(_currentRectangle.GetWidth() / 2), _currentRectangle.GetCenter().Y - (int)(_currentRectangle.GetHeight() / 2));
+            panel.Width = (int)_currentRectangle.Width;
+            panel.Height = (int)_currentRectangle.Height;
+            panel.Location = new Point(_currentRectangle.Center.X - (int)(_currentRectangle.Width / 2), _currentRectangle.Center.Y - (int)(_currentRectangle.Height / 2));
             panel.BackColor = AppColors.OkColor;
 
             _rectanglePanels[this.listBoxRectangles.SelectedIndex] = panel;
@@ -269,10 +264,10 @@ namespace Programming.View.Pages
         private void UpdateRectangleInfo(Model.Rectangle r)
         {
             this.textBoxId.Text = r.Id.ToString();
-            this.textBoxHeight.Text = r.GetHeight().ToString();
-            this.textBoxWidth.Text = r.GetWidth().ToString();
-            this.textBoxX.Text = r.GetCenter().X.ToString();
-            this.textBoxY.Text = r.GetCenter().Y.ToString();
+            this.textBoxHeight.Text = r.Height.ToString();
+            this.textBoxWidth.Text = r.Width.ToString();
+            this.textBoxX.Text = r.Center.X.ToString();
+            this.textBoxY.Text = r.Center.Y.ToString();
         }
     }
 }

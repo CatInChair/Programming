@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Статический класс, содержащий методы для создания экземпляров класса <see cref="Rectangle"/>.
+    /// </summary>
     static public class RectangleFactory
     {
+        /// <summary>
+        /// Создает экземпляр <see cref="Rectangle"/>, заполненный случайными(почти) данными.
+        /// </summary>
+        /// <returns>Возвращает новый экземпляр <see cref="Rectangle"/></returns>
         public static Rectangle Randomize()
         {
             Random random = new Random();

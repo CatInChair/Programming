@@ -1,58 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Programming.Model
+﻿namespace Programming.Model
 {
+    /// <summary>
+    /// Класс, содержащий информацию о заданном времени.
+    /// </summary>
     public class Time
     {
-        private int _hours;
-        private int _minutes;
-        private int _seconds;
+        /// <summary>
+        /// Часы.
+        /// </summary>
+        public int Hours
+        {
+            get
+            {
+                return Hours;
+            }
+            set
+            {
+                Model.Validator.AssertValueInRange(value, 0, 24, "Time.Hours");
 
-        public int GetHours() 
-        {  
-            return _hours; 
+                Hours = value;
+            }
         }
-        public int GetMinutes() 
+        /// <summary>
+        /// Минуты.
+        /// </summary>
+        public int Minutes
+        {
+            get
+            {
+                return Minutes;
+            }
+            set
+            {
+                Model.Validator.AssertValueInRange(value, 0, 60, "Time.Minutes");
+
+                Minutes = value;
+            }
+        }
+        /// <summary>
+        /// Секунды.
+        /// </summary>
+        public int Seconds
         { 
-            return _minutes; 
-        }
-        public int GetSeconds()
-        {
-            return _seconds;
-        }
+            get
+            {
+                return Seconds;
+            } 
+            set
+            {
+                Model.Validator.AssertValueInRange(value, 0, 60, "Time.Seconds");
 
-        public void SetHours(int value)
-        {
-            Model.Validator.AssertValueInRange(value, 0, 24, "Time.Hours");
-
-            _hours = value;
+                Seconds = value;
+            }
         }
 
-        public void SetMinutes(int value) 
-        {
-            Model.Validator.AssertValueInRange(value, 0, 60, "Time.Minutes");
-
-            _minutes = value;
-        }
-
-        public void SetSeconds(int value)
-        {
-            Model.Validator.AssertValueInRange(value, 0, 60, "Time.Seconds");
-
-            _seconds = value;
-        }
-
+        /// <summary>
+        /// Конструктор класса <see cref="Time"/>.
+        /// </summary>
+        /// <param name="hours">Часы.</param>
+        /// <param name="minutes">Минуты.</param>
+        /// <param name="seconds">Секунды.</param>
         public Time(int hours, int minutes, int seconds)
         {
-            this.SetHours(hours);
-            this.SetMinutes(minutes);
-            this.SetSeconds(seconds);
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
         }
 
+        /// <summary>
+        /// Конструктор пустого экземпляра класса <see cref="Time"/>.
+        /// </summary>
         public Time() { }
     }
 }

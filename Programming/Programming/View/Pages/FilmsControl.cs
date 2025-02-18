@@ -1,14 +1,7 @@
 ﻿using Programming.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Color = System.Drawing.Color;
 
 namespace Programming.View.Pages
 {
@@ -33,7 +26,7 @@ namespace Programming.View.Pages
 
             for (int i = 0; i < _films.Length; i++)
             {
-                this.listBoxFilms.Items.Add(_films[i].GetName());
+                this.listBoxFilms.Items.Add(_films[i].Name);
             }
 
             this.listBoxFilms.SelectedIndex = 0;
@@ -43,11 +36,11 @@ namespace Programming.View.Pages
         {
             _currentFilm = _films[this.listBoxFilms.SelectedIndex];
 
-            this.textBoxName.Text = _currentFilm.GetName();
-            this.textBoxDuration.Text = _currentFilm.GetDuration().ToString();
-            this.textBoxGenre.Text = _currentFilm.GetGenre();
-            this.textBoxReleaseYear.Text = _currentFilm.GetReleaseYear().ToString();
-            this.textBoxRating.Text = _currentFilm.GetRating().ToString();
+            this.textBoxName.Text = _currentFilm.Name;
+            this.textBoxDuration.Text = _currentFilm.Duration.ToString();
+            this.textBoxGenre.Text = _currentFilm.Genre;
+            this.textBoxReleaseYear.Text = _currentFilm.ReleaseYear.ToString();
+            this.textBoxRating.Text = _currentFilm.Rating.ToString();
         }
 
         public void TextBoxReleaseYear_TextChanged(object sender, EventArgs arg)
@@ -56,7 +49,7 @@ namespace Programming.View.Pages
 
             try
             {
-                _currentFilm.SetReleaseYear(Int32.Parse(this.textBoxReleaseYear.Text));
+                _currentFilm.ReleaseYear = Int32.Parse(this.textBoxReleaseYear.Text);
             }
             catch
             {
@@ -70,7 +63,7 @@ namespace Programming.View.Pages
 
             try
             {
-                _currentFilm.SetDuration(Int32.Parse(this.textBoxDuration.Text));
+                _currentFilm.Duration = Int32.Parse(this.textBoxDuration.Text);
             }
             catch
             {
@@ -84,7 +77,7 @@ namespace Programming.View.Pages
 
             try
             {
-                _currentFilm.SetRating(Double.Parse(this.textBoxRating.Text));
+                _currentFilm.Rating = Double.Parse(this.textBoxRating.Text);
             }
             catch
             {
@@ -94,12 +87,12 @@ namespace Programming.View.Pages
 
         public void TextBoxName_TextChanged(object sender, EventArgs arg)
         {
-            _currentFilm.SetName(this.textBoxName.Text);
+            _currentFilm.Name = this.textBoxName.Text;
         }
 
         public void TextBoxGenre_TextChanged(object sender, EventArgs arg)
         {
-            _currentFilm.SetGenre(this.textBoxGenre.Text);
+            _currentFilm.Genre = this.textBoxGenre.Text;
         }
 
         public void ButtonFilm_Click(object sender, EventArgs arg)
@@ -113,7 +106,7 @@ namespace Programming.View.Pages
 
             for (int i = 1; i < films.Length; i++)
             {
-                if (films[i].GetRating() > films[maxIndex].GetRating())
+                if (films[i].Rating > films[maxIndex].Rating)
                 {
                     maxIndex = i;
                 }

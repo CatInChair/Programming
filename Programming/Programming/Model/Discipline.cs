@@ -1,53 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Programming.Model
+﻿namespace Programming.Model
 {
+    /// <summary>
+    /// Класс, представляющий собой запись в зачетной книжке.
+    /// </summary>
     public class Discipline
     {
-        private string _name;
-        private int _grade;
-        private string _teacher;
+        /// <summary>
+        /// Название дисциплины.
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Оценка за дисциплину. Значение в промежутке [1; 5].
+        /// </summary>
+        public int Grade
+        {
+            get
+            {
+                return Grade;
+            }
+            set
+            {
+                Model.Validator.AssertValueInRange(value, 1, 5, "Discipline.Grade");
 
-        public string GetName()
-        {
-            return _name;
+                Grade = value;
+            }
         }
-        public int GetGrade()
-        {
-            return _grade;
-        }
-        public string GetTeacher() 
-        {
-            return _teacher;
-        }
+        /// <summary>
+        /// ФИО преподавателя.
+        /// </summary>
+        public string Teacher { get; set; }
 
-        public void SetName(string value)
-        {
-            _name = value;
-        }
-        public void SetGrade(int value) 
-        {
-            Model.Validator.AssertValueInRange(value, 1, 5, "Discipline.Grade");
-
-            _grade = value;
-        }
-        public void SetTeacher(string value)
-        {
-            _teacher = value;
-        }
-
+        /// <summary>
+        /// Конструктор класса <see cref="Discipline"/>.
+        /// </summary>
+        /// <param name="name">Название дисциплины.</param>
+        /// <param name="grade">Оценка за дисциплину.</param>
+        /// <param name="teacher">ФИО преподавателя.</param>
         public Discipline(string name, int grade, string teacher)
         {
-            this.SetName(name);
-            this.SetTeacher(teacher);
-            this.SetGrade(grade);
+            Name = name;
+            Teacher = teacher;
+            Grade = grade;
         }
 
+        /// <summary>
+        /// Конструктор пустого экземпляра класса <see cref="Discipline"/>.
+        /// </summary>
         public Discipline() { }
     }
 }

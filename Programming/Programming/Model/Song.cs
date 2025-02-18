@@ -1,52 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Programming.Model
+﻿namespace Programming.Model
 {
+    /// <summary>
+    /// Класс, содержащий информацию о песне.
+    /// </summary>
     public class Song
     {
-        private string _name;
-        private string _author;
-        private int _duration;
+        /// <summary>
+        /// Название трека.
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Исполнитель.
+        /// </summary>
+        public string Author { get; set; }
+        /// <summary>
+        /// Длительность песни.
+        /// </summary>
+        public int Duration
+        {
+            get
+            {
+                return Duration;
+            }
+            set
+            {
+                Model.Validator.AssertOnPositiveValue(value, "Song.Duration");
 
-        public string GetName()
-        {
-            return _name;
-        }
-        public string GetAuthor()
-        {
-            return _author;
-        }
-        public int GetDuration() 
-        {
-            return _duration;
-        }
-
-        public void SetName(string value)
-        {
-            _name = value;
-        }
-        public void SetAuthor(string value)
-        {
-            _author = value;
-        }
-        public void SetDuration(int value)
-        {
-            Model.Validator.AssertOnPositiveValue(value, "Song.Duration");
-
-            _duration = value;
+                Duration = value;
+            }
         }
 
+        /// <summary>
+        /// Конструктор класса <see cref="Song"/>.
+        /// </summary>
+        /// <param name="name">Название трека.</param>
+        /// <param name="author">Исполнитель.</param>
+        /// <param name="duration">Длительность трека.</param>
         public Song(string name, string author, int duration)
         {
-            this.SetName(name);
-            this.SetAuthor(author);
-            this.SetDuration(duration);
+            Name = name;
+            Name = author;
+            Duration = duration;
         }
 
+        /// <summary>
+        /// Конструктор пустого экземпляра класса <see cref="Song"/>.
+        /// </summary>
         public Song() { }
     } 
 }

@@ -57,7 +57,7 @@
     <Compile Include="Model\Geometry\Point2D.cs" />
     <Compile Include="Model\Geometry\Rectangle.cs" />
     <Compile Include="Model\Geometry\RectangleFactory.cs" />
-    <Compile Include="Model\Ring.cs" />
+    <Compile Include="Model\Geometry\Ring.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\Season.cs" />
     <Compile Include="Model\SmartphoneManufactures.cs" />
