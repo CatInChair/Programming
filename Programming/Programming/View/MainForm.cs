@@ -44,11 +44,11 @@ namespace Programming
 
             _rectangles = new Model.Rectangle[]
             {
-                Model.RectangleFactory.Randomize(),
-                Model.RectangleFactory.Randomize(),
-                Model.RectangleFactory.Randomize(),
-                Model.RectangleFactory.Randomize(),
-                Model.RectangleFactory.Randomize()
+                new Model.Rectangle(random.Next(50, 100), random.Next(50, 100), new string[] { "Red", "Yellow", "Orange", "Blue" }[random.Next(0, 4)], new Model.Point2D(random.Next(0, 200), random.Next(0, 200))),
+                new Model.Rectangle(random.Next(50, 100), random.Next(50, 100), new string[] { "Red", "Yellow", "Orange", "Blue" }[random.Next(0, 4)], new Model.Point2D(random.Next(0, 200), random.Next(0, 200))),
+                new Model.Rectangle(random.Next(50, 100), random.Next(50, 100), new string[] { "Red", "Yellow", "Orange", "Blue" }[random.Next(0, 4)], new Model.Point2D(random.Next(0, 200), random.Next(0, 200))),
+                new Model.Rectangle(random.Next(50, 100), random.Next(50, 100), new string[] { "Red", "Yellow", "Orange", "Blue" }[random.Next(0, 4)], new Model.Point2D(random.Next(0, 200), random.Next(0, 200))),
+                new Model.Rectangle(random.Next(50, 100), random.Next(50, 100), new string[] { "Red", "Yellow", "Orange", "Blue" }[random.Next(0, 4)], new Model.Point2D(random.Next(0, 200), random.Next(0, 200)))
             };
 
             _films = new Model.Film[]

@@ -9,7 +9,7 @@ namespace Programming.Model
 {
     static public class RectangleFactory
     {
-        static public Rectangle Randomize()
+        public static Rectangle Randomize()
         {
             Random random = new Random();
 
