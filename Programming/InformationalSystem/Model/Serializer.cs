@@ -44,6 +44,7 @@ namespace InformationalSystem.Model
                     route.Type = Int32.Parse((properties[4]));
 
                     routes.Add(route);
+                    Console.WriteLine(route.ToString());
                 } catch { }
             }
 

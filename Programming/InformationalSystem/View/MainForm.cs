@@ -24,11 +24,10 @@ namespace InformationalSystem
 
             this.comboBoxType.Items.AddRange(new string[] { "International", "Internal" });
 
-            if (File.Exists("data.txt"))
+            if (File.Exists(@"C:\Users\Clin18\Documents\data.txt"))
             {
-                StreamReader sr = new StreamReader("data.txt");
+                StreamReader sr = new StreamReader(@"C:\Users\Clin18\Documents\data.txt");
                 string line = sr.ReadToEnd();
-                Console.WriteLine(line);
 
                 _routes = Serializer.Deserialize(line);
                 OutputRoutes();
@@ -38,7 +37,7 @@ namespace InformationalSystem
 
         public void ButtonSave_Click(object sender, EventArgs arg) 
         {
-            StreamWriter sw = new StreamWriter("data.txt");
+            StreamWriter sw = new StreamWriter(@"C:\Users\Clin18\Documents\data.txt");
 
             sw.Write(Serializer.Serialize(_routes));
 

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationalSystem", "InformationalSystem.csproj", "{218246C4-CB83-4D90-AF7A-3F4104866C21}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupIS", "SetupIS\SetupIS.vdproj", "{9280D8F3-5ACF-4FF8-BBA4-81A20E4E6B49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{218246C4-CB83-4D90-AF7A-3F4104866C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{218246C4-CB83-4D90-AF7A-3F4104866C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{218246C4-CB83-4D90-AF7A-3F4104866C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9280D8F3-5ACF-4FF8-BBA4-81A20E4E6B49}.Debug|Any CPU.ActiveCfg = Debug
+		{9280D8F3-5ACF-4FF8-BBA4-81A20E4E6B49}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
