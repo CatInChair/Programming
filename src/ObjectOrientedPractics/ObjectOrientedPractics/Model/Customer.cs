@@ -49,7 +49,7 @@ namespace ObjectOrientedPractics.Model
 
         public override string ToString()
         {
-            return $"{this.Fullname}, {this.Address}";
+            return $"{this.Fullname}, {this.Id}";
         }
 
         public Customer(string fullname, string address)

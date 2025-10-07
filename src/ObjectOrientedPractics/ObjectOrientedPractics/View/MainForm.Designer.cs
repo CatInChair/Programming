@@ -32,8 +32,10 @@
             this.MainFormTabPage1 = new System.Windows.Forms.TabPage();
             this.itemsTabs1 = new ObjectOrientedPractics.View.Tabs.ItemsTabs();
             this.MainFormTabPage2 = new System.Windows.Forms.TabPage();
+            this.customersTabs1 = new ObjectOrientedPractics.View.Tabs.CustomersTabs();
             this.MainFormTabControl.SuspendLayout();
             this.MainFormTabPage1.SuspendLayout();
+            this.MainFormTabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTabControl
@@ -68,13 +70,24 @@
             // 
             // MainFormTabPage2
             // 
+            this.MainFormTabPage2.Controls.Add(this.customersTabs1);
             this.MainFormTabPage2.Location = new System.Drawing.Point(4, 22);
             this.MainFormTabPage2.Name = "MainFormTabPage2";
             this.MainFormTabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.MainFormTabPage2.Size = new System.Drawing.Size(952, 575);
+            this.MainFormTabPage2.Size = new System.Drawing.Size(976, 599);
             this.MainFormTabPage2.TabIndex = 1;
             this.MainFormTabPage2.Text = "Customers";
             this.MainFormTabPage2.UseVisualStyleBackColor = true;
+            // 
+            // customersTabs1
+            // 
+            this.customersTabs1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customersTabs1.Location = new System.Drawing.Point(8, 6);
+            this.customersTabs1.Name = "customersTabs1";
+            this.customersTabs1.Size = new System.Drawing.Size(960, 585);
+            this.customersTabs1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -83,9 +96,10 @@
             this.ClientSize = new System.Drawing.Size(984, 625);
             this.Controls.Add(this.MainFormTabControl);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Object Oriented Practics";
             this.MainFormTabControl.ResumeLayout(false);
             this.MainFormTabPage1.ResumeLayout(false);
+            this.MainFormTabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -96,6 +110,7 @@
         private System.Windows.Forms.TabPage MainFormTabPage1;
         private System.Windows.Forms.TabPage MainFormTabPage2;
         private View.Tabs.ItemsTabs itemsTabs1;
+        private View.Tabs.CustomersTabs customersTabs1;
     }
 }
 

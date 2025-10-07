@@ -28,168 +28,196 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ItemsListBoxLabel = new System.Windows.Forms.Label();
-            this.ItemsAddButton = new System.Windows.Forms.Button();
-            this.ItemsRemoveButton = new System.Windows.Forms.Button();
+            this.itemsGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemsGenerateButton = new System.Windows.Forms.Button();
-            this.SelectedItemsLabel = new System.Windows.Forms.Label();
-            this.SelectedItemIdLabel = new System.Windows.Forms.Label();
-            this.SelectedItemIdTextBox = new System.Windows.Forms.TextBox();
-            this.SelectedItemCostLabel = new System.Windows.Forms.Label();
-            this.SelectedItemCostTextBox = new System.Windows.Forms.TextBox();
-            this.SelectedItemNameLabel = new System.Windows.Forms.Label();
-            this.SelectedItemNameTextBox = new System.Windows.Forms.TextBox();
-            this.SelectedItemDescriptionLabel = new System.Windows.Forms.Label();
-            this.SelectedItemDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.ItemsRemoveButton = new System.Windows.Forms.Button();
+            this.ItemsAddButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
+            this.selectedItemGroupBox = new System.Windows.Forms.GroupBox();
+            this.SelectedItemNameLabel = new System.Windows.Forms.Label();
+            this.SelectedItemDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemDescriptionLabel = new System.Windows.Forms.Label();
+            this.SelectedItemNameTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemCostTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemCostLabel = new System.Windows.Forms.Label();
+            this.SelectedItemIdTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemIdLabel = new System.Windows.Forms.Label();
+            this.itemsGroupBox.SuspendLayout();
+            this.selectedItemGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ItemsListBoxLabel
+            // itemsGroupBox
             // 
-            this.ItemsListBoxLabel.AutoSize = true;
-            this.ItemsListBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemsListBoxLabel.Location = new System.Drawing.Point(3, 5);
-            this.ItemsListBoxLabel.Name = "ItemsListBoxLabel";
-            this.ItemsListBoxLabel.Size = new System.Drawing.Size(37, 13);
-            this.ItemsListBoxLabel.TabIndex = 0;
-            this.ItemsListBoxLabel.Text = "Items";
-            // 
-            // ItemsAddButton
-            // 
-            this.ItemsAddButton.Location = new System.Drawing.Point(6, 486);
-            this.ItemsAddButton.Name = "ItemsAddButton";
-            this.ItemsAddButton.Size = new System.Drawing.Size(120, 65);
-            this.ItemsAddButton.TabIndex = 2;
-            this.ItemsAddButton.Text = "Add";
-            this.ItemsAddButton.UseVisualStyleBackColor = true;
-            // 
-            // ItemsRemoveButton
-            // 
-            this.ItemsRemoveButton.Location = new System.Drawing.Point(132, 486);
-            this.ItemsRemoveButton.Name = "ItemsRemoveButton";
-            this.ItemsRemoveButton.Size = new System.Drawing.Size(120, 65);
-            this.ItemsRemoveButton.TabIndex = 3;
-            this.ItemsRemoveButton.Text = "Remove";
-            this.ItemsRemoveButton.UseVisualStyleBackColor = true;
+            this.itemsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.itemsGroupBox.Controls.Add(this.ItemsGenerateButton);
+            this.itemsGroupBox.Controls.Add(this.ItemsRemoveButton);
+            this.itemsGroupBox.Controls.Add(this.ItemsAddButton);
+            this.itemsGroupBox.Controls.Add(this.ItemsListBox);
+            this.itemsGroupBox.Location = new System.Drawing.Point(3, 0);
+            this.itemsGroupBox.Name = "itemsGroupBox";
+            this.itemsGroupBox.Size = new System.Drawing.Size(380, 553);
+            this.itemsGroupBox.TabIndex = 14;
+            this.itemsGroupBox.TabStop = false;
+            this.itemsGroupBox.Text = "Items";
             // 
             // ItemsGenerateButton
             // 
-            this.ItemsGenerateButton.Location = new System.Drawing.Point(257, 486);
+            this.ItemsGenerateButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ItemsGenerateButton.Location = new System.Drawing.Point(254, 482);
             this.ItemsGenerateButton.Name = "ItemsGenerateButton";
             this.ItemsGenerateButton.Size = new System.Drawing.Size(120, 65);
-            this.ItemsGenerateButton.TabIndex = 4;
+            this.ItemsGenerateButton.TabIndex = 8;
             this.ItemsGenerateButton.Text = "Generate";
             this.ItemsGenerateButton.UseVisualStyleBackColor = true;
             // 
-            // SelectedItemsLabel
+            // ItemsRemoveButton
             // 
-            this.SelectedItemsLabel.AutoSize = true;
-            this.SelectedItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedItemsLabel.Location = new System.Drawing.Point(383, 5);
-            this.SelectedItemsLabel.Name = "SelectedItemsLabel";
-            this.SelectedItemsLabel.Size = new System.Drawing.Size(91, 13);
-            this.SelectedItemsLabel.TabIndex = 5;
-            this.SelectedItemsLabel.Text = "Selected Items";
+            this.ItemsRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ItemsRemoveButton.Location = new System.Drawing.Point(128, 482);
+            this.ItemsRemoveButton.Name = "ItemsRemoveButton";
+            this.ItemsRemoveButton.Size = new System.Drawing.Size(120, 65);
+            this.ItemsRemoveButton.TabIndex = 7;
+            this.ItemsRemoveButton.Text = "Remove";
+            this.ItemsRemoveButton.UseVisualStyleBackColor = true;
             // 
-            // SelectedItemIdLabel
+            // ItemsAddButton
             // 
-            this.SelectedItemIdLabel.AutoSize = true;
-            this.SelectedItemIdLabel.Location = new System.Drawing.Point(386, 36);
-            this.SelectedItemIdLabel.Name = "SelectedItemIdLabel";
-            this.SelectedItemIdLabel.Size = new System.Drawing.Size(21, 13);
-            this.SelectedItemIdLabel.TabIndex = 6;
-            this.SelectedItemIdLabel.Text = "ID:";
+            this.ItemsAddButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ItemsAddButton.Location = new System.Drawing.Point(2, 482);
+            this.ItemsAddButton.Name = "ItemsAddButton";
+            this.ItemsAddButton.Size = new System.Drawing.Size(120, 65);
+            this.ItemsAddButton.TabIndex = 6;
+            this.ItemsAddButton.Text = "Add";
+            this.ItemsAddButton.UseVisualStyleBackColor = true;
             // 
-            // SelectedItemIdTextBox
+            // ItemsListBox
             // 
-            this.SelectedItemIdTextBox.Location = new System.Drawing.Point(446, 33);
-            this.SelectedItemIdTextBox.Name = "SelectedItemIdTextBox";
-            this.SelectedItemIdTextBox.ReadOnly = true;
-            this.SelectedItemIdTextBox.Size = new System.Drawing.Size(118, 20);
-            this.SelectedItemIdTextBox.TabIndex = 7;
+            this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ItemsListBox.FormattingEnabled = true;
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 19);
+            this.ItemsListBox.Name = "ItemsListBox";
+            this.ItemsListBox.Size = new System.Drawing.Size(371, 459);
+            this.ItemsListBox.TabIndex = 5;
             // 
-            // SelectedItemCostLabel
+            // selectedItemGroupBox
             // 
-            this.SelectedItemCostLabel.AutoSize = true;
-            this.SelectedItemCostLabel.Location = new System.Drawing.Point(386, 69);
-            this.SelectedItemCostLabel.Name = "SelectedItemCostLabel";
-            this.SelectedItemCostLabel.Size = new System.Drawing.Size(31, 13);
-            this.SelectedItemCostLabel.TabIndex = 8;
-            this.SelectedItemCostLabel.Text = "Cost:";
-            // 
-            // SelectedItemCostTextBox
-            // 
-            this.SelectedItemCostTextBox.Location = new System.Drawing.Point(446, 66);
-            this.SelectedItemCostTextBox.Name = "SelectedItemCostTextBox";
-            this.SelectedItemCostTextBox.Size = new System.Drawing.Size(118, 20);
-            this.SelectedItemCostTextBox.TabIndex = 9;
+            this.selectedItemGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemNameLabel);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemDescriptionTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemDescriptionLabel);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemNameTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemCostTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemCostLabel);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemIdTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.SelectedItemIdLabel);
+            this.selectedItemGroupBox.Location = new System.Drawing.Point(383, 0);
+            this.selectedItemGroupBox.Name = "selectedItemGroupBox";
+            this.selectedItemGroupBox.Size = new System.Drawing.Size(479, 553);
+            this.selectedItemGroupBox.TabIndex = 15;
+            this.selectedItemGroupBox.TabStop = false;
+            this.selectedItemGroupBox.Text = "Selected Item";
             // 
             // SelectedItemNameLabel
             // 
+            this.SelectedItemNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedItemNameLabel.AutoSize = true;
-            this.SelectedItemNameLabel.Location = new System.Drawing.Point(386, 104);
+            this.SelectedItemNameLabel.Location = new System.Drawing.Point(6, 110);
             this.SelectedItemNameLabel.Name = "SelectedItemNameLabel";
             this.SelectedItemNameLabel.Size = new System.Drawing.Size(38, 13);
-            this.SelectedItemNameLabel.TabIndex = 10;
+            this.SelectedItemNameLabel.TabIndex = 22;
             this.SelectedItemNameLabel.Text = "Name:";
-            // 
-            // SelectedItemNameTextBox
-            // 
-            this.SelectedItemNameTextBox.Location = new System.Drawing.Point(389, 125);
-            this.SelectedItemNameTextBox.MaxLength = 200;
-            this.SelectedItemNameTextBox.Multiline = true;
-            this.SelectedItemNameTextBox.Name = "SelectedItemNameTextBox";
-            this.SelectedItemNameTextBox.Size = new System.Drawing.Size(465, 131);
-            this.SelectedItemNameTextBox.TabIndex = 11;
-            // 
-            // SelectedItemDescriptionLabel
-            // 
-            this.SelectedItemDescriptionLabel.AutoSize = true;
-            this.SelectedItemDescriptionLabel.Location = new System.Drawing.Point(386, 275);
-            this.SelectedItemDescriptionLabel.Name = "SelectedItemDescriptionLabel";
-            this.SelectedItemDescriptionLabel.Size = new System.Drawing.Size(63, 13);
-            this.SelectedItemDescriptionLabel.TabIndex = 12;
-            this.SelectedItemDescriptionLabel.Text = "Description:";
             // 
             // SelectedItemDescriptionTextBox
             // 
-            this.SelectedItemDescriptionTextBox.Location = new System.Drawing.Point(389, 309);
+            this.SelectedItemDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemDescriptionTextBox.Location = new System.Drawing.Point(8, 310);
             this.SelectedItemDescriptionTextBox.MaxLength = 1000;
             this.SelectedItemDescriptionTextBox.Multiline = true;
             this.SelectedItemDescriptionTextBox.Name = "SelectedItemDescriptionTextBox";
             this.SelectedItemDescriptionTextBox.Size = new System.Drawing.Size(465, 131);
-            this.SelectedItemDescriptionTextBox.TabIndex = 13;
+            this.SelectedItemDescriptionTextBox.TabIndex = 21;
             // 
-            // ItemsListBox
+            // SelectedItemDescriptionLabel
             // 
-            this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.Location = new System.Drawing.Point(6, 21);
-            this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(371, 459);
-            this.ItemsListBox.TabIndex = 1;
+            this.SelectedItemDescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemDescriptionLabel.AutoSize = true;
+            this.SelectedItemDescriptionLabel.Location = new System.Drawing.Point(5, 294);
+            this.SelectedItemDescriptionLabel.Name = "SelectedItemDescriptionLabel";
+            this.SelectedItemDescriptionLabel.Size = new System.Drawing.Size(63, 13);
+            this.SelectedItemDescriptionLabel.TabIndex = 20;
+            this.SelectedItemDescriptionLabel.Text = "Description:";
+            // 
+            // SelectedItemNameTextBox
+            // 
+            this.SelectedItemNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemNameTextBox.Location = new System.Drawing.Point(8, 126);
+            this.SelectedItemNameTextBox.MaxLength = 200;
+            this.SelectedItemNameTextBox.Multiline = true;
+            this.SelectedItemNameTextBox.Name = "SelectedItemNameTextBox";
+            this.SelectedItemNameTextBox.Size = new System.Drawing.Size(465, 131);
+            this.SelectedItemNameTextBox.TabIndex = 19;
+            // 
+            // SelectedItemCostTextBox
+            // 
+            this.SelectedItemCostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemCostTextBox.Location = new System.Drawing.Point(65, 67);
+            this.SelectedItemCostTextBox.Name = "SelectedItemCostTextBox";
+            this.SelectedItemCostTextBox.Size = new System.Drawing.Size(118, 20);
+            this.SelectedItemCostTextBox.TabIndex = 17;
+            // 
+            // SelectedItemCostLabel
+            // 
+            this.SelectedItemCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemCostLabel.AutoSize = true;
+            this.SelectedItemCostLabel.Location = new System.Drawing.Point(5, 70);
+            this.SelectedItemCostLabel.Name = "SelectedItemCostLabel";
+            this.SelectedItemCostLabel.Size = new System.Drawing.Size(31, 13);
+            this.SelectedItemCostLabel.TabIndex = 16;
+            this.SelectedItemCostLabel.Text = "Cost:";
+            // 
+            // SelectedItemIdTextBox
+            // 
+            this.SelectedItemIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemIdTextBox.Location = new System.Drawing.Point(65, 34);
+            this.SelectedItemIdTextBox.Name = "SelectedItemIdTextBox";
+            this.SelectedItemIdTextBox.ReadOnly = true;
+            this.SelectedItemIdTextBox.Size = new System.Drawing.Size(118, 20);
+            this.SelectedItemIdTextBox.TabIndex = 15;
+            // 
+            // SelectedItemIdLabel
+            // 
+            this.SelectedItemIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemIdLabel.AutoSize = true;
+            this.SelectedItemIdLabel.Location = new System.Drawing.Point(5, 37);
+            this.SelectedItemIdLabel.Name = "SelectedItemIdLabel";
+            this.SelectedItemIdLabel.Size = new System.Drawing.Size(21, 13);
+            this.SelectedItemIdLabel.TabIndex = 14;
+            this.SelectedItemIdLabel.Text = "ID:";
             // 
             // ItemsTabs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.SelectedItemDescriptionTextBox);
-            this.Controls.Add(this.SelectedItemDescriptionLabel);
-            this.Controls.Add(this.SelectedItemNameTextBox);
-            this.Controls.Add(this.SelectedItemNameLabel);
-            this.Controls.Add(this.SelectedItemCostTextBox);
-            this.Controls.Add(this.SelectedItemCostLabel);
-            this.Controls.Add(this.SelectedItemIdTextBox);
-            this.Controls.Add(this.SelectedItemIdLabel);
-            this.Controls.Add(this.SelectedItemsLabel);
-            this.Controls.Add(this.ItemsGenerateButton);
-            this.Controls.Add(this.ItemsRemoveButton);
-            this.Controls.Add(this.ItemsAddButton);
-            this.Controls.Add(this.ItemsListBox);
-            this.Controls.Add(this.ItemsListBoxLabel);
+            this.Controls.Add(this.itemsGroupBox);
+            this.Controls.Add(this.selectedItemGroupBox);
             this.Name = "ItemsTabs";
             this.Size = new System.Drawing.Size(862, 556);
+            this.itemsGroupBox.ResumeLayout(false);
+            this.selectedItemGroupBox.ResumeLayout(false);
+            this.selectedItemGroupBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -207,20 +235,19 @@
 
             this.ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
         }
-
-        private System.Windows.Forms.Label ItemsListBoxLabel;
-        private System.Windows.Forms.Button ItemsAddButton;
-        private System.Windows.Forms.Button ItemsRemoveButton;
+        private System.Windows.Forms.GroupBox itemsGroupBox;
         private System.Windows.Forms.Button ItemsGenerateButton;
-        private System.Windows.Forms.Label SelectedItemsLabel;
-        private System.Windows.Forms.Label SelectedItemIdLabel;
-        private System.Windows.Forms.TextBox SelectedItemIdTextBox;
-        private System.Windows.Forms.Label SelectedItemCostLabel;
-        private System.Windows.Forms.TextBox SelectedItemCostTextBox;
-        private System.Windows.Forms.Label SelectedItemNameLabel;
-        private System.Windows.Forms.TextBox SelectedItemNameTextBox;
-        private System.Windows.Forms.Label SelectedItemDescriptionLabel;
-        private System.Windows.Forms.TextBox SelectedItemDescriptionTextBox;
+        private System.Windows.Forms.Button ItemsRemoveButton;
+        private System.Windows.Forms.Button ItemsAddButton;
         private System.Windows.Forms.ListBox ItemsListBox;
+        private System.Windows.Forms.GroupBox selectedItemGroupBox;
+        private System.Windows.Forms.TextBox SelectedItemDescriptionTextBox;
+        private System.Windows.Forms.Label SelectedItemDescriptionLabel;
+        private System.Windows.Forms.TextBox SelectedItemNameTextBox;
+        private System.Windows.Forms.TextBox SelectedItemCostTextBox;
+        private System.Windows.Forms.Label SelectedItemCostLabel;
+        private System.Windows.Forms.TextBox SelectedItemIdTextBox;
+        private System.Windows.Forms.Label SelectedItemIdLabel;
+        private System.Windows.Forms.Label SelectedItemNameLabel;
     }
 }
