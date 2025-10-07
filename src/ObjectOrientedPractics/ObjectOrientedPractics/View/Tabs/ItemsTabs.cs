@@ -12,7 +12,13 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTabs : UserControl
     {
+        /// <summary>
+        /// Список обрабатываемых товаров
+        /// </summary>
         private List<Model.Item> _items = new List<Model.Item>();
+        /// <summary>
+        /// Индекс выбранного на данный момент внутри ListBox товара
+        /// </summary>
         private int _selectedIndex 
         { 
             get
@@ -28,17 +34,16 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         #region ItemsTabButtons Listeners
-
         public void ItemsAddButton_Click(object sender, EventArgs e)
         {
             AddNewItem();
-            ReloadItemsListBox();
+            _ReloadItemsListBox();
         }
 
         public void ItemsRemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveSelectedItem();
-            ReloadItemsListBox();
+            _RemoveSelectedItem();
+            _ReloadItemsListBox();
         }
 
         public void ItemsGenerateButton_Click(object sender, EventArgs e)
@@ -48,14 +53,16 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items.Add(item);
             }
 
-            ReloadItemsListBox();
+            _ReloadItemsListBox();
             ItemsListBox.SelectedIndex = _items.Count - 1;
         }
-
         #endregion
 
         #region ItemsListBox functions
-        private void ReloadItemsListBox()
+        /// <summary>
+        /// Перезагружает все товары в <see cref="ItemsListBox">ItemsListBox</see> из <see cref="_items">_items</see>
+        /// </summary>
+        private void _ReloadItemsListBox()
         {
             ItemsListBox.Items.Clear();
 
@@ -67,7 +74,10 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.SelectedIndex = _items.Count - 1;
         }
 
-        private void RemoveSelectedItem()
+        /// <summary>
+        /// Удаляет товар по выбранному индексу
+        /// </summary>
+        private void _RemoveSelectedItem()
         {
             int index = _selectedIndex;
 
@@ -78,23 +88,36 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             _items.RemoveAt(index);
+
+            if (_items.Count == 0)
+            {
+                _ReloadSelectedItemTextBoxes();
+            }
         }
 
+        /// <summary>
+        /// Добавляет пустой экземпляр товара
+        /// </summary>
         private void AddNewItem()
         {
-            _items.Add(new Model.Item("Name", "Information", 0));
-            ReloadItemsListBox();
+            _items.Add(new Model.Item("Name", "Information", 0, Model.Enumerators.Category.Custom));
+            _ReloadItemsListBox();
         }
         #endregion
 
-        #region ItemsTab TextBoxes Listeners
+        #region SelectedItem Values Listeners
         public void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReloadSelectedItemTextBoxes();
+            _ReloadSelectedItemTextBoxes();
         }
 
         public void SelectedItemNameTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_items.Count == 0)
+            {
+                return;
+            }
+
             string content = SelectedItemNameTextBox.Text;
             SelectedItemNameTextBox.BackColor = SystemColors.Window;
 
@@ -114,11 +137,16 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            UpdateListBoxItem();
+            _UpdateListBoxItem();
         }
 
         public void SelectedItemCostTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_items.Count == 0)
+            {
+                return;
+            }
+
             double content;
 
             if (!Double.TryParse(SelectedItemCostTextBox.Text, out content))
@@ -146,11 +174,16 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            UpdateListBoxItem();
+            _UpdateListBoxItem();
         }
 
         public void SelectedItemDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_items.Count == 0)
+            {
+                return;
+            }
+
             string content = SelectedItemDescriptionTextBox.Text;
             SelectedItemDescriptionTextBox.BackColor = SystemColors.Window;
 
@@ -169,21 +202,63 @@ namespace ObjectOrientedPractics.View.Tabs
                 MessageBox.Show("Item.Description length must be less than 1000.");
             }
         }
+
+        public void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_items.Count == 0)
+            {
+                return;
+            }
+
+            Model.Enumerators.Category content = (Model.Enumerators.Category)SelectedItemCategoryComboBox.SelectedItem;
+
+            if (content == _items[_selectedIndex].Category)
+            {
+                return;
+            }
+
+            _items[_selectedIndex].Category = content;
+        }
         #endregion
 
         #region SelectedIndexChange functions
-        public void ReloadSelectedItemTextBoxes()
+        /// <summary>
+        /// Обновляет поля с данными о выбранном товаре
+        /// </summary>
+        public void _ReloadSelectedItemTextBoxes()
         {
-            if (_selectedIndex != -1)
+            if (_selectedIndex != -1 && _items.Count > 0)
             {
                 SelectedItemNameTextBox.Text = _items[_selectedIndex].Name;
                 SelectedItemDescriptionTextBox.Text = _items[_selectedIndex].Info;
                 SelectedItemCostTextBox.Text = _items[_selectedIndex].Cost.ToString();
                 SelectedItemIdTextBox.Text = _items[_selectedIndex].Id.ToString();
+
+                if (SelectedItemCategoryComboBox.Items.Count == 0) 
+                {
+                    foreach (Model.Enumerators.Category category in Enum.GetValues(typeof(Model.Enumerators.Category)))
+                    {
+                        SelectedItemCategoryComboBox.Items.Add(category);
+                    }
+                }
+
+                SelectedItemCategoryComboBox.SelectedItem = _items[_selectedIndex].Category;
+            }
+            else
+            {
+                SelectedItemIdTextBox.Clear();
+                SelectedItemNameTextBox.Clear();
+                SelectedItemDescriptionTextBox.Clear();
+                SelectedItemCategoryComboBox.Items.Clear();
+                SelectedItemCategoryComboBox.Text = "";
+                SelectedItemCostTextBox.Clear();
             }
         }
 
-        public void UpdateListBoxItem()
+        /// <summary>
+        /// Обновляет запись о товаре в <see cref="ItemsListBox">ItemsListBox</see>
+        /// </summary>
+        public void _UpdateListBoxItem()
         {
             ItemsListBox.Items[_selectedIndex] = _items[_selectedIndex].ToString();
         }

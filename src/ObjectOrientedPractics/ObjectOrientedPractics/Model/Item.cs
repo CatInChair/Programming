@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Класс, представляющий товар
+    /// </summary>
     public class Item
     {
-        // Уникальный идентификатор экземпляра
         private readonly int _id;
 
-        // Название товара (до 200 символов)
         private string _name;
-
-        // Описани карточки товара (до 1000 символов)
         private string _info;
-
-        // Стоимость позиции (до 100000)
+        
         private double _cost;
 
+        /// <summary>
+        /// Уникальный идентификатор экземпляра
+        /// </summary>
         public int Id 
         {
             get
@@ -29,6 +30,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Название товара (до 200 символов)
+        /// </summary>
         public string Name
         {
             get
@@ -42,6 +46,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Описани карточки товара (до 1000 символов)
+        /// </summary>
         public string Info
         {
             get
@@ -55,6 +62,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Стоимость позиции (до 100000)
+        /// </summary>
         public double Cost
         {
             get
@@ -72,17 +82,34 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Категория товара
+        /// </summary>
+        public Model.Enumerators.Category Category { get; set; }
+
+        /// <summary>
+        /// Конвертация в строковое значение
+        /// </summary>
+        /// <returns>Строковое представление объекта</returns>
         public override string ToString()
         {
             return $"{this.Name} - {this.Cost}$";
         }
 
-        public Item(string name, string info, double cost)
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
+        /// <param name="name">Имя нового товара</param>
+        /// <param name="info">Ифнормация о новом товаре</param>
+        /// <param name="cost">Стоимость нового товара</param>
+        /// <param name="category">Категория нового товара. Член перечисления <see cref="Model.Enumerators.Category">Category</see></param>
+        public Item(string name, string info, double cost, Model.Enumerators.Category category)
         {
             _id = IdGenerator.getNextId();
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
     }
 }
