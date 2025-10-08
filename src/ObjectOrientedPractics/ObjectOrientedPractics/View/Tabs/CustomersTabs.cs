@@ -22,6 +22,17 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Model.Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+        }
+
         public CustomersTabs()
         {
             InitializeComponent();
@@ -31,14 +42,14 @@ namespace ObjectOrientedPractics.View.Tabs
         #region CustomersTabButtons Listeners
         public void CustomersAddButton_Click(object sender, EventArgs e)
         {
-            AddNewItem();
-            ReloadItemsListBox();
+            _AddNewItem();
+            _ReloadCustomersListBox();
         }
 
         public void CustomersRemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveSelectedItem();
-            ReloadItemsListBox();
+            _RemoveSelectedCustomer();
+            _ReloadCustomersListBox();
         }
 
         public void CustomersGenerateButton_Click(object sender, EventArgs e)
@@ -48,14 +59,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 _customers.Add(item);
             }
 
-            ReloadItemsListBox();
+            _ReloadCustomersListBox();
             CustomersListBox.SelectedIndex = _customers.Count - 1;
         }
 
         #endregion
 
         #region CustomersListBox functions
-        private void ReloadItemsListBox()
+        private void _ReloadCustomersListBox()
         {
             CustomersListBox.Items.Clear();
 
@@ -67,7 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.SelectedIndex = _customers.Count - 1;
         }
 
-        private void RemoveSelectedItem()
+        private void _RemoveSelectedCustomer()
         {
             int index = _selectedIndex;
 
@@ -80,10 +91,10 @@ namespace ObjectOrientedPractics.View.Tabs
             _customers.RemoveAt(index);
         }
 
-        private void AddNewItem()
+        private void _AddNewItem()
         {
             _customers.Add(new Model.Customer("Fullname", new Model.Address()));
-            ReloadItemsListBox();
+            _ReloadCustomersListBox();
         }
         #endregion
 
@@ -114,7 +125,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            UpdateListBoxItem();
+            _UpdateListBoxItem();
         }
         #endregion
 
@@ -129,7 +140,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        public void UpdateListBoxItem()
+        public void _UpdateListBoxItem()
         {
             CustomersListBox.Items[_selectedIndex] = _customers[_selectedIndex].ToString();
         }

@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics
+﻿    namespace ObjectOrientedPractics
 {
     partial class MainForm
     {
@@ -102,6 +102,12 @@
             this.MainFormTabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
+        }
+
+        private void LinkStore()
+        {
+            _store.Items = itemsTabs1.Items;
+            _store.Customers = customersTabs1.Customers;
         }
 
         #endregion

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Класс, представляющий товар
+    /// Представление товара
     /// </summary>
     public class Item
     {
@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                Validator.AssertValueOnRange(value, 0.0, 100000.0, "Item.Cost");
+                Validator.AssertValueOnRange(value, 100000.0, 0.0, "Item.Cost");
 
                 _cost = value;
             }

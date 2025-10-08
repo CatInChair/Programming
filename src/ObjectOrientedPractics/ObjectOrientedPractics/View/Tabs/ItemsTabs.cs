@@ -12,18 +12,27 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTabs : UserControl
     {
-        /// <summary>
-        /// Список обрабатываемых товаров
-        /// </summary>
         private List<Model.Item> _items = new List<Model.Item>();
+
         /// <summary>
         /// Индекс выбранного на данный момент внутри ListBox товара
         /// </summary>
-        private int _selectedIndex 
-        { 
+        private int _selectedIndex
+        {
             get
             {
                 return ItemsListBox.SelectedIndex;
+            }
+        }
+
+        /// <summary>
+        /// Список обрабатываемых товаров
+        /// </summary>
+        public List<Model.Item> Items
+        {
+            get 
+            { 
+                return _items; 
             }
         }
 

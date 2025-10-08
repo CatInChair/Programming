@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Сервисный класс с методами для валидации значений
+    /// </summary>
     internal static class Validator
     {
         /// <summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Генератор товаров
+    /// </summary>
     public static class ItemFabric
     {
         static private List<Model.Item> _pregen = new List<Model.Item> 
@@ -15,6 +18,10 @@ namespace ObjectOrientedPractics.Services
             new Model.Item("Shirt", "Light-weight cloth", 1234, Model.Enumerators.Category.Food)
         };
 
+        /// <summary>
+        /// Возвращает набор новых объектов
+        /// </summary>
+        /// <returns><see cref="List">List</see> экземпляров <see cref="Model.Item">Item</see></returns>
         public static List<Model.Item> Generate(/*int amount*/) 
         {
             /*List<Model.Item> items = new List<Model.Item>();

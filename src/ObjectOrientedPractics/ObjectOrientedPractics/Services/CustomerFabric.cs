@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Генератор клиентов
+    /// </summary>
     public static class CustomerFabric
     {
         static private List<Model.Customer> _pregen = new List<Model.Customer>
@@ -15,6 +18,10 @@ namespace ObjectOrientedPractics.Services
             new Model.Customer("Jacob", new Model.Address())
         };
 
+        /// <summary>
+        /// Возвращает набор новых объектов
+        /// </summary>
+        /// <returns><see cref="List">List</see> экземпляров <see cref="Model.Customer">Customer</see></returns>
         public static List<Model.Customer> Generate(/*int amount*/)
         {
             /*List<Model.Item> items = new List<Model.Item>();

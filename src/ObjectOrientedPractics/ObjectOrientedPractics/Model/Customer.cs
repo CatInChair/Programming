@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Представление клиента
+    /// </summary>
     public class Customer
     {
         private readonly int _id;

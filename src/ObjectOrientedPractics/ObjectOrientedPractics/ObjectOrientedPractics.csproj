@@ -50,6 +50,7 @@
     <Compile Include="Model\Enumerators\Category.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Store.cs" />
     <Compile Include="Services\CustomerFabric.cs" />
     <Compile Include="Services\IdGenerator.cs" />
     <Compile Include="Services\ItemFabric.cs" />
