@@ -22,8 +22,10 @@ namespace ObjectOrientedPractics
 
             LinkStore();
 
-            _store.Items.AddRange(ItemFabric.Generate());
-            _store.Customers.AddRange(CustomerFabric.Generate());
+            _store.Items.Add(new Model.Item("asd", "asd", 123, Model.Enumerators.Category.Custom));
+            _store.Customers.Add(new Model.Customer("afd", new Model.Address()));
+
+            ReloadTabs();
         }
     }
 }

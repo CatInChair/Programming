@@ -43,13 +43,13 @@ namespace ObjectOrientedPractics.View.Tabs
         public void CustomersAddButton_Click(object sender, EventArgs e)
         {
             _AddNewItem();
-            _ReloadCustomersListBox();
+            ReloadCustomersListBox();
         }
 
         public void CustomersRemoveButton_Click(object sender, EventArgs e)
         {
             _RemoveSelectedCustomer();
-            _ReloadCustomersListBox();
+            ReloadCustomersListBox();
         }
 
         public void CustomersGenerateButton_Click(object sender, EventArgs e)
@@ -59,14 +59,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 _customers.Add(item);
             }
 
-            _ReloadCustomersListBox();
+            ReloadCustomersListBox();
             CustomersListBox.SelectedIndex = _customers.Count - 1;
         }
 
         #endregion
 
         #region CustomersListBox functions
-        private void _ReloadCustomersListBox()
+        public void ReloadCustomersListBox()
         {
             CustomersListBox.Items.Clear();
 
@@ -94,7 +94,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void _AddNewItem()
         {
             _customers.Add(new Model.Customer("Fullname", new Model.Address()));
-            _ReloadCustomersListBox();
+            ReloadCustomersListBox();
         }
         #endregion
 

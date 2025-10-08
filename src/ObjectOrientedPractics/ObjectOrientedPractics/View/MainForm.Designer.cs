@@ -1,4 +1,6 @@
-﻿    namespace ObjectOrientedPractics
+﻿using System.Runtime.CompilerServices;
+
+namespace ObjectOrientedPractics
 {
     partial class MainForm
     {
@@ -108,6 +110,12 @@
         {
             _store.Items = itemsTabs1.Items;
             _store.Customers = customersTabs1.Customers;
+        }
+
+        private void ReloadTabs()
+        {
+            itemsTabs1.ReloadItemsListBox();
+            customersTabs1.ReloadCustomersListBox();
         }
 
         #endregion

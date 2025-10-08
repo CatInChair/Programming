@@ -46,13 +46,13 @@ namespace ObjectOrientedPractics.View.Tabs
         public void ItemsAddButton_Click(object sender, EventArgs e)
         {
             AddNewItem();
-            _ReloadItemsListBox();
+            ReloadItemsListBox();
         }
 
         public void ItemsRemoveButton_Click(object sender, EventArgs e)
         {
             _RemoveSelectedItem();
-            _ReloadItemsListBox();
+            ReloadItemsListBox();
         }
 
         public void ItemsGenerateButton_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items.Add(item);
             }
 
-            _ReloadItemsListBox();
+            ReloadItemsListBox();
             ItemsListBox.SelectedIndex = _items.Count - 1;
         }
         #endregion
@@ -71,7 +71,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Перезагружает все товары в <see cref="ItemsListBox">ItemsListBox</see> из <see cref="_items">_items</see>
         /// </summary>
-        private void _ReloadItemsListBox()
+        public void ReloadItemsListBox()
         {
             ItemsListBox.Items.Clear();
 
@@ -110,7 +110,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddNewItem()
         {
             _items.Add(new Model.Item("Name", "Information", 0, Model.Enumerators.Category.Custom));
-            _ReloadItemsListBox();
+            ReloadItemsListBox();
         }
         #endregion
 

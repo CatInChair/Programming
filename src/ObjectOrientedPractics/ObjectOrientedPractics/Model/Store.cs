@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         private List<Model.Customer> _customers = new List<Model.Customer>();
 
         /// <summary>
-        /// 
+        /// Список товаров
         /// </summary>
         public List<Model.Item> Items
         {
@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
-        /// 
+        /// Список клиентов
         /// </summary>
         public List<Model.Customer> Customers
         {
@@ -44,7 +44,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Конструктор???????1000-7?????
         /// </summary>
         public Store()
         {
