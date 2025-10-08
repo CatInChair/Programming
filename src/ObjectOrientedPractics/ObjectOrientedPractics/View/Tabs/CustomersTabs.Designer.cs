@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
             this.CustomersGroupBox = new System.Windows.Forms.GroupBox();
             this.CustomersGenerateButton = new System.Windows.Forms.Button();
             this.CustomersRemoveButton = new System.Windows.Forms.Button();
             this.CustomersAddButton = new System.Windows.Forms.Button();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerGroupBox = new System.Windows.Forms.GroupBox();
-            this.SelectedCustomerAddressLabel = new System.Windows.Forms.Label();
-            this.SelectedCustomerAddressTextBox = new System.Windows.Forms.TextBox();
+            this.AddressControl = new ObjectOrientedPractics.View.Tabs.AddressControl();
             this.SelectedCustomerFullnameTextBox = new System.Windows.Forms.TextBox();
             this.SelectedItemCostLabel = new System.Windows.Forms.Label();
             this.SelectedCustomerIdTextBox = new System.Windows.Forms.TextBox();
@@ -104,8 +104,7 @@
             // 
             this.selectedCustomerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerAddressLabel);
-            this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerAddressTextBox);
+            this.selectedCustomerGroupBox.Controls.Add(this.AddressControl);
             this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerFullnameTextBox);
             this.selectedCustomerGroupBox.Controls.Add(this.SelectedItemCostLabel);
             this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerIdTextBox);
@@ -117,27 +116,16 @@
             this.selectedCustomerGroupBox.TabStop = false;
             this.selectedCustomerGroupBox.Text = "Selected Customer";
             // 
-            // SelectedCustomerAddressLabel
+            // AddressControl
             // 
-            this.SelectedCustomerAddressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.AddressControl.Address = address1;
+            this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedCustomerAddressLabel.AutoSize = true;
-            this.SelectedCustomerAddressLabel.Location = new System.Drawing.Point(6, 101);
-            this.SelectedCustomerAddressLabel.Name = "SelectedCustomerAddressLabel";
-            this.SelectedCustomerAddressLabel.Size = new System.Drawing.Size(48, 13);
-            this.SelectedCustomerAddressLabel.TabIndex = 28;
-            this.SelectedCustomerAddressLabel.Text = "Address:";
-            // 
-            // SelectedCustomerAddressTextBox
-            // 
-            this.SelectedCustomerAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedCustomerAddressTextBox.Location = new System.Drawing.Point(65, 98);
-            this.SelectedCustomerAddressTextBox.MaxLength = 500;
-            this.SelectedCustomerAddressTextBox.Multiline = true;
-            this.SelectedCustomerAddressTextBox.Name = "SelectedCustomerAddressTextBox";
-            this.SelectedCustomerAddressTextBox.Size = new System.Drawing.Size(408, 131);
-            this.SelectedCustomerAddressTextBox.TabIndex = 27;
+            this.AddressControl.Location = new System.Drawing.Point(8, 104);
+            this.AddressControl.Name = "AddressControl";
+            this.AddressControl.Size = new System.Drawing.Size(465, 175);
+            this.AddressControl.TabIndex = 27;
             // 
             // SelectedCustomerFullnameTextBox
             // 
@@ -215,7 +203,6 @@
             this.CustomersGenerateButton.Click += CustomersGenerateButton_Click;
 
             this.SelectedCustomerFullnameTextBox.TextChanged += SelectedCustomerFullnameTextBox_TextChanged;
-            this.SelectedCustomerAddressTextBox.TextChanged += SelectedCustomerAddressTextBox_TextChanged;
 
             this.CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
         }
@@ -226,12 +213,11 @@
         private System.Windows.Forms.Button CustomersAddButton;
         private System.Windows.Forms.ListBox CustomersListBox;
         private System.Windows.Forms.GroupBox selectedCustomerGroupBox;
-        private System.Windows.Forms.Label SelectedCustomerAddressLabel;
-        private System.Windows.Forms.TextBox SelectedCustomerAddressTextBox;
         private System.Windows.Forms.TextBox SelectedCustomerFullnameTextBox;
         private System.Windows.Forms.Label SelectedItemCostLabel;
         private System.Windows.Forms.TextBox SelectedCustomerIdTextBox;
         private System.Windows.Forms.Label SelectedCustomerIdLabel;
         private System.Windows.Forms.Panel panel1;
+        private AddressControl AddressControl;
     }
 }

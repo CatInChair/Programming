@@ -10,9 +10,9 @@ namespace ObjectOrientedPractics.Services
     {
         static private List<Model.Customer> _pregen = new List<Model.Customer>
         {
-            new Model.Customer("Kale", "London"),
-            new Model.Customer("Jane", "Moskow"),
-            new Model.Customer("Jacob", "Astana")
+            new Model.Customer("Kale", new Model.Address(111111, "asd", "asd", "asd", "asd", "asd")),
+            new Model.Customer("Jane", new Model.Address()),
+            new Model.Customer("Jacob", new Model.Address())
         };
 
         public static List<Model.Customer> Generate(/*int amount*/)

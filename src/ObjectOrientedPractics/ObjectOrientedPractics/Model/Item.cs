@@ -41,7 +41,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                Validators.AssertStringOnLength(value, 200, "Item.Name");
+                Validator.AssertStringOnLength(value, 200, "Item.Name");
                 _name = value;
             }
         }
@@ -57,7 +57,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                Validators.AssertStringOnLength(value, 1000, "Item.Info");
+                Validator.AssertStringOnLength(value, 1000, "Item.Info");
                 _info = value;
             }
         }
@@ -73,10 +73,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                if (value < 0 || value > 100000)
-                {
-                    throw new ArgumentException("Item.Cost must be more or equal than 0 and less or equal than 100000");
-                }
+                Validator.AssertValueOnRange(value, 0.0, 100000.0, "Item.Cost");
 
                 _cost = value;
             }

@@ -82,7 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddNewItem()
         {
-            _customers.Add(new Model.Customer("Fullname", "Address"));
+            _customers.Add(new Model.Customer("Fullname", new Model.Address()));
             ReloadItemsListBox();
         }
         #endregion
@@ -116,30 +116,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             UpdateListBoxItem();
         }
-
-        public void SelectedCustomerAddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            string content = SelectedCustomerAddressTextBox.Text;
-            SelectedCustomerAddressTextBox.BackColor = SystemColors.Window;
-
-            if (content == _customers[_selectedIndex].Address)
-            {
-                return;
-            }
-
-            try
-            {
-                _customers[_selectedIndex].Address = content;
-            }
-            catch
-            {
-                SelectedCustomerAddressTextBox.BackColor = Color.Red;
-                MessageBox.Show("Customer.Address length must be less than 500.");
-                return;
-            }
-
-            UpdateListBoxItem();
-        }
         #endregion
 
         #region SelectedIndexChange functions
@@ -147,8 +123,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_selectedIndex != -1)
             {
-                SelectedCustomerAddressTextBox.Text = _customers[_selectedIndex].Address;
-                SelectedCustomerAddressTextBox.Text = _customers[_selectedIndex].Fullname;
+                this.AddressControl.Address = _customers[_selectedIndex].Address;
+                SelectedCustomerFullnameTextBox.Text = _customers[_selectedIndex].Fullname;
                 SelectedCustomerIdTextBox.Text = _customers[_selectedIndex].Id.ToString();
             }
         }

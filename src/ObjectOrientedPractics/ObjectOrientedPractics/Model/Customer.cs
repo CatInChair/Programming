@@ -9,18 +9,21 @@ namespace ObjectOrientedPractics.Model
 {
     public class Customer
     {
-        // Уникальный идентификатор товара -> Item.Id
         private readonly int _id;
-        // Полное имя клиента
         private string _fullname;
-        // Адрес доставки
-        private string _address;
+        private Model.Address _address;
 
+        /// <summary>
+        /// Идентификатор клиента
+        /// </summary>
         public int Id
         {
             get;
         }
 
+        /// <summary>
+        /// Имя клиента
+        /// </summary>
         public string Fullname
         {
             get
@@ -29,12 +32,15 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                Validators.AssertStringOnLength(value, 200, "Customer.Fullname");
+                Validator.AssertStringOnLength(value, 200, "Customer.Fullname");
                 _fullname = value;
             }
         }
 
-        public string Address
+        /// <summary>
+        /// Адрес доставки
+        /// </summary>
+        public Model.Address Address
         {
             get
             {
@@ -42,17 +48,25 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                Validators.AssertStringOnLength(value, 500, "Customer.Address");
                 _address = value;
             }
         }
 
+        /// <summary>
+        /// Приводит объект к строковому представлению
+        /// </summary>
+        /// <returns>Строковое представление объекта</returns>
         public override string ToString()
         {
             return $"{this.Fullname}, {this.Id}";
         }
 
-        public Customer(string fullname, string address)
+        /// <summary>
+        /// Конструктор класса <see cref="Model.Customer">Customer</see>
+        /// </summary>
+        /// <param name="fullname"></param>
+        /// <param name="address"></param>
+        public Customer(string fullname, Model.Address address)
         {
             _id = IdGenerator.getNextId();
             Fullname = fullname;
