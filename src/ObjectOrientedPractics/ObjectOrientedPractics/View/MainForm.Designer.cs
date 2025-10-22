@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using ObjectOrientedPractics.Model;
+using System.Runtime.CompilerServices;
 
 namespace ObjectOrientedPractics
 {
@@ -35,15 +36,19 @@ namespace ObjectOrientedPractics
             this.itemsTabs1 = new ObjectOrientedPractics.View.Tabs.ItemsTabs();
             this.MainFormTabPage2 = new System.Windows.Forms.TabPage();
             this.customersTabs1 = new ObjectOrientedPractics.View.Tabs.CustomersTabs();
+            this.MainFormTabPage3 = new System.Windows.Forms.TabPage();
+            this.cartsTabs1 = new ObjectOrientedPractics.View.Tabs.CartsTabs();
             this.MainFormTabControl.SuspendLayout();
             this.MainFormTabPage1.SuspendLayout();
             this.MainFormTabPage2.SuspendLayout();
+            this.MainFormTabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTabControl
             // 
             this.MainFormTabControl.Controls.Add(this.MainFormTabPage1);
             this.MainFormTabControl.Controls.Add(this.MainFormTabPage2);
+            this.MainFormTabControl.Controls.Add(this.MainFormTabPage3);
             this.MainFormTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainFormTabControl.Location = new System.Drawing.Point(0, 0);
             this.MainFormTabControl.Name = "MainFormTabControl";
@@ -91,6 +96,26 @@ namespace ObjectOrientedPractics
             this.customersTabs1.Size = new System.Drawing.Size(960, 585);
             this.customersTabs1.TabIndex = 0;
             // 
+            // MainFormTabPage3
+            // 
+            this.MainFormTabPage3.Controls.Add(this.cartsTabs1);
+            this.MainFormTabPage3.Location = new System.Drawing.Point(4, 22);
+            this.MainFormTabPage3.Name = "MainFormTabPage3";
+            this.MainFormTabPage3.Size = new System.Drawing.Size(976, 599);
+            this.MainFormTabPage3.TabIndex = 2;
+            this.MainFormTabPage3.Text = "Carts";
+            this.MainFormTabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cartsTabs1
+            // 
+            this.cartsTabs1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cartsTabs1.Location = new System.Drawing.Point(3, 3);
+            this.cartsTabs1.Name = "cartsTabs1";
+            this.cartsTabs1.Size = new System.Drawing.Size(970, 593);
+            this.cartsTabs1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -102,29 +127,41 @@ namespace ObjectOrientedPractics
             this.MainFormTabControl.ResumeLayout(false);
             this.MainFormTabPage1.ResumeLayout(false);
             this.MainFormTabPage2.ResumeLayout(false);
+            this.MainFormTabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
+        #endregion
+
         private void LinkStore()
         {
-            _store.Items = itemsTabs1.Items;
-            _store.Customers = customersTabs1.Customers;
+            customersTabs1.Customers = _store.Customers;
+            cartsTabs1.Customers = _store.Customers;
+            itemsTabs1.Items = _store.Items;
+            cartsTabs1.Items = _store.Items;
+
         }
 
         private void ReloadTabs()
         {
             itemsTabs1.ReloadItemsListBox();
             customersTabs1.ReloadCustomersListBox();
+            cartsTabs1.LoadPage();
         }
 
-        #endregion
+        private void InitializeListeners()
+        {
+            MainFormTabControl.SelectedIndexChanged += MainFormTabControl_SelectedIndexChanged;
+        }
 
         private System.Windows.Forms.TabControl MainFormTabControl;
         private System.Windows.Forms.TabPage MainFormTabPage1;
         private System.Windows.Forms.TabPage MainFormTabPage2;
         private View.Tabs.ItemsTabs itemsTabs1;
         private View.Tabs.CustomersTabs customersTabs1;
+        private System.Windows.Forms.TabPage MainFormTabPage3;
+        private View.Tabs.CartsTabs cartsTabs1;
     }
 }
 

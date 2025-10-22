@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTabs : UserControl
     {
-        private List<Model.Item> _items = new List<Model.Item>();
+        private List<Model.Item> _items;
 
         /// <summary>
         /// Индекс выбранного на данный момент внутри ListBox товара
@@ -33,6 +33,10 @@ namespace ObjectOrientedPractics.View.Tabs
             get 
             { 
                 return _items; 
+            }
+            set
+            {
+                _items = value;
             }
         }
 
@@ -80,7 +84,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Add(item.ToString());
             }
 
-            ItemsListBox.SelectedIndex = _items.Count - 1;
+            ItemsListBox.SelectedIndex = ItemsListBox.Items.Count - 1;
         }
 
         /// <summary>

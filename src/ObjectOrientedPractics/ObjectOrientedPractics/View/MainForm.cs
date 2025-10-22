@@ -19,13 +19,19 @@ namespace ObjectOrientedPractics
         public MainForm()
         {
             InitializeComponent();
+            InitializeListeners();
 
             LinkStore();
-
-            _store.Items.Add(new Model.Item("asd", "asd", 123, Model.Enumerators.Category.Custom));
-            _store.Customers.Add(new Model.Customer("afd", new Model.Address()));
-
+            _store.Customers.Add(new Model.Customer("Kale", new Model.Address(111111, "asd", "asd", "asd", "asd", "asd")));
             ReloadTabs();
+        }
+
+        public void MainFormTabControl_SelectedIndexChanged(object args, EventArgs e)
+        {
+            if (MainFormTabControl.SelectedIndex == 2)
+            {
+                cartsTabs1.LoadPage();
+            }
         }
     }
 }

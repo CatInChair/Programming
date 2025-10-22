@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ObjectOrientedPractics.Model
+{
+    /// <summary>
+    /// Представление заказа
+    /// </summary>
+    public class Order
+    {
+        private int _id;
+        private DateTime _creatingDate;
+        private Model.Address _address;
+        private Model.Cart _cart;
+        // Вэри биг косяк в методичке
+        // Задача - создать перечисление
+        // Но больше это перечисление в данном
+        // пункте нигде не упоминается
+        private Model.Enumerators.OrderStatus _status;
+        
+        /// <summary>
+        /// Индентификатор
+        /// </summary>
+        public double Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+
+        /// <summary>
+        /// Стоимость корзины
+        /// </summary>
+        public double Amount
+        {
+            get
+            {
+                return _cart.Amount;
+            }
+        }
+
+        /// <summary>
+        /// Дата оформления
+        /// </summary>
+        public DateTime CreatingDate
+        {
+            get
+            {
+                return _creatingDate;
+            }
+        }
+
+        /// <summary>
+        /// Адрес доставки
+        /// </summary>
+        public Model.Address Address
+        {
+            get
+            {
+                return _address;
+            }
+        }
+
+        /// <summary>
+        /// Корзина товаров
+        /// </summary>
+        public Model.Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+        }
+
+        /// <summary>
+        /// Статус заказа
+        /// </summary>
+        public Model.Enumerators.OrderStatus Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+            }
+        }
+
+        /// <summary>
+        /// Коструктор заказа
+        /// </summary>
+        /// <param name="address">Адрес доставки</param>
+        /// <param name="cart">Корзина товаров</param>
+        public Order(Model.Address address, Model.Cart cart) 
+        {
+            _id = Services.IdGenerator.getNextId();
+            _creatingDate = DateTime.Now;
+            _address = address;
+            _cart = cart;
+            _status = Model.Enumerators.OrderStatus.New;
+        }
+    }
+}

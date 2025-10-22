@@ -31,6 +31,10 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return _customers;
             }
+            set
+            {
+                _customers = value;
+            }
         }
 
         public CustomersTabs()
@@ -60,7 +64,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             ReloadCustomersListBox();
-            CustomersListBox.SelectedIndex = _customers.Count - 1;
+            CustomersListBox.SelectedIndex = CustomersListBox.Items.Count - 1;
         }
 
         #endregion
