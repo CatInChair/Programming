@@ -44,7 +44,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Конструктор???????1000-7?????
+        /// Инициализатор пустого объекта
         /// </summary>
         public Store()
         {

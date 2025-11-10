@@ -33,15 +33,18 @@ namespace ObjectOrientedPractics
         {
             this.MainFormTabControl = new System.Windows.Forms.TabControl();
             this.MainFormTabPage1 = new System.Windows.Forms.TabPage();
-            this.itemsTabs1 = new ObjectOrientedPractics.View.Tabs.ItemsTabs();
             this.MainFormTabPage2 = new System.Windows.Forms.TabPage();
-            this.customersTabs1 = new ObjectOrientedPractics.View.Tabs.CustomersTabs();
             this.MainFormTabPage3 = new System.Windows.Forms.TabPage();
+            this.MainFormTabPage4 = new System.Windows.Forms.TabPage();
+            this.itemsTabs1 = new ObjectOrientedPractics.View.Tabs.ItemsTabs();
+            this.customersTabs1 = new ObjectOrientedPractics.View.Tabs.CustomersTabs();
             this.cartsTabs1 = new ObjectOrientedPractics.View.Tabs.CartsTabs();
+            this.ordersTabs1 = new ObjectOrientedPractics.View.Tabs.OrdersTabs();
             this.MainFormTabControl.SuspendLayout();
             this.MainFormTabPage1.SuspendLayout();
             this.MainFormTabPage2.SuspendLayout();
             this.MainFormTabPage3.SuspendLayout();
+            this.MainFormTabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTabControl
@@ -49,6 +52,7 @@ namespace ObjectOrientedPractics
             this.MainFormTabControl.Controls.Add(this.MainFormTabPage1);
             this.MainFormTabControl.Controls.Add(this.MainFormTabPage2);
             this.MainFormTabControl.Controls.Add(this.MainFormTabPage3);
+            this.MainFormTabControl.Controls.Add(this.MainFormTabPage4);
             this.MainFormTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainFormTabControl.Location = new System.Drawing.Point(0, 0);
             this.MainFormTabControl.Name = "MainFormTabControl";
@@ -67,14 +71,6 @@ namespace ObjectOrientedPractics
             this.MainFormTabPage1.Text = "Items";
             this.MainFormTabPage1.UseVisualStyleBackColor = true;
             // 
-            // itemsTabs1
-            // 
-            this.itemsTabs1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemsTabs1.Location = new System.Drawing.Point(3, 3);
-            this.itemsTabs1.Name = "itemsTabs1";
-            this.itemsTabs1.Size = new System.Drawing.Size(970, 593);
-            this.itemsTabs1.TabIndex = 0;
-            // 
             // MainFormTabPage2
             // 
             this.MainFormTabPage2.Controls.Add(this.customersTabs1);
@@ -86,16 +82,6 @@ namespace ObjectOrientedPractics
             this.MainFormTabPage2.Text = "Customers";
             this.MainFormTabPage2.UseVisualStyleBackColor = true;
             // 
-            // customersTabs1
-            // 
-            this.customersTabs1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customersTabs1.Location = new System.Drawing.Point(8, 6);
-            this.customersTabs1.Name = "customersTabs1";
-            this.customersTabs1.Size = new System.Drawing.Size(960, 585);
-            this.customersTabs1.TabIndex = 0;
-            // 
             // MainFormTabPage3
             // 
             this.MainFormTabPage3.Controls.Add(this.cartsTabs1);
@@ -106,6 +92,36 @@ namespace ObjectOrientedPractics
             this.MainFormTabPage3.Text = "Carts";
             this.MainFormTabPage3.UseVisualStyleBackColor = true;
             // 
+            // MainFormTabPage4
+            // 
+            this.MainFormTabPage4.Controls.Add(this.ordersTabs1);
+            this.MainFormTabPage4.Location = new System.Drawing.Point(4, 22);
+            this.MainFormTabPage4.Name = "MainFormTabPage4";
+            this.MainFormTabPage4.Size = new System.Drawing.Size(976, 599);
+            this.MainFormTabPage4.TabIndex = 3;
+            this.MainFormTabPage4.Text = "Orders";
+            this.MainFormTabPage4.UseVisualStyleBackColor = true;
+            // 
+            // itemsTabs1
+            // 
+            this.itemsTabs1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemsTabs1.Items = null;
+            this.itemsTabs1.Location = new System.Drawing.Point(3, 3);
+            this.itemsTabs1.Name = "itemsTabs1";
+            this.itemsTabs1.Size = new System.Drawing.Size(970, 593);
+            this.itemsTabs1.TabIndex = 0;
+            // 
+            // customersTabs1
+            // 
+            this.customersTabs1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customersTabs1.Customers = null;
+            this.customersTabs1.Location = new System.Drawing.Point(8, 6);
+            this.customersTabs1.Name = "customersTabs1";
+            this.customersTabs1.Size = new System.Drawing.Size(960, 585);
+            this.customersTabs1.TabIndex = 0;
+            // 
             // cartsTabs1
             // 
             this.cartsTabs1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -115,6 +131,14 @@ namespace ObjectOrientedPractics
             this.cartsTabs1.Name = "cartsTabs1";
             this.cartsTabs1.Size = new System.Drawing.Size(970, 593);
             this.cartsTabs1.TabIndex = 0;
+            // 
+            // ordersTabs1
+            // 
+            this.ordersTabs1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ordersTabs1.Location = new System.Drawing.Point(0, 0);
+            this.ordersTabs1.Name = "ordersTabs1";
+            this.ordersTabs1.Size = new System.Drawing.Size(976, 599);
+            this.ordersTabs1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -128,6 +152,7 @@ namespace ObjectOrientedPractics
             this.MainFormTabPage1.ResumeLayout(false);
             this.MainFormTabPage2.ResumeLayout(false);
             this.MainFormTabPage3.ResumeLayout(false);
+            this.MainFormTabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -140,7 +165,7 @@ namespace ObjectOrientedPractics
             cartsTabs1.Customers = _store.Customers;
             itemsTabs1.Items = _store.Items;
             cartsTabs1.Items = _store.Items;
-
+            ordersTabs1.Customers = _store.Customers;
         }
 
         private void ReloadTabs()
@@ -162,6 +187,8 @@ namespace ObjectOrientedPractics
         private View.Tabs.CustomersTabs customersTabs1;
         private System.Windows.Forms.TabPage MainFormTabPage3;
         private View.Tabs.CartsTabs cartsTabs1;
+        private System.Windows.Forms.TabPage MainFormTabPage4;
+        private View.Tabs.OrdersTabs ordersTabs1;
     }
 }
 

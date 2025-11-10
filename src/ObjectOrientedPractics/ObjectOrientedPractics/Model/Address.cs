@@ -117,6 +117,14 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public string FullAddress 
+        {
+            get
+            {
+                return this.Index + ": " + this.Country + ", " + this.City + ", " + this.Street + ", " + this.Building + " " + this.Apartment;
+            }
+        }
+
         /// <summary>
         /// Инициализатор пустого экземпляра адреса
         /// </summary>

@@ -10,6 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Представление клиента
     /// </summary>
+    [Serializable]
     public class Customer
     {
         private readonly int _id;

@@ -53,6 +53,7 @@
     <Compile Include="Model\Enumerators\OrderStatus.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderEntry.cs" />
     <Compile Include="Model\Store.cs" />
     <Compile Include="Services\CustomerFabric.cs" />
     <Compile Include="Services\IdGenerator.cs" />
@@ -90,6 +91,12 @@
     <Compile Include="View\Tabs\ItemsTabs.Designer.cs">
       <DependentUpon>ItemsTabs.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Tabs\OrdersTabs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\OrdersTabs.Designer.cs">
+      <DependentUpon>OrdersTabs.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -114,6 +121,12 @@
     <EmbeddedResource Include="View\Tabs\ItemsTabs.resx">
       <DependentUpon>ItemsTabs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Tabs\OrdersTabs.resx">
+      <DependentUpon>OrdersTabs.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\ObjectOrientedPractics.Model.Customer.datasource" />
+    <None Include="Properties\DataSources\ObjectOrientedPractics.Model.Order.datasource" />
+    <None Include="Properties\DataSources\ObjectOrientedPractics.Model.OrderEntry.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

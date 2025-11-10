@@ -12,9 +12,22 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CartsTabs : UserControl
     {
-        public List<Model.Customer> Customers = new List<Model.Customer>();
+        /// <summary>
+        /// Список пользователей
+        /// </summary>
+        public List<Model.Customer> Customers;
+        /// <summary>
+        /// Список товаров
+        /// </summary>
         public List<Model.Item> Items = new List<Model.Item>();
+
+        /// <summary>
+        /// Текущий выбранный пользователь
+        /// </summary>
         private Model.Customer _currentCustomer;
+        /// <summary>
+        /// Абстракция индекса выбранного пользователя
+        /// </summary>
         private int _selectedIndexCustomer
         {
             get
@@ -22,7 +35,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 return CartCustomerComboBox.SelectedIndex;
             }
         }
-
+        /// <summary>
+        /// Абстракция индекса выбранного товара
+        /// </summary>
         private int _selectedIndexItem
         {
             get
@@ -30,6 +45,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 return CartItemsListBox.SelectedIndex;
             }
         }
+        /// <summary>
+        /// Абстракция индекса выбранного в тележке товара
+        /// </summary>
         private int _selectedIndexCartItem
         {
             get
@@ -46,13 +64,18 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         #region Functions
+        /// <summary>
+        /// Перезагружает данные на странице
+        /// </summary>
         public void LoadPage()
         {
             _LoadItems();
             _LoadCustomers();
 
         }
-
+        /// <summary>
+        /// Загружает список товаров
+        /// </summary>
         private void _LoadItems()
         {
             CartItemsListBox.Items.Clear();
@@ -62,7 +85,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartItemsListBox.Items.Add(item.ToString());
             }
         }
-
+        /// <summary>
+        /// Загружает список пользователей
+        /// </summary>
         private void _LoadCustomers()
         {
             CartCustomerComboBox.Items.Clear();
@@ -76,12 +101,16 @@ namespace ObjectOrientedPractics.View.Tabs
 
             CartListBox.Items.Clear();
         }
-
+        /// <summary>
+        /// Вывод стоимости корзины
+        /// </summary>
         private void _CalculateCost()
         {
             CartAmountInfoLabel.Text = _currentCustomer.Cart.Amount.ToString() + "$";
         }
-
+        /// <summary>
+        /// Загружает список товаров в корзине
+        /// </summary>
         private void _LoadCartItems()
         {
             CartListBox.Items.Clear();
@@ -173,7 +202,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            _currentCustomer.Orders.Add(new Model.Order(_currentCustomer.Address, _currentCustomer.Cart));
+            _currentCustomer.Orders.Add(new Model.Order(_currentCustomer.Address, _currentCustomer.Cart.Clone()));
             _currentCustomer.Cart.Items.Clear();
             _LoadCartItems();
         }

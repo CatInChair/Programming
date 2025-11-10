@@ -14,6 +14,9 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Представление магазина
+        /// </summary>
         private Model.Store _store = new Model.Store();
 
         public MainForm()
@@ -31,6 +34,13 @@ namespace ObjectOrientedPractics
             if (MainFormTabControl.SelectedIndex == 2)
             {
                 cartsTabs1.LoadPage();
+                return;
+            }
+
+            if (MainFormTabControl.SelectedIndex == 3)
+            {
+                ordersTabs1.LoadOrders();
+                return;
             }
         }
     }

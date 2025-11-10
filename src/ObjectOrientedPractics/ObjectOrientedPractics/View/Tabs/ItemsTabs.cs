@@ -12,10 +12,13 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTabs : UserControl
     {
+        /// <summary>
+        /// Список обрабатываемых товаров
+        /// </summary>
         private List<Model.Item> _items;
 
         /// <summary>
-        /// Индекс выбранного на данный момент внутри ListBox товара
+        /// Абстракция индекса выбранного товара
         /// </summary>
         private int _selectedIndex
         {
@@ -26,7 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Список обрабатываемых товаров
+        /// Открытые свойства приватного поля <see cref="_items">_items</see>
         /// </summary>
         public List<Model.Item> Items
         {

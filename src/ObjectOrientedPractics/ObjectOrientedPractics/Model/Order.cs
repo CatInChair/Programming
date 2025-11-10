@@ -11,20 +11,19 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Order
     {
+        /// <summary>
+        /// Идентификатор объекта
+        /// </summary>
         private int _id;
         private DateTime _creatingDate;
         private Model.Address _address;
         private Model.Cart _cart;
-        // Вэри биг косяк в методичке
-        // Задача - создать перечисление
-        // Но больше это перечисление в данном
-        // пункте нигде не упоминается
         private Model.Enumerators.OrderStatus _status;
         
         /// <summary>
         /// Индентификатор
         /// </summary>
-        public double Id
+        public int Id
         {
             get
             {

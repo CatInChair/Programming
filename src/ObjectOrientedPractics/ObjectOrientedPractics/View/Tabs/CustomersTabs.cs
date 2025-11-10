@@ -13,7 +13,14 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTabs : UserControl
     {
-        private List<Model.Customer> _customers = new List<Model.Customer>();
+        /// <summary>
+        /// Список пользователей
+        /// </summary>
+        private List<Model.Customer> _customers;
+
+        /// <summary>
+        /// Абстракция индекса текущего выбранного пользователя
+        /// </summary>
         private int _selectedIndex
         {
             get
@@ -23,7 +30,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Открытые свойства приватного поля <see cref="_customers">_customers</see>
         /// </summary>
         public List<Model.Customer> Customers
         {
@@ -70,6 +77,9 @@ namespace ObjectOrientedPractics.View.Tabs
         #endregion
 
         #region CustomersListBox functions
+        /// <summary>
+        /// Перезагружает список пользователей
+        /// </summary>
         public void ReloadCustomersListBox()
         {
             CustomersListBox.Items.Clear();
@@ -82,6 +92,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.SelectedIndex = _customers.Count - 1;
         }
 
+        /// <summary>
+        /// Удаляет выбранного пользователя
+        /// </summary>
         private void _RemoveSelectedCustomer()
         {
             int index = _selectedIndex;
@@ -95,6 +108,9 @@ namespace ObjectOrientedPractics.View.Tabs
             _customers.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Создает нового пользователя
+        /// </summary>
         private void _AddNewItem()
         {
             _customers.Add(new Model.Customer("Fullname", new Model.Address()));
@@ -134,6 +150,9 @@ namespace ObjectOrientedPractics.View.Tabs
         #endregion
 
         #region SelectedIndexChange functions
+        /// <summary>
+        /// Обновляет данные о выбранном пользователе
+        /// </summary>
         public void ReloadSelectedItemTextBoxes()
         {
             if (_selectedIndex != -1)
@@ -144,6 +163,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет данные о выбранном пользователе внутри <see cref="CustomersListBox">ListBox'a</see>
+        /// </summary>
         public void _UpdateListBoxItem()
         {
             CustomersListBox.Items[_selectedIndex] = _customers[_selectedIndex].ToString();

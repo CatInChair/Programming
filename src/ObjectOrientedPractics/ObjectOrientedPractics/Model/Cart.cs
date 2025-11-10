@@ -42,6 +42,19 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public Cart Clone()
+        {
+            return new Cart(this);
+        }
 
+        public Cart(Cart cart)
+        {
+            _items = cart.Items.ToList();
+        }
+
+        public Cart()
+        {
+
+        }
     }
 }
