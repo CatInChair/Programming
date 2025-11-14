@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
             this.CustomersGroupBox = new System.Windows.Forms.GroupBox();
             this.CustomersGenerateButton = new System.Windows.Forms.Button();
             this.CustomersRemoveButton = new System.Windows.Forms.Button();
             this.CustomersAddButton = new System.Windows.Forms.Button();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerGroupBox = new System.Windows.Forms.GroupBox();
+            this.SelectedCustomerIsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.AddressControl = new ObjectOrientedPractics.View.Tabs.AddressControl();
             this.SelectedCustomerFullnameTextBox = new System.Windows.Forms.TextBox();
             this.SelectedItemCostLabel = new System.Windows.Forms.Label();
@@ -104,6 +104,7 @@
             // 
             this.selectedCustomerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerIsPriorityCheckBox);
             this.selectedCustomerGroupBox.Controls.Add(this.AddressControl);
             this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerFullnameTextBox);
             this.selectedCustomerGroupBox.Controls.Add(this.SelectedItemCostLabel);
@@ -111,27 +112,38 @@
             this.selectedCustomerGroupBox.Controls.Add(this.SelectedCustomerIdLabel);
             this.selectedCustomerGroupBox.Location = new System.Drawing.Point(382, 2);
             this.selectedCustomerGroupBox.Name = "selectedCustomerGroupBox";
-            this.selectedCustomerGroupBox.Size = new System.Drawing.Size(479, 287);
+            this.selectedCustomerGroupBox.Size = new System.Drawing.Size(479, 314);
             this.selectedCustomerGroupBox.TabIndex = 17;
             this.selectedCustomerGroupBox.TabStop = false;
             this.selectedCustomerGroupBox.Text = "Selected Customer";
             // 
+            // SelectedCustomerIsPriorityCheckBox
+            // 
+            this.SelectedCustomerIsPriorityCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.SelectedCustomerIsPriorityCheckBox.AutoSize = true;
+            this.SelectedCustomerIsPriorityCheckBox.Location = new System.Drawing.Point(69, 81);
+            this.SelectedCustomerIsPriorityCheckBox.Name = "SelectedCustomerIsPriorityCheckBox";
+            this.SelectedCustomerIsPriorityCheckBox.Size = new System.Drawing.Size(67, 17);
+            this.SelectedCustomerIsPriorityCheckBox.TabIndex = 28;
+            this.SelectedCustomerIsPriorityCheckBox.Text = "is Priority";
+            this.SelectedCustomerIsPriorityCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AddressControl
             // 
-            this.AddressControl.Address = address1;
             this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddressControl.Location = new System.Drawing.Point(8, 104);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(465, 175);
+            this.AddressControl.Size = new System.Drawing.Size(465, 202);
             this.AddressControl.TabIndex = 27;
             // 
             // SelectedCustomerFullnameTextBox
             // 
             this.SelectedCustomerFullnameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedCustomerFullnameTextBox.Location = new System.Drawing.Point(65, 58);
+            this.SelectedCustomerFullnameTextBox.Location = new System.Drawing.Point(69, 50);
             this.SelectedCustomerFullnameTextBox.MaxLength = 200;
             this.SelectedCustomerFullnameTextBox.Name = "SelectedCustomerFullnameTextBox";
             this.SelectedCustomerFullnameTextBox.Size = new System.Drawing.Size(408, 20);
@@ -141,7 +153,7 @@
             // 
             this.SelectedItemCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SelectedItemCostLabel.AutoSize = true;
-            this.SelectedItemCostLabel.Location = new System.Drawing.Point(5, 61);
+            this.SelectedItemCostLabel.Location = new System.Drawing.Point(9, 53);
             this.SelectedItemCostLabel.Name = "SelectedItemCostLabel";
             this.SelectedItemCostLabel.Size = new System.Drawing.Size(52, 13);
             this.SelectedItemCostLabel.TabIndex = 25;
@@ -151,7 +163,7 @@
             // 
             this.SelectedCustomerIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedCustomerIdTextBox.Location = new System.Drawing.Point(65, 25);
+            this.SelectedCustomerIdTextBox.Location = new System.Drawing.Point(69, 17);
             this.SelectedCustomerIdTextBox.Name = "SelectedCustomerIdTextBox";
             this.SelectedCustomerIdTextBox.ReadOnly = true;
             this.SelectedCustomerIdTextBox.Size = new System.Drawing.Size(194, 20);
@@ -161,7 +173,7 @@
             // 
             this.SelectedCustomerIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SelectedCustomerIdLabel.AutoSize = true;
-            this.SelectedCustomerIdLabel.Location = new System.Drawing.Point(5, 28);
+            this.SelectedCustomerIdLabel.Location = new System.Drawing.Point(9, 20);
             this.SelectedCustomerIdLabel.Name = "SelectedCustomerIdLabel";
             this.SelectedCustomerIdLabel.Size = new System.Drawing.Size(21, 13);
             this.SelectedCustomerIdLabel.TabIndex = 23;
@@ -203,6 +215,7 @@
             this.CustomersGenerateButton.Click += CustomersGenerateButton_Click;
 
             this.SelectedCustomerFullnameTextBox.TextChanged += SelectedCustomerFullnameTextBox_TextChanged;
+            this.SelectedCustomerIsPriorityCheckBox.CheckedChanged += SelectedCustomerIsPriorityCheckBox_CheckedChanged;
 
             this.CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
         }
@@ -219,5 +232,6 @@
         private System.Windows.Forms.Label SelectedCustomerIdLabel;
         private System.Windows.Forms.Panel panel1;
         private AddressControl AddressControl;
+        private System.Windows.Forms.CheckBox SelectedCustomerIsPriorityCheckBox;
     }
 }
