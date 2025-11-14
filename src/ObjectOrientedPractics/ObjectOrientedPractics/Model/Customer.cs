@@ -69,6 +69,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Список заказов пользователя
+        /// </summary>
         public List<Model.Order> Orders
         {
             get
@@ -76,6 +79,11 @@ namespace ObjectOrientedPractics.Model
                 return _orders;
             }
         }
+
+        /// <summary>
+        /// Указывает на наличие приоритетного статуса
+        /// </summary>
+        public bool IsPriority { get; set; } = false;
 
         /// <summary>
         /// Приводит объект к строковому представлению

@@ -68,6 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
             SelectedOrderStatusComboBox.SelectedIndex = -1;
             SelectedOrderAmountInfoLabel.Text = "0";
             SelectedOrderItemsListView.Items.Clear();
+            SelectedOrderPriorityPanel.Visible = false;
         }
 
         /// <summary>
@@ -85,6 +86,15 @@ namespace ObjectOrientedPractics.View.Tabs
             foreach (Model.Item item in entry.Order.Cart.Items)
             {
                 SelectedOrderItemsListView.Items.Add(item.ToString());
+            }
+            if (entry.Order is Model.PriorityOrder)
+            {
+                SelectedOrderPriorityPanel.Visible = true;
+                SelectedOrderDeliveryTimeComboBox.SelectedIndex = ((Model.PriorityOrder)entry.Order).DeliveryTime;
+            }
+            else
+            {
+                SelectedOrderPriorityPanel.Visible = false;
             }
         }
         #endregion
@@ -104,6 +114,14 @@ namespace ObjectOrientedPractics.View.Tabs
             _order.Order.Status = (Model.Enumerators.OrderStatus)SelectedOrderStatusComboBox.SelectedIndex;
             OrdersDataGridView.Refresh();
         }
+
+        public void SelectedOrderDeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SelectedOrderDeliveryTimeComboBox.SelectedIndex == ((Model.PriorityOrder)_order.Order).DeliveryTime || SelectedOrderDeliveryTimeComboBox.SelectedIndex == -1) return;
+
+            ((Model.PriorityOrder)_order.Order).DeliveryTime = SelectedOrderDeliveryTimeComboBox.SelectedIndex;
+        }
         #endregion
+
     }
 }

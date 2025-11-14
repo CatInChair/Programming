@@ -202,7 +202,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            _currentCustomer.Orders.Add(new Model.Order(_currentCustomer.Address, _currentCustomer.Cart.Clone()));
+            if (_currentCustomer.IsPriority)
+            {
+                _currentCustomer.Orders.Add(new Model.PriorityOrder(_currentCustomer.Address, _currentCustomer.Cart.Clone()));
+            }
+            else
+            {
+                _currentCustomer.Orders.Add(new Model.Order(_currentCustomer.Address, _currentCustomer.Cart.Clone()));
+            }
             _currentCustomer.Cart.Items.Clear();
             _LoadCartItems();
         }

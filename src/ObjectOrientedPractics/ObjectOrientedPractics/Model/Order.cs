@@ -14,11 +14,11 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Идентификатор объекта
         /// </summary>
-        private int _id;
-        private DateTime _creatingDate;
-        private Model.Address _address;
-        private Model.Cart _cart;
-        private Model.Enumerators.OrderStatus _status;
+        private protected int _id;
+        private protected DateTime _creatingDate;
+        private protected Model.Address _address;
+        private protected Model.Cart _cart;
+        private protected Model.Enumerators.OrderStatus _status;
         
         /// <summary>
         /// Индентификатор
