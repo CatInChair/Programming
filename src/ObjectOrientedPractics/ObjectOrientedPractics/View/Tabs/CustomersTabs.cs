@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -168,21 +169,29 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         #endregion
 
-        #region SelectedIndexChange functions
+        #region CurrentCustomer functions
         /// <summary>
         /// Обновляет данные о выбранном пользователе
         /// </summary>
         public void ReloadSelectedItemTextBoxes()
         {
+            CustomerDiscountsListBox.Items.Clear();
+
             if (_selectedIndex != -1)
             {
+                SelectedCustomerIdTextBox.Text = _customers[_selectedIndex].Id.ToString();
                 this.AddressControl.Address = _customers[_selectedIndex].Address;
                 SelectedCustomerFullnameTextBox.Text = _customers[_selectedIndex].Fullname;
                 SelectedCustomerIdTextBox.Text = _customers[_selectedIndex].Id.ToString();
                 SelectedCustomerIsPriorityCheckBox.Checked = _customers[_selectedIndex].IsPriority;
+                foreach (IDiscount discount in _customers[_selectedIndex].Discounts)
+                {
+                    CustomerDiscountsListBox.Items.Add(discount.Info);
+                }
             }
             else
             {
+                SelectedCustomerIdTextBox.Text = "";
                 this.AddressControl.Address = new Address();
                 SelectedCustomerFullnameTextBox.Text = "";
                 SelectedCustomerIdTextBox.Text = "";
@@ -196,6 +205,36 @@ namespace ObjectOrientedPractics.View.Tabs
         public void _UpdateListBoxItem()
         {
             CustomersListBox.Items[_selectedIndex] = _customers[_selectedIndex].ToString();
+        }
+
+        public void DiscountAddButton_Click(object sender, EventArgs e)
+        {
+            using (CategoryModal modal = new CategoryModal())
+            {
+                if (modal.ShowDialog(this)  == DialogResult.OK)
+                {
+                    _customers[_selectedIndex].Discounts.Add(new PercentDiscount(modal.Category));
+                    ReloadSelectedItemTextBoxes();
+                }
+            }
+        }
+
+        public void DiscountRemoveButton_Click(object sender, EventArgs e)
+        {
+            if (CustomerDiscountsListBox.SelectedIndex == -1) 
+            {
+                MessageBox.Show("Choose discount from ListBox before.");
+                return;
+            }
+
+            if (CustomerDiscountsListBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Points discount can't be removed.");
+                return;
+            }
+
+            _customers[_selectedIndex].Discounts.RemoveAt(CustomerDiscountsListBox.SelectedIndex);
+            ReloadSelectedItemTextBoxes();
         }
         #endregion
     }

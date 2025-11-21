@@ -29,17 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
             this.OrdersGroupBox = new System.Windows.Forms.GroupBox();
             this.OrdersDataGridView = new System.Windows.Forms.DataGridView();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatingDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullnameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SelectedOrderGroupBox = new System.Windows.Forms.GroupBox();
+            this.TotalLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DiscountLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SelectedOrderPriorityPanel = new System.Windows.Forms.Panel();
             this.SelectedOrderDeliveryTimeLabel = new System.Windows.Forms.Label();
             this.SelectedOrderDeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
@@ -54,6 +51,14 @@
             this.SelectedOrderCreatedAtTtextBox = new System.Windows.Forms.TextBox();
             this.SelectedOrderIdTextBox = new System.Windows.Forms.TextBox();
             this.addressControl = new ObjectOrientedPractics.View.Tabs.AddressControl();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatingDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullnameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrdersGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderEntryBindingSource)).BeginInit();
@@ -87,6 +92,8 @@
             this.FullnameColumn,
             this.AddressColumn,
             this.AmountColumn,
+            this.Discount,
+            this.Total,
             this.StatusColumn});
             this.OrdersDataGridView.DataSource = this.orderEntryBindingSource;
             this.OrdersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -97,56 +104,18 @@
             this.OrdersDataGridView.Size = new System.Drawing.Size(358, 475);
             this.OrdersDataGridView.TabIndex = 0;
             // 
-            // IdColumn
-            // 
-            this.IdColumn.DataPropertyName = "Id";
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.ReadOnly = true;
-            // 
-            // CreatingDateColumn
-            // 
-            this.CreatingDateColumn.DataPropertyName = "CreatingDate";
-            this.CreatingDateColumn.HeaderText = "CreatingDate";
-            this.CreatingDateColumn.Name = "CreatingDateColumn";
-            this.CreatingDateColumn.ReadOnly = true;
-            // 
-            // FullnameColumn
-            // 
-            this.FullnameColumn.DataPropertyName = "Fullname";
-            this.FullnameColumn.HeaderText = "Fullname";
-            this.FullnameColumn.Name = "FullnameColumn";
-            this.FullnameColumn.ReadOnly = true;
-            // 
-            // AddressColumn
-            // 
-            this.AddressColumn.DataPropertyName = "Address";
-            this.AddressColumn.HeaderText = "Address";
-            this.AddressColumn.Name = "AddressColumn";
-            this.AddressColumn.ReadOnly = true;
-            // 
-            // AmountColumn
-            // 
-            this.AmountColumn.DataPropertyName = "Amount";
-            this.AmountColumn.HeaderText = "Amount";
-            this.AmountColumn.Name = "AmountColumn";
-            this.AmountColumn.ReadOnly = true;
-            // 
-            // StatusColumn
-            // 
-            this.StatusColumn.DataPropertyName = "Status";
-            this.StatusColumn.HeaderText = "Status";
-            this.StatusColumn.Name = "StatusColumn";
-            this.StatusColumn.ReadOnly = true;
-            // 
             // orderEntryBindingSource
             // 
-            this.orderEntryBindingSource.DataSource = typeof(ObjectOrientedPractics.Model.OrderEntry);
+            this.orderEntryBindingSource.DataSource = typeof(ObjectOrientedPractics.Model.Orders.OrderEntry);
             // 
             // SelectedOrderGroupBox
             // 
             this.SelectedOrderGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedOrderGroupBox.Controls.Add(this.TotalLabel);
+            this.SelectedOrderGroupBox.Controls.Add(this.label4);
+            this.SelectedOrderGroupBox.Controls.Add(this.DiscountLabel);
+            this.SelectedOrderGroupBox.Controls.Add(this.label2);
             this.SelectedOrderGroupBox.Controls.Add(this.SelectedOrderPriorityPanel);
             this.SelectedOrderGroupBox.Controls.Add(this.SelectedOrderItemsLabel);
             this.SelectedOrderGroupBox.Controls.Add(this.SelectedOrderItemsListView);
@@ -165,6 +134,52 @@
             this.SelectedOrderGroupBox.TabIndex = 1;
             this.SelectedOrderGroupBox.TabStop = false;
             this.SelectedOrderGroupBox.Text = "Selected Order";
+            // 
+            // TotalLabel
+            // 
+            this.TotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TotalLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TotalLabel.Location = new System.Drawing.Point(38, 439);
+            this.TotalLabel.Name = "TotalLabel";
+            this.TotalLabel.Size = new System.Drawing.Size(123, 20);
+            this.TotalLabel.TabIndex = 17;
+            this.TotalLabel.Text = "0";
+            this.TotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(107, 419);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 20);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Total:";
+            // 
+            // DiscountLabel
+            // 
+            this.DiscountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiscountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DiscountLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.DiscountLabel.Location = new System.Drawing.Point(198, 439);
+            this.DiscountLabel.Name = "DiscountLabel";
+            this.DiscountLabel.Size = new System.Drawing.Size(123, 20);
+            this.DiscountLabel.TabIndex = 15;
+            this.DiscountLabel.Text = "0";
+            this.DiscountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(237, 419);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Discount:";
             // 
             // SelectedOrderPriorityPanel
             // 
@@ -225,9 +240,9 @@
             this.SelectedOrderAmountInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedOrderAmountInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SelectedOrderAmountInfoLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.SelectedOrderAmountInfoLabel.Location = new System.Drawing.Point(94, 439);
+            this.SelectedOrderAmountInfoLabel.Location = new System.Drawing.Point(332, 439);
             this.SelectedOrderAmountInfoLabel.Name = "SelectedOrderAmountInfoLabel";
-            this.SelectedOrderAmountInfoLabel.Size = new System.Drawing.Size(361, 20);
+            this.SelectedOrderAmountInfoLabel.Size = new System.Drawing.Size(123, 20);
             this.SelectedOrderAmountInfoLabel.TabIndex = 10;
             this.SelectedOrderAmountInfoLabel.Text = "0";
             this.SelectedOrderAmountInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -318,6 +333,62 @@
             this.addressControl.Size = new System.Drawing.Size(449, 149);
             this.addressControl.TabIndex = 0;
             // 
+            // IdColumn
+            // 
+            this.IdColumn.DataPropertyName = "Id";
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.ReadOnly = true;
+            // 
+            // CreatingDateColumn
+            // 
+            this.CreatingDateColumn.DataPropertyName = "CreatingDate";
+            this.CreatingDateColumn.HeaderText = "CreatingDate";
+            this.CreatingDateColumn.Name = "CreatingDateColumn";
+            this.CreatingDateColumn.ReadOnly = true;
+            // 
+            // FullnameColumn
+            // 
+            this.FullnameColumn.DataPropertyName = "Fullname";
+            this.FullnameColumn.HeaderText = "Fullname";
+            this.FullnameColumn.Name = "FullnameColumn";
+            this.FullnameColumn.ReadOnly = true;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.DataPropertyName = "Address";
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.ReadOnly = true;
+            // 
+            // AmountColumn
+            // 
+            this.AmountColumn.DataPropertyName = "Amount";
+            this.AmountColumn.HeaderText = "Amount";
+            this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.DataPropertyName = "Discount";
+            this.Discount.HeaderText = "Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // StatusColumn
+            // 
+            this.StatusColumn.DataPropertyName = "Status";
+            this.StatusColumn.HeaderText = "Status";
+            this.StatusColumn.Name = "StatusColumn";
+            this.StatusColumn.ReadOnly = true;
+            // 
             // OrdersTabs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,12 +431,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn creatingDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource orderEntryBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreatingDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FullnameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StatusColumn;
         private System.Windows.Forms.Label SelectedOrderItemsLabel;
         private System.Windows.Forms.ListView SelectedOrderItemsListView;
         private System.Windows.Forms.Label SelectedOrderAmountInfoLabel;
@@ -373,5 +438,17 @@
         private System.Windows.Forms.Panel SelectedOrderPriorityPanel;
         private System.Windows.Forms.Label SelectedOrderDeliveryTimeLabel;
         private System.Windows.Forms.ComboBox SelectedOrderDeliveryTimeComboBox;
+        private System.Windows.Forms.Label TotalLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label DiscountLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatingDateColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FullnameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatusColumn;
     }
 }

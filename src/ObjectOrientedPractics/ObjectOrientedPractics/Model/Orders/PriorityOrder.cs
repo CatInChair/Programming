@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Представление приоритетного заказа. Расширение для <see cref="Order">Order</see>
@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="address">Адрес доставки</param>
         /// <param name="cart">Корзина пользователя</param>
-        public PriorityOrder(Address address, Cart cart) : base(address, cart)
+        public PriorityOrder(Address address, Cart cart, double discount) : base(address, cart, discount)
         { }
     }
 }

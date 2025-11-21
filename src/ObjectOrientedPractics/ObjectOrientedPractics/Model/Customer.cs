@@ -10,14 +10,13 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Представление клиента
     /// </summary>
-    [Serializable]
     public class Customer
     {
         private readonly int _id;
         private string _fullname;
         private Model.Address _address;
         private Model.Cart _cart;
-        private List<Model.Order> _orders;
+        private List<Orders.Order> _orders;
 
         /// <summary>
         /// Идентификатор клиента
@@ -72,13 +71,18 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Список заказов пользователя
         /// </summary>
-        public List<Model.Order> Orders
+        public List<Orders.Order> Orders
         {
             get
             {
                 return _orders;
             }
         }
+
+        /// <summary>
+        /// Список скидок
+        /// </summary>
+        public List<IDiscount> Discounts { get; } = new List<IDiscount>() { new Discounts.PointsDiscount() };
 
         /// <summary>
         /// Указывает на наличие приоритетного статуса
@@ -105,7 +109,7 @@ namespace ObjectOrientedPractics.Model
             Fullname = fullname;
             Address = address;
             _cart = new Model.Cart();
-            _orders = new List<Model.Order>();
+            _orders = new List<Orders.Order>();
         }
     }
 }

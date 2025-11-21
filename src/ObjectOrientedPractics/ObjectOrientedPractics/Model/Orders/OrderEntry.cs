@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Абстракция для представления данных внутри DataGridView
@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Экземпляр заказа
         /// </summary>
-        private Model.Order _order;
+        private Orders.Order _order;
         /// <summary>
         /// Экземпляр пользователя
         /// </summary>
@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Экземпляр заказа
         /// </summary>
-        public Model.Order Order
+        public Orders.Order Order
         {
             get 
             { 
@@ -113,6 +113,22 @@ namespace ObjectOrientedPractics.Model
             get
             {
                 return _order.Status;
+            }
+        }
+
+        public double Total
+        {
+            get
+            {
+                return _order.Total;
+            }
+        }
+
+        public double Discount
+        {
+            get
+            {
+                return _order.DiscountAmount;
             }
         }
     }

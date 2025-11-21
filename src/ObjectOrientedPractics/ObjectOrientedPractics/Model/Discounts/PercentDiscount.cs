@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
     /// <summary>
     /// Представление процентной скмдки
@@ -51,10 +51,13 @@ namespace ObjectOrientedPractics.Model
 
             foreach (Item item in items)
             {
-                cost += item.Cost;
+                if (item.Category == Category)
+                {
+                    cost += item.Cost;
+                }
             }
 
-            return cost * (100 - _percent)/100;
+            return cost * (_percent*0.01);
         }
 
         /// <summary>
@@ -64,9 +67,9 @@ namespace ObjectOrientedPractics.Model
         /// <returns>Размер скидки</returns>
         public double Apply(List<Item> items)
         {
-            double dicsount = Calculate(items);
+            double discount = Calculate(items);
             Update(items);
-            return dicsount;
+            return discount;
         }
 
         /// <summary>
@@ -79,10 +82,18 @@ namespace ObjectOrientedPractics.Model
 
             foreach (Item item in items)
             {
-                cost += item.Cost;
+                if (item.Category == Category)
+                {
+                    cost += item.Cost;
+                }
             }
 
             if (_percent < 10 && _percent + (int)cost / 1000 <= 10) _percent += (int)cost / 1000;
+        }
+
+        public PercentDiscount(Enumerators.Category category)
+        {
+            Category = category;
         }
     }
 }
