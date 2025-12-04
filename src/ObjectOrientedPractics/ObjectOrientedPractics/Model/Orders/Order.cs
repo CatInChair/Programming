@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Представление заказа
     /// </summary>
     public class Order
     {
-        /// <summary>
-        /// Идентификатор объекта
-        /// </summary>
         private protected int _id;
         private protected DateTime _creatingDate;
         private protected Model.Address _address;
@@ -39,6 +36,22 @@ namespace ObjectOrientedPractics.Model
             get
             {
                 return _cart.Amount;
+            }
+        }
+
+        /// <summary>
+        /// Размер примененной скидки
+        /// </summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Итоговая стоимость
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 
@@ -95,13 +108,14 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="address">Адрес доставки</param>
         /// <param name="cart">Корзина товаров</param>
-        public Order(Model.Address address, Model.Cart cart) 
+        public Order(Model.Address address, Model.Cart cart, double discount) 
         {
             _id = Services.IdGenerator.getNextId();
             _creatingDate = DateTime.Now;
             _address = address;
             _cart = cart;
             _status = Model.Enumerators.OrderStatus.New;
+            DiscountAmount = discount;
         }
     }
 }

@@ -20,16 +20,16 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Список записей о заказах
         /// </summary>
-        private BindingList<Model.OrderEntry> _orders = new BindingList<Model.OrderEntry>();
+        private BindingList<Model.Orders.OrderEntry> _orders = new BindingList<Model.Orders.OrderEntry>();
 
         /// <summary>
         /// Абстракция текущего выбранного заказа
         /// </summary>
-        private Model.OrderEntry _order
+        private Model.Orders.OrderEntry _order
         {
             get
             {
-                return _orders.Where((Model.OrderEntry en) => en.Id.ToString() == OrdersDataGridView.CurrentRow.Cells["IdColumn"].Value.ToString()).First();
+                return _orders.Where((Model.Orders.OrderEntry en) => en.Id.ToString() == OrdersDataGridView.CurrentRow.Cells["IdColumn"].Value.ToString()).First();
             }
         }
 
@@ -50,9 +50,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
             foreach (Model.Customer customer in Customers)
             {
-                foreach (Model.Order order in customer.Orders)
+                foreach (Model.Orders.Order order in customer.Orders)
                 {
-                    Model.OrderEntry entry = new Model.OrderEntry();
+                    Model.Orders.OrderEntry entry = new Model.Orders.OrderEntry();
                     entry.Customer = customer;
                     entry.Order = order;
 
@@ -67,6 +67,8 @@ namespace ObjectOrientedPractics.View.Tabs
             SelectedOrderCreatedAtTtextBox.Text = "";
             SelectedOrderStatusComboBox.SelectedIndex = -1;
             SelectedOrderAmountInfoLabel.Text = "0";
+            TotalLabel.Text = "";
+            DiscountLabel.Text = "";
             SelectedOrderItemsListView.Items.Clear();
             SelectedOrderPriorityPanel.Visible = false;
         }
@@ -75,22 +77,24 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Обновляет данные в правом окне
         /// </summary>
         /// <param name="entry">Источник данных</param>
-        public void UpdateOrder(Model.OrderEntry entry)
+        public void UpdateOrder(Model.Orders.OrderEntry entry)
         {
             addressControl.Address = entry.Order.Address;
             SelectedOrderIdTextBox.Text = entry.Id.ToString();
             SelectedOrderCreatedAtTtextBox.Text = entry.CreatingDate.ToString();
             SelectedOrderStatusComboBox.SelectedIndex = (int)entry.Status;
             SelectedOrderAmountInfoLabel.Text = entry.Amount.ToString() + "$";
+            TotalLabel.Text = entry.Total.ToString() + "$";
+            DiscountLabel.Text = entry.Discount.ToString() + "$";
             SelectedOrderItemsListView.Items.Clear();
             foreach (Model.Item item in entry.Order.Cart.Items)
             {
                 SelectedOrderItemsListView.Items.Add(item.ToString());
             }
-            if (entry.Order is Model.PriorityOrder)
+            if (entry.Order is Model.Orders.PriorityOrder)
             {
                 SelectedOrderPriorityPanel.Visible = true;
-                SelectedOrderDeliveryTimeComboBox.SelectedIndex = ((Model.PriorityOrder)entry.Order).DeliveryTime;
+                SelectedOrderDeliveryTimeComboBox.SelectedIndex = ((Model.Orders.PriorityOrder)entry.Order).DeliveryTime;
             }
             else
             {
@@ -117,11 +121,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void SelectedOrderDeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SelectedOrderDeliveryTimeComboBox.SelectedIndex == ((Model.PriorityOrder)_order.Order).DeliveryTime || SelectedOrderDeliveryTimeComboBox.SelectedIndex == -1) return;
+            if (SelectedOrderDeliveryTimeComboBox.SelectedIndex == ((Model.Orders.PriorityOrder)_order.Order).DeliveryTime || SelectedOrderDeliveryTimeComboBox.SelectedIndex == -1) return;
 
-            ((Model.PriorityOrder)_order.Order).DeliveryTime = SelectedOrderDeliveryTimeComboBox.SelectedIndex;
+            ((Model.Orders.PriorityOrder)_order.Order).DeliveryTime = SelectedOrderDeliveryTimeComboBox.SelectedIndex;
         }
         #endregion
-
     }
 }
