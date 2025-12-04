@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Представление корзины товаров
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         private List<Model.Item> _items = new List<Model.Item>();
 
@@ -42,16 +42,24 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public Cart Clone()
+        /// <inheritdoc/>
+        public object Clone()
         {
             return new Cart(this);
         }
 
+        /// <summary>
+        /// Конструктор на основе экземпляра класса
+        /// </summary>
+        /// <param name="cart">Корзина товаров</param>
         public Cart(Cart cart)
         {
             _items = cart.Items.ToList();
         }
 
+        /// <summary>
+        /// Инициализатор пустого объекта
+        /// </summary>
         public Cart()
         {
 

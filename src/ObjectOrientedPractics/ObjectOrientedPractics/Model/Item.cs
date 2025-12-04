@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Представление товара
     /// </summary>
-    public class Item
+    public class Item : ICloneable
     {
         private readonly int _id;
 
@@ -91,6 +91,32 @@ namespace ObjectOrientedPractics.Model
         public override string ToString()
         {
             return $"{this.Name} - {this.Cost}$";
+        }
+
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object other)
+        {
+            if (other is null) return false;
+
+            if (!(other is Item)) return false;
+
+            return ((Item)other).Id == this.Id;
+        }
+
+        /// <inheritdoc/>
+        int CompareTo(Item other)
+        {
+            if (other == null) return 1;
+            
+            if (other.Cost == Cost) return 0;
+
+            return Cost > other.Cost ? 1 : -1;
         }
 
         /// <summary>

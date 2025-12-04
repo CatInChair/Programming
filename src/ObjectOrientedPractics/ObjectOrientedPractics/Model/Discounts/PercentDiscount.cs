@@ -91,6 +91,16 @@ namespace ObjectOrientedPractics.Model.Discounts
             if (_percent < 10 && _percent + (int)cost / 1000 <= 10) _percent += (int)cost / 1000;
         }
 
+        /// <inheritdoc/>
+        int CompareTo(PercentDiscount other)
+        {
+            if (other == null) return 1;
+
+            if (other.Percent == Percent) return 0;
+
+            return Percent > other.Percent ? 1 : 0;
+        }
+
         public PercentDiscount(Enumerators.Category category)
         {
             Category = category;

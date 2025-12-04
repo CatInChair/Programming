@@ -103,6 +103,17 @@ namespace ObjectOrientedPractics.Model.Orders
             }
         }
 
+
+        /// <inheritdoc/>
+        public override bool Equals(object other)
+        {
+            if (other is null) return false;
+
+            if (!(other is Order)) return false;
+
+            return ((Order)other).Id == Id;
+        }
+
         /// <summary>
         /// Коструктор заказа
         /// </summary>

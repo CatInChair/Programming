@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Представление адреса посетителя
     /// </summary>
-    public class Address
+    public class Address : ICloneable
     {
         private int _index;
         private string _country;
@@ -117,12 +117,31 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Строковое представление объекта
+        /// </summary>
         public string FullAddress 
         {
             get
             {
                 return this.Index + ": " + this.Country + ", " + this.City + ", " + this.Street + ", " + this.Building + " " + this.Apartment;
             }
+        }
+
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartment);
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object other)
+        {
+            if (other is null) return false;
+
+            if (!(other is Address)) return false;
+
+            return ((Address)other).FullAddress == this.FullAddress;
         }
 
         /// <summary>

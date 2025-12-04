@@ -84,5 +84,15 @@ namespace ObjectOrientedPractics.Model.Discounts
 
             _points += (int)Math.Floor(cost * 0.1);
         }
+
+        /// <inheritdoc/>
+        int CompareTo(PointsDiscount other)
+        {
+            if (other == null) return 1;
+
+            if (other.Points == Points) return 0;
+
+            return Points > other.Points ? 1 : 0;
+        }
     }
 }
