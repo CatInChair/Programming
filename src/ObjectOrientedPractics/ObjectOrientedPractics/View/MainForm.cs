@@ -25,6 +25,7 @@ namespace ObjectOrientedPractics
             InitializeListeners();
 
             LinkStore();
+            itemsTabs1.ItemOrderByComboBox.SelectedIndex = 0;
             _store.Customers.Add(new Model.Customer("Kale", new Model.Address(111111, "asd", "asd", "asd", "asd", "asd")));
             ReloadTabs();
         }

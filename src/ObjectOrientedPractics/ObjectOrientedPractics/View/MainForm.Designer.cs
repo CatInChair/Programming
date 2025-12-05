@@ -105,7 +105,6 @@ namespace ObjectOrientedPractics
             // itemsTabs1
             // 
             this.itemsTabs1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemsTabs1.Items = null;
             this.itemsTabs1.Location = new System.Drawing.Point(3, 3);
             this.itemsTabs1.Name = "itemsTabs1";
             this.itemsTabs1.Size = new System.Drawing.Size(970, 593);

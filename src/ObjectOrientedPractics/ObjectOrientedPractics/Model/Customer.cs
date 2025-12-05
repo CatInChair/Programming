@@ -23,7 +23,10 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public int Id
         {
-            get;
+            get
+            {
+                return _id;
+            }
         }
 
         /// <summary>

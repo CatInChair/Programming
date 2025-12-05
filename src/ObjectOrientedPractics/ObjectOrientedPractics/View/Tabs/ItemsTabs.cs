@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,14 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTabs : UserControl
     {
+        
+        private Services.DataTools.SortFunction _sortFunction;
+
         /// <summary>
         /// Список обрабатываемых товаров
         /// </summary>
         private List<Model.Item> _items;
+        private List<Model.Item> _displayedItems;
 
         /// <summary>
         /// Абстракция индекса выбранного товара
@@ -40,6 +45,7 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _items = value;
+                _displayedItems = Services.DataTools.Sort(value, SortByName);
             }
         }
 
@@ -69,8 +75,41 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items.Add(item);
             }
 
+            Filter(_items);
+            Resort(_displayedItems);
             ReloadItemsListBox();
-            ItemsListBox.SelectedIndex = _items.Count - 1;
+        }
+
+        public void ItemFindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Filter(_items);
+            Resort(_displayedItems);
+            ReloadItemsListBox();
+        }
+
+        public void ItemOrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ItemOrderByComboBox.SelectedIndex)
+            {
+                case 0:
+                {
+                    _sortFunction = SortByName;
+                    break;
+                }
+                case 1:
+                {
+                    _sortFunction = SortByCostAsc;
+                    break;
+                }
+                case 2:
+                {
+                    _sortFunction = SortByCostDes;
+                    break;
+                }
+            }
+
+            Resort(_displayedItems);
+            ReloadItemsListBox();
         }
         #endregion
 
@@ -82,12 +121,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             ItemsListBox.Items.Clear();
 
-            foreach (Model.Item item in _items)
+            foreach (Model.Item item in _displayedItems)
             {
                 ItemsListBox.Items.Add(item.ToString());
             }
-
-            ItemsListBox.SelectedIndex = ItemsListBox.Items.Count - 1;
         }
 
         /// <summary>
@@ -97,13 +134,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             int index = _selectedIndex;
 
-            if (index == -1 || index >= _items.Count) 
+            if (index == -1 || index >= _displayedItems.Count) 
             {
                 MessageBox.Show("Please, choose element from ListBox before.");
                 return;
             }
 
-            _items.RemoveAt(index);
+            _items.Remove(_displayedItems[index]);
+            _displayedItems.RemoveAt(index);
+
+            ItemsListBox.SelectedIndex = index - 1;
 
             if (_items.Count == 0)
             {
@@ -117,7 +157,45 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddNewItem()
         {
             _items.Add(new Model.Item("Name", "Information", 0, Model.Enumerators.Category.Custom));
+            Filter(_items);
+            Resort(_displayedItems);
             ReloadItemsListBox();
+        }
+
+        private bool SortByName(Model.Item now, Model.Item next)
+        {
+            if (now.Name.CompareTo(next.Name) > 0) return true;
+            return false;
+        }
+
+        private bool SortByCostAsc(Model.Item now, Model.Item next)
+        {
+            if (now.Cost > next.Cost) return true;
+
+            return false;
+        }
+
+        private bool SortByCostDes(Model.Item now, Model.Item next)
+        {
+            if (now.Cost < next.Cost) return true;
+
+            return false;
+        }
+
+        private bool FilterByName(Model.Item item)
+        {
+            if (ItemFindTextBox.Text.Length > 0) return item.Name.Contains(ItemFindTextBox.Text);
+            else return true;
+        }
+
+        private void Resort(List<Model.Item> items)
+        {
+            _displayedItems = Services.DataTools.Sort(items, _sortFunction);
+        }
+
+        private void Filter(List<Model.Item> items)
+        {
+            _displayedItems = Services.DataTools.Filter(items, FilterByName);
         }
         #endregion
 
@@ -129,7 +207,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void SelectedItemNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_items.Count == 0)
+            if (_displayedItems.Count == 0 || _selectedIndex == -1)
             {
                 return;
             }
@@ -137,14 +215,14 @@ namespace ObjectOrientedPractics.View.Tabs
             string content = SelectedItemNameTextBox.Text;
             SelectedItemNameTextBox.BackColor = SystemColors.Window;
 
-            if (content == _items[_selectedIndex].Name)
+            if (content == _displayedItems[_selectedIndex].Name)
             {
                 return;
             }
 
             try
             {
-                _items[_selectedIndex].Name = content;
+                _displayedItems[_selectedIndex].Name = content;
             }
             catch
             {
@@ -158,7 +236,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void SelectedItemCostTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_items.Count == 0)
+            if (_displayedItems.Count == 0 || _selectedIndex == -1)
             {
                 return;
             }
@@ -174,14 +252,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
             SelectedItemCostTextBox.BackColor = SystemColors.Window;
 
-            if (content == _items[_selectedIndex].Cost)
+            if (content == _displayedItems[_selectedIndex].Cost)
             {
                 return;
             }
 
             try
             {
-                _items[_selectedIndex].Cost = content;
+                _displayedItems[_selectedIndex].Cost = content;
             }
             catch
             {
@@ -195,7 +273,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void SelectedItemDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_items.Count == 0)
+            if (_displayedItems.Count == 0 || _selectedIndex == -1)
             {
                 return;
             }
@@ -203,14 +281,14 @@ namespace ObjectOrientedPractics.View.Tabs
             string content = SelectedItemDescriptionTextBox.Text;
             SelectedItemDescriptionTextBox.BackColor = SystemColors.Window;
 
-            if (content == _items[_selectedIndex].Info)
+            if (content == _displayedItems[_selectedIndex].Info)
             {
                 return;
             }
 
             try
             {
-                _items[_selectedIndex].Info = content;
+                _displayedItems[_selectedIndex].Info = content;
             }
             catch
             {
@@ -221,19 +299,19 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_items.Count == 0)
+            if (_displayedItems.Count == 0 || _selectedIndex == -1)
             {
                 return;
             }
 
             Model.Enumerators.Category content = (Model.Enumerators.Category)SelectedItemCategoryComboBox.SelectedItem;
 
-            if (content == _items[_selectedIndex].Category)
+            if (content == _displayedItems[_selectedIndex].Category)
             {
                 return;
             }
 
-            _items[_selectedIndex].Category = content;
+            _displayedItems[_selectedIndex].Category = content;
         }
         #endregion
 
@@ -243,12 +321,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void _ReloadSelectedItemTextBoxes()
         {
-            if (_selectedIndex != -1 && _items.Count > 0)
+            if (_selectedIndex != -1 && _displayedItems.Count > 0)
             {
-                SelectedItemNameTextBox.Text = _items[_selectedIndex].Name;
-                SelectedItemDescriptionTextBox.Text = _items[_selectedIndex].Info;
-                SelectedItemCostTextBox.Text = _items[_selectedIndex].Cost.ToString();
-                SelectedItemIdTextBox.Text = _items[_selectedIndex].Id.ToString();
+                SelectedItemNameTextBox.Text = _displayedItems[_selectedIndex].Name;
+                SelectedItemDescriptionTextBox.Text = _displayedItems[_selectedIndex].Info;
+                SelectedItemCostTextBox.Text = _displayedItems[_selectedIndex].Cost.ToString();
+                SelectedItemIdTextBox.Text = _displayedItems[_selectedIndex].Id.ToString();
 
                 if (SelectedItemCategoryComboBox.Items.Count == 0) 
                 {
@@ -258,7 +336,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     }
                 }
 
-                SelectedItemCategoryComboBox.SelectedItem = _items[_selectedIndex].Category;
+                SelectedItemCategoryComboBox.SelectedItem = _displayedItems[_selectedIndex].Category;
             }
             else
             {
