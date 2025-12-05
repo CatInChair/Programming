@@ -7,11 +7,42 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    public class NameEventArgs : EventArgs
+    {
+        public string OldName { get; set; }
+        public string NewName { get; set; }
+    }
+
+    public class CostEventArgs : EventArgs
+    {
+        public double OldCost { get; set; }
+        public double NewCost { get; set; }
+    }
+
+    public class InfoEventArgs : EventArgs
+    {
+        public string OldInfo { get; set; }
+        public string NewInfo { get; set; }
+    }
+
     /// <summary>
     /// Представление товара
     /// </summary>
     public class Item : ICloneable
     {
+        /// <summary>
+        /// Событие изменения названия товара
+        /// </summary>
+        public event EventHandler<NameEventArgs> NameChanged;
+        /// <summary>
+        /// Событие изменения стоимости товара
+        /// </summary>
+        public event EventHandler<CostEventArgs> CostChanged;
+        /// <summary>
+        /// Событие изменения информации о товаре
+        /// </summary>
+        public event EventHandler<InfoEventArgs> InfoChanged;
+
         private readonly int _id;
 
         private string _name;
@@ -42,6 +73,10 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 Validator.AssertStringOnLength(value, 200, "Item.Name");
+                NameEventArgs e = new NameEventArgs();
+                e.OldName = _name;
+                e.NewName = value;
+                NameChanged?.Invoke(this, e);
                 _name = value;
             }
         }
@@ -58,6 +93,10 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 Validator.AssertStringOnLength(value, 1000, "Item.Info");
+                InfoEventArgs e = new InfoEventArgs();
+                e.OldInfo = _info;
+                e.NewInfo = value;
+                InfoChanged?.Invoke(this, e);
                 _info = value;
             }
         }
@@ -74,7 +113,10 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 Validator.AssertValueOnRange(value, 100000.0, 0.0, "Item.Cost");
-
+                CostEventArgs e = new CostEventArgs();
+                e.OldCost = _cost;
+                e.NewCost = value;
+                CostChanged?.Invoke(this, e);
                 _cost = value;
             }
         }

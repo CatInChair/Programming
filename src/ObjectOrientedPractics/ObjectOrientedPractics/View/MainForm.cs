@@ -27,7 +27,7 @@ namespace ObjectOrientedPractics
             LinkStore();
             itemsTabs1.ItemOrderByComboBox.SelectedIndex = 0;
             _store.Customers.Add(new Model.Customer("Kale", new Model.Address(111111, "asd", "asd", "asd", "asd", "asd")));
-            ReloadTabs();
+            itemsTabs1.ItemsChanged += (object sender, ItemsTabs.ItemsTabsEventArgs args) => { ReloadTabs(); };
         }
 
         public void MainFormTabControl_SelectedIndexChanged(object args, EventArgs e)

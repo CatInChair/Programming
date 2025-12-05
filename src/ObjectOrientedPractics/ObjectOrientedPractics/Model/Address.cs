@@ -9,10 +9,24 @@ using System.Windows.Forms;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
+    /// Аргументы события изменения объекта адреса
+    /// </summary>
+    public class AddressEventArgs : EventArgs
+    {
+        public Address OldState { get; set; }
+        public Address NewState { get; set; }
+    }
+
+    /// <summary>
     /// Представление адреса посетителя
     /// </summary>
     public class Address : ICloneable
     {
+        /// <summary>
+        /// Событие изменения состояния адреса
+        /// </summary>
+        public event EventHandler<AddressEventArgs> AddressChanged;
+
         private int _index;
         private string _country;
         private string _city;
@@ -32,8 +46,11 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 Validator.AssertValueOnRange(value, 999999, 100000, "Address.Index");
-
+                AddressEventArgs e = new AddressEventArgs();
+                e.OldState = (Address)this.Clone();
                 _index = value;
+                e.NewState = this;
+                AddressChanged?.Invoke(this, e);
             }
         }
         /// <summary>
