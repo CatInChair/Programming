@@ -29,11 +29,17 @@
         private void InitializeComponent()
         {
             this.itemsGroupBox = new System.Windows.Forms.GroupBox();
+            this.ItemOrderByComboBox = new System.Windows.Forms.ComboBox();
+            this.ItemOrderByLabel = new System.Windows.Forms.Label();
+            this.ItemFindTextBox = new System.Windows.Forms.TextBox();
+            this.ItemFindLabel = new System.Windows.Forms.Label();
             this.ItemsGenerateButton = new System.Windows.Forms.Button();
             this.ItemsRemoveButton = new System.Windows.Forms.Button();
             this.ItemsAddButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.selectedItemGroupBox = new System.Windows.Forms.GroupBox();
+            this.SelectedItemCategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.SelectedItemCategoryLabel = new System.Windows.Forms.Label();
             this.SelectedItemNameLabel = new System.Windows.Forms.Label();
             this.SelectedItemDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.SelectedItemDescriptionLabel = new System.Windows.Forms.Label();
@@ -42,8 +48,6 @@
             this.SelectedItemCostLabel = new System.Windows.Forms.Label();
             this.SelectedItemIdTextBox = new System.Windows.Forms.TextBox();
             this.SelectedItemIdLabel = new System.Windows.Forms.Label();
-            this.SelectedItemCategoryLabel = new System.Windows.Forms.Label();
-            this.SelectedItemCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.itemsGroupBox.SuspendLayout();
             this.selectedItemGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +56,10 @@
             // 
             this.itemsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.itemsGroupBox.Controls.Add(this.ItemOrderByComboBox);
+            this.itemsGroupBox.Controls.Add(this.ItemOrderByLabel);
+            this.itemsGroupBox.Controls.Add(this.ItemFindTextBox);
+            this.itemsGroupBox.Controls.Add(this.ItemFindLabel);
             this.itemsGroupBox.Controls.Add(this.ItemsGenerateButton);
             this.itemsGroupBox.Controls.Add(this.ItemsRemoveButton);
             this.itemsGroupBox.Controls.Add(this.ItemsAddButton);
@@ -62,6 +70,49 @@
             this.itemsGroupBox.TabIndex = 14;
             this.itemsGroupBox.TabStop = false;
             this.itemsGroupBox.Text = "Items";
+            // 
+            // ItemOrderByComboBox
+            // 
+            this.ItemOrderByComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ItemOrderByComboBox.FormattingEnabled = true;
+            this.ItemOrderByComboBox.Items.AddRange(new object[] {
+            "Name (Alphabet)",
+            "Cost (Ascending)",
+            "Cost (Descending)"});
+            this.ItemOrderByComboBox.Location = new System.Drawing.Point(62, 449);
+            this.ItemOrderByComboBox.Name = "ItemOrderByComboBox";
+            this.ItemOrderByComboBox.Size = new System.Drawing.Size(312, 21);
+            this.ItemOrderByComboBox.TabIndex = 25;
+            // 
+            // ItemOrderByLabel
+            // 
+            this.ItemOrderByLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ItemOrderByLabel.AutoSize = true;
+            this.ItemOrderByLabel.Location = new System.Drawing.Point(6, 452);
+            this.ItemOrderByLabel.Name = "ItemOrderByLabel";
+            this.ItemOrderByLabel.Size = new System.Drawing.Size(50, 13);
+            this.ItemOrderByLabel.TabIndex = 19;
+            this.ItemOrderByLabel.Text = "Order by:";
+            // 
+            // ItemFindTextBox
+            // 
+            this.ItemFindTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ItemFindTextBox.Location = new System.Drawing.Point(42, 31);
+            this.ItemFindTextBox.Name = "ItemFindTextBox";
+            this.ItemFindTextBox.Size = new System.Drawing.Size(332, 20);
+            this.ItemFindTextBox.TabIndex = 18;
+            // 
+            // ItemFindLabel
+            // 
+            this.ItemFindLabel.AutoSize = true;
+            this.ItemFindLabel.Location = new System.Drawing.Point(6, 34);
+            this.ItemFindLabel.Name = "ItemFindLabel";
+            this.ItemFindLabel.Size = new System.Drawing.Size(30, 13);
+            this.ItemFindLabel.TabIndex = 17;
+            this.ItemFindLabel.Text = "Find:";
             // 
             // ItemsGenerateButton
             // 
@@ -98,9 +149,9 @@
             this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 19);
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 58);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(371, 459);
+            this.ItemsListBox.Size = new System.Drawing.Size(371, 381);
             this.ItemsListBox.TabIndex = 5;
             // 
             // selectedItemGroupBox
@@ -124,6 +175,27 @@
             this.selectedItemGroupBox.TabIndex = 15;
             this.selectedItemGroupBox.TabStop = false;
             this.selectedItemGroupBox.Text = "Selected Item";
+            // 
+            // SelectedItemCategoryComboBox
+            // 
+            this.SelectedItemCategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemCategoryComboBox.FormattingEnabled = true;
+            this.SelectedItemCategoryComboBox.Location = new System.Drawing.Point(64, 101);
+            this.SelectedItemCategoryComboBox.Name = "SelectedItemCategoryComboBox";
+            this.SelectedItemCategoryComboBox.Size = new System.Drawing.Size(119, 21);
+            this.SelectedItemCategoryComboBox.TabIndex = 24;
+            // 
+            // SelectedItemCategoryLabel
+            // 
+            this.SelectedItemCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemCategoryLabel.AutoSize = true;
+            this.SelectedItemCategoryLabel.Location = new System.Drawing.Point(6, 104);
+            this.SelectedItemCategoryLabel.Name = "SelectedItemCategoryLabel";
+            this.SelectedItemCategoryLabel.Size = new System.Drawing.Size(52, 13);
+            this.SelectedItemCategoryLabel.TabIndex = 23;
+            this.SelectedItemCategoryLabel.Text = "Category:";
             // 
             // SelectedItemNameLabel
             // 
@@ -210,27 +282,6 @@
             this.SelectedItemIdLabel.TabIndex = 14;
             this.SelectedItemIdLabel.Text = "ID:";
             // 
-            // SelectedItemCategoryLabel
-            // 
-            this.SelectedItemCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedItemCategoryLabel.AutoSize = true;
-            this.SelectedItemCategoryLabel.Location = new System.Drawing.Point(6, 104);
-            this.SelectedItemCategoryLabel.Name = "SelectedItemCategoryLabel";
-            this.SelectedItemCategoryLabel.Size = new System.Drawing.Size(52, 13);
-            this.SelectedItemCategoryLabel.TabIndex = 23;
-            this.SelectedItemCategoryLabel.Text = "Category:";
-            // 
-            // SelectedItemCategoryComboBox
-            // 
-            this.SelectedItemCategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedItemCategoryComboBox.FormattingEnabled = true;
-            this.SelectedItemCategoryComboBox.Location = new System.Drawing.Point(64, 101);
-            this.SelectedItemCategoryComboBox.Name = "SelectedItemCategoryComboBox";
-            this.SelectedItemCategoryComboBox.Size = new System.Drawing.Size(119, 21);
-            this.SelectedItemCategoryComboBox.TabIndex = 24;
-            // 
             // ItemsTabs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,6 +291,7 @@
             this.Name = "ItemsTabs";
             this.Size = new System.Drawing.Size(862, 556);
             this.itemsGroupBox.ResumeLayout(false);
+            this.itemsGroupBox.PerformLayout();
             this.selectedItemGroupBox.ResumeLayout(false);
             this.selectedItemGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -253,6 +305,9 @@
             this.ItemsAddButton.Click += ItemsAddButton_Click;
             this.ItemsRemoveButton.Click += ItemsRemoveButton_Click;
             this.ItemsGenerateButton.Click += ItemsGenerateButton_Click;
+
+            this.ItemFindTextBox.TextChanged += ItemFindTextBox_TextChanged;
+            this.ItemOrderByComboBox.SelectedIndexChanged += ItemOrderByComboBox_SelectedIndexChanged;
 
             this.SelectedItemCostTextBox.TextChanged += SelectedItemCostTextBox_TextChanged;
             this.SelectedItemDescriptionTextBox.TextChanged += SelectedItemDescriptionTextBox_TextChanged;
@@ -277,5 +332,9 @@
         private System.Windows.Forms.Label SelectedItemNameLabel;
         private System.Windows.Forms.ComboBox SelectedItemCategoryComboBox;
         private System.Windows.Forms.Label SelectedItemCategoryLabel;
+        private System.Windows.Forms.Label ItemFindLabel;
+        private System.Windows.Forms.TextBox ItemFindTextBox;
+        private System.Windows.Forms.Label ItemOrderByLabel;
+        public System.Windows.Forms.ComboBox ItemOrderByComboBox;
     }
 }

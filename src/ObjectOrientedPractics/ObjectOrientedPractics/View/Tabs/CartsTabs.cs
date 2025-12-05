@@ -244,11 +244,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (_currentCustomer.IsPriority)
             {
-                _currentCustomer.Orders.Add(new Model.Orders.PriorityOrder(_currentCustomer.Address, _currentCustomer.Cart.Clone(), discount));
+                _currentCustomer.Orders.Add(new Model.Orders.PriorityOrder(_currentCustomer.Address, (Cart)_currentCustomer.Cart.Clone(), discount));
             }
             else
             {
-                _currentCustomer.Orders.Add(new Model.Orders.Order(_currentCustomer.Address, _currentCustomer.Cart.Clone(), discount));
+                _currentCustomer.Orders.Add(new Model.Orders.Order(_currentCustomer.Address, (Cart)_currentCustomer.Cart.Clone(), discount));
             }
             _currentCustomer.Cart.Items.Clear();
             _LoadCartItems();

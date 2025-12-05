@@ -90,7 +90,7 @@ namespace ObjectOrientedPractics.Model
         /// <returns>Строковое представление объекта</returns>
         public override string ToString()
         {
-            return $"{this.Name} - {this.Cost}$";
+            return $"{Id}: {this.Name} - {this.Cost}$";
         }
 
         /// <inheritdoc/>

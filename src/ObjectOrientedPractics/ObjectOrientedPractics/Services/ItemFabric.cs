@@ -11,12 +11,13 @@ namespace ObjectOrientedPractics.Services
     /// </summary>
     public static class ItemFabric
     {
-        static private List<Model.Item> _pregen = new List<Model.Item> 
+        static private List<Model.Item> _pregen 
         { 
-            new Model.Item("Pen", "This is very good pen", 1.498, Model.Enumerators.Category.Electronic),
-            new Model.Item("Apple", "Ohh, fruits!", 99.4, Model.Enumerators.Category.GardenEquipment),
-            new Model.Item("Shirt", "Light-weight cloth", 1234, Model.Enumerators.Category.Food)
-        };
+            get
+            {
+                return new List<Model.Item> { new Model.Item("Pen", "This is very good pen", 1.498, Model.Enumerators.Category.Electronic), new Model.Item("Apple", "Ohh, fruits!", 99.4, Model.Enumerators.Category.GardenEquipment), new Model.Item("Shirt", "Light-weight cloth", 1234, Model.Enumerators.Category.Food) };
+            }
+        }
 
         /// <summary>
         /// Возвращает набор новых объектов

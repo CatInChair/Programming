@@ -66,7 +66,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void CustomersGenerateButton_Click(object sender, EventArgs e)
         {
-            foreach (Model.Customer item in Services.CustomerFabric.Generate())
+            List<Model.Customer> customers = Services.CustomerFabric.Generate();
+
+            foreach (Model.Customer item in customers)
             {
                 _customers.Add(item);
             }

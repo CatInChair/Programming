@@ -11,12 +11,13 @@ namespace ObjectOrientedPractics.Services
     /// </summary>
     public static class CustomerFabric
     {
-        static private List<Model.Customer> _pregen = new List<Model.Customer>
-        {
-            new Model.Customer("Kale", new Model.Address(111111, "asd", "asd", "asd", "asd", "asd")),
-            new Model.Customer("Jane", new Model.Address()),
-            new Model.Customer("Jacob", new Model.Address())
-        };
+        static private List<Model.Customer> _pregen 
+        { 
+            get
+            {
+                return new List<Model.Customer> { new Model.Customer("Kale", new Model.Address(111111, "asd", "asd", "asd", "asd", "asd")), new Model.Customer("Jane", new Model.Address()), new Model.Customer("Jacob", new Model.Address()) };
+            }
+        }
 
         /// <summary>
         /// Возвращает набор новых объектов
