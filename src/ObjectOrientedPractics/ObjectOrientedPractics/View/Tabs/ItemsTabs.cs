@@ -64,7 +64,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void ItemsRemoveButton_Click(object sender, EventArgs e)
         {
-            _RemoveSelectedItem();
+            RemoveSelectedItem();
             ReloadItemsListBox();
         }
 
@@ -130,7 +130,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Удаляет товар по выбранному индексу
         /// </summary>
-        private void _RemoveSelectedItem()
+        private void RemoveSelectedItem()
         {
             int index = _selectedIndex;
 
@@ -147,7 +147,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (_items.Count == 0)
             {
-                _ReloadSelectedItemTextBoxes();
+                ReloadSelectedItemTextBoxes();
             }
         }
 
@@ -202,7 +202,7 @@ namespace ObjectOrientedPractics.View.Tabs
         #region SelectedItem Values Listeners
         public void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _ReloadSelectedItemTextBoxes();
+            ReloadSelectedItemTextBoxes();
         }
 
         public void SelectedItemNameTextBox_TextChanged(object sender, EventArgs e)
@@ -231,7 +231,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            _UpdateListBoxItem();
+            UpdateListBoxItem();
         }
 
         public void SelectedItemCostTextBox_TextChanged(object sender, EventArgs e)
@@ -268,7 +268,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            _UpdateListBoxItem();
+            UpdateListBoxItem();
         }
 
         public void SelectedItemDescriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -319,7 +319,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обновляет поля с данными о выбранном товаре
         /// </summary>
-        public void _ReloadSelectedItemTextBoxes()
+        public void ReloadSelectedItemTextBoxes()
         {
             if (_selectedIndex != -1 && _displayedItems.Count > 0)
             {
@@ -352,7 +352,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обновляет запись о товаре в <see cref="ItemsListBox">ItemsListBox</see>
         /// </summary>
-        public void _UpdateListBoxItem()
+        public void UpdateListBoxItem()
         {
             ItemsListBox.Items[_selectedIndex] = _items[_selectedIndex].ToString();
         }
