@@ -13,6 +13,19 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTabs : UserControl
     {
+        /// <summary>
+        /// Аргументы события изменения списка товаров
+        /// </summary>
+        public class ItemsTabsEventArgs : EventArgs
+        {
+            public Model.Item ChangedItem;
+            public List<Model.Item> NewItems;
+        }
+
+        /// <summary>
+        /// Событие изменения состояний товаров
+        /// </summary>
+        public event EventHandler<ItemsTabsEventArgs> ItemsChanged;
         
         private Services.DataTools.SortFunction _sortFunction;
 
@@ -125,6 +138,8 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ItemsListBox.Items.Add(item.ToString());
             }
+
+            ItemsChanged?.Invoke(this, null);
         }
 
         /// <summary>
@@ -232,6 +247,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             UpdateListBoxItem();
+            ItemsChanged?.Invoke(this, null);
         }
 
         public void SelectedItemCostTextBox_TextChanged(object sender, EventArgs e)
@@ -269,6 +285,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             UpdateListBoxItem();
+            ItemsChanged?.Invoke(this, null);
         }
 
         public void SelectedItemDescriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -295,6 +312,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 SelectedItemDescriptionTextBox.BackColor = Color.Red;
                 MessageBox.Show("Item.Description length must be less than 1000.");
             }
+
+            ItemsChanged?.Invoke(this, null);
         }
 
         public void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -312,6 +331,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             _displayedItems[_selectedIndex].Category = content;
+            ItemsChanged?.Invoke(this, null);
         }
         #endregion
 
