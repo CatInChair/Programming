@@ -1,0 +1,47 @@
+﻿<Window x:Name="Contact" x:Class="View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="560" Icon="/1cf997740ded8d61a6d06ede42a92976.png">
+    <Grid Margin="15" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Edit contact" MinWidth="255" Grid.Column="0" Padding="3" HorizontalAlignment="Center" Margin="3">
+            <StackPanel Orientation="Vertical">
+                <Label>Name:</Label>
+                <TextBox x:Name="TextBoxName"></TextBox>
+
+                <Label>PhoneNumber:</Label>
+                <TextBox x:Name="TextBoxPhoneNumber"></TextBox>
+
+                <Label>Email:</Label>
+                <TextBox x:Name="TextBoxEmail"></TextBox>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="0" Header="Read Conact" MinWidth="255" Grid.Column="1" Padding="3" HorizontalAlignment="Center" Margin="3">
+            <StackPanel Orientation="Vertical">
+                <Label>Name:</Label>
+                <TextBlock x:Name="TextBlockName" FontWeight="Bold">Value</TextBlock>
+
+                <Label>PhoneNumber:</Label>
+                <TextBlock x:Name="TextBlockPhoneNumber" FontWeight="Bold">Value</TextBlock>
+
+                <Label>Email:</Label>
+                <TextBlock x:Name="TextBlockEmail" FontWeight="Bold">Value</TextBlock>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Content="Save" Margin="3" Width="75px" Height="25px" x:Name="ButtonSave"></Button>
+            <Button Content="Load" Margin="3" Width="75px" Height="25px" x:Name="ButtonLoad"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
