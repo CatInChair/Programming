@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using View.ViewModel;
 
 namespace View
 {
@@ -10,5 +11,4 @@ namespace View
     public partial class App : Application
     {
     }
-
 }

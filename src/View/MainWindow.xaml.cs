@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View.ViewModel;
 
 namespace View
 {
@@ -16,14 +17,17 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Экземпляр <see cref="MainVM"/>
+        /// </summary>
+        public MainVM VM;
+
         public MainWindow()
         {
+            VM = new MainVM();
+            DataContext = VM;
+
             InitializeComponent();
-        }
-
-        private void Load_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -9,15 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="1cf997740ded8d61a6d06ede42a92976.png" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="1cf997740ded8d61a6d06ede42a92976.png" />
+    <Resource Include="contact_96x96.png" />
   </ItemGroup>
 
 </Project>

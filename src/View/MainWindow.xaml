@@ -3,45 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
+        xmlns:local="clr-namespace:View" xmlns:viewmodel="clr-namespace:View.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="560" Icon="/1cf997740ded8d61a6d06ede42a92976.png">
+        Title="MainWindow" Height="400" Width="560" Icon="/contact_96x96.png">
     <Grid Margin="15" ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.15*"></RowDefinition>
         </Grid.RowDefinitions>
+        <!--Left GroupBox: Запись данных контакта-->
         <GroupBox Grid.Row="0" Header="Edit contact" MinWidth="255" Grid.Column="0" Padding="3" HorizontalAlignment="Center" Margin="3">
             <StackPanel Orientation="Vertical">
                 <Label>Name:</Label>
-                <TextBox x:Name="TextBoxName"></TextBox>
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
                 <Label>PhoneNumber:</Label>
-                <TextBox x:Name="TextBoxPhoneNumber"></TextBox>
+                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
                 <Label>Email:</Label>
-                <TextBox x:Name="TextBoxEmail"></TextBox>
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </StackPanel>
         </GroupBox>
+        <!--Right GroupBox: Чтение данных контакта-->
         <GroupBox Grid.Row="0" Header="Read Conact" MinWidth="255" Grid.Column="1" Padding="3" HorizontalAlignment="Center" Margin="3">
             <StackPanel Orientation="Vertical">
                 <Label>Name:</Label>
-                <TextBlock x:Name="TextBlockName" FontWeight="Bold">Value</TextBlock>
+                <TextBlock Text="{Binding Name}" FontWeight="Bold"></TextBlock>
 
                 <Label>PhoneNumber:</Label>
-                <TextBlock x:Name="TextBlockPhoneNumber" FontWeight="Bold">Value</TextBlock>
+                <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold"></TextBlock>
 
                 <Label>Email:</Label>
-                <TextBlock x:Name="TextBlockEmail" FontWeight="Bold">Value</TextBlock>
+                <TextBlock Text="{Binding Email}" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </GroupBox>
+        <!--Bottom StackPanel: Блок с кнопками-->
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="3" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button Content="Save" Margin="3" Width="75px" Height="25px" x:Name="ButtonSave"></Button>
-            <Button Content="Load" Margin="3" Width="75px" Height="25px" x:Name="ButtonLoad"></Button>
+            <Button Command="{Binding SaveCommand}" CommandParameter="{Binding Contact}" Content="Save" Margin="3" Width="75px" Height="25px"></Button>
+            <Button Command="{Binding LoadCommand}" Content="Load" Margin="3" Width="75px" Height="25px"></Button>
         </StackPanel>
     </Grid>
 </Window>
