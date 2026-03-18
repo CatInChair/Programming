@@ -14,6 +14,9 @@ namespace View.ViewModel
     /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Ссылка на экзмепляр <see cref="Contact"/>
+        /// </summary>
         private Contact _contact = new Contact();
 
         /// <summary>

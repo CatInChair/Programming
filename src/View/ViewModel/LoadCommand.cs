@@ -18,7 +18,7 @@ namespace View.ViewModel
         /// <summary>
         /// Ссылка на экземпляр <see cref="MainVM">
         /// </summary>
-        public MainVM VM;
+        private readonly MainVM _vm;
 
         event EventHandler? ICommand.CanExecuteChanged
         {

@@ -20,12 +20,12 @@ namespace View
         /// <summary>
         /// Экземпляр <see cref="MainVM"/>
         /// </summary>
-        public MainVM VM;
+        private readonly MainVM _vm;
 
         public MainWindow()
         {
-            VM = new MainVM();
-            DataContext = VM;
+            _vm = new MainVM();
+            DataContext = _vm;
 
             InitializeComponent();
         }
