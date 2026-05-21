@@ -1,13 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace View.Model.Services
 {
@@ -26,7 +19,7 @@ namespace View.Model.Services
         static private string _filename = "contacts.json";
 
         /// <summary>
-        /// Сохраняет данные контакта в файл в формате JSON
+        /// Сохраняет данные коллекции контактов в файл в формате JSON
         /// </summary>
         /// <param name="contact">Объект контакта</param>
         static public void SaveContacts(ObservableCollection<Contact> contacts)
@@ -41,9 +34,9 @@ namespace View.Model.Services
         }
 
         /// <summary>
-        /// Читает данные контакта из файла
+        /// Читает данные контактов из файла
         /// </summary>
-        /// <returns>Экземпляр <see cref="Contact"/>, хранящий данные о контакте</returns>
+        /// <returns>Экземпляр <see cref="ObservableCollection{Contact}"/>, хранящий данные о контактах</returns>
         static public ObservableCollection<Contact> ReadContacts() 
         {
             ObservableCollection<Contact> data;

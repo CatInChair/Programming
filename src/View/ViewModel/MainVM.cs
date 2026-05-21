@@ -1,12 +1,9 @@
-﻿
-using View.Model;
+﻿using View.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Windows;
 using View.Model.Services;
 using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace View.ViewModel
 {
