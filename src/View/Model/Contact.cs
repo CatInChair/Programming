@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,58 +11,25 @@ namespace View.Model
     /// <summary>
     /// Представление контакта
     /// </summary>
-    public class Contact
+    public partial class Contact : ObservableObject
     {
-        private string _name = "";
-
-        private string _phoneNumber = "";
-
-        private string _email = "";
-
         /// <summary>
         /// Имя контакта
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set 
-            { 
-                _name = value;
-            }
-        }
+        [ObservableProperty]
+        private string _name = "";
 
         /// <summary>
         /// Номер телефона контакта
         /// </summary>
-        public string PhoneNumber
-        {
-            get 
-            { 
-                return _phoneNumber;
-            }
-            set
-            {
-                _phoneNumber = value;
-            }
-        }
+        [ObservableProperty]
+        private string _phoneNumber = "";
 
         /// <summary>
         /// Адрес электронной почты контакта
         /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-            }
-        }
+        [ObservableProperty]
+        private string _email = "";
 
         /// <summary>
         /// Конструктор нового экземпляра <see cref="Contact"/>
