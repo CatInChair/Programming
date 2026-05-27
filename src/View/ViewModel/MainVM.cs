@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Controls;
 using View.Model;
 using View.Model.Services;
@@ -68,7 +69,7 @@ namespace View.ViewModel
         {
             get
             {
-                return (IsEditModeEnabled || IsAddModeEnabled) && CurrentContact?.Error == string.Empty;
+                return (IsEditModeEnabled || IsAddModeEnabled) && string.IsNullOrEmpty(CurrentContact.Error);
             }
         }
 
@@ -102,6 +103,7 @@ namespace View.ViewModel
         {
             Contact = new Contact();
             CurrentContact = new Contact();
+            CurrentContact.PropertyChanged += CurrentContact_PropertyChanged;
             IsAddModeEnabled = true;
             IsEditModeEnabled = false;
         }
@@ -133,6 +135,7 @@ namespace View.ViewModel
             Contacts.Remove(Contact);
             ClearBindedValues();
             Contact = null;
+            CurrentContact = null;
 
             ContactSerializer.SaveContacts(Contacts);
         }
@@ -173,9 +176,15 @@ namespace View.ViewModel
             {
                 Contact = Contacts[Contacts.IndexOf((Contact)args.AddedItems[0])];
                 CurrentContact = new Contact(Contact.Name, Contact.PhoneNumber, Contact.Email);
+                CurrentContact.PropertyChanged += CurrentContact_PropertyChanged;
                 IsAddModeEnabled = false;
                 IsEditModeEnabled = false;
             }
+        }
+
+        private void CurrentContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(IsApplyButtonEnabled));
         }
 
         /// <summary>
