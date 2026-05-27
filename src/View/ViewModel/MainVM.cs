@@ -1,9 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using View.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using View.Model;
+using CommunityToolkit.Mvvm.Input;
 using View.Model.Services;
+using System.Windows.Controls;
 
 namespace View.ViewModel
 {
@@ -12,8 +12,9 @@ namespace View.ViewModel
     /// </summary>
     public partial class MainVM : ObservableObject
     {
+
         /// <summary>
-        /// Ссылка на выбранный экзмепляр <see cref="Model.Contact"/>
+        /// Ссылка на выбранный экзмепляр <see cref="Contact"/>
         /// </summary>
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsRemoveButtonEnabled))]
@@ -21,10 +22,22 @@ namespace View.ViewModel
         private Contact? _contact = null;
 
         /// <summary>
-        /// Ссылка на привязанный к элементам управления экземпляр <see cref="Model.Contact"/>
+        /// Привязанная переменная имени контакта
         /// </summary>
         [ObservableProperty]
-        public Contact? _currentContact = null;
+        private string _bindedName;
+
+        /// <summary>
+        /// Привязанная переменная телефона контакта
+        /// </summary>
+        [ObservableProperty]
+        private string _bindedPhoneNumber;
+
+        /// <summary>
+        /// Привязанная переменная почты контакта
+        /// </summary>
+        [ObservableProperty]
+        private string _bindedEmail;
 
         /// <summary>
         /// Список ссылок на экземпляры существующих контактов
@@ -39,7 +52,7 @@ namespace View.ViewModel
         [NotifyPropertyChangedFor(nameof(IsRemoveButtonEnabled))]
         [NotifyPropertyChangedFor(nameof(IsEditButtonEnabled))]
         [NotifyPropertyChangedFor(nameof(IsApplyButtonEnabled))]
-        [NotifyPropertyChangedFor(nameof(IsContactControlEnabled))]
+        [NotifyPropertyChangedFor(nameof(TextBoxesReadOnlyState))]
         private Boolean _isAddModeEnabled = false;
 
         /// <summary>
@@ -47,17 +60,17 @@ namespace View.ViewModel
         /// </summary>
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsApplyButtonEnabled))]
-        [NotifyPropertyChangedFor(nameof(IsContactControlEnabled))]
+        [NotifyPropertyChangedFor(nameof(TextBoxesReadOnlyState))]
         private Boolean _isEditModeEnabled = false;
 
         /// <summary>
-        /// Флаг, определяющий является ли правый пользовательный элемент управления доступным
+        /// Флаг, определяющий являются ли поля ввода правого окна доступными
         /// </summary>
-        public Boolean IsContactControlEnabled
+        public Boolean TextBoxesReadOnlyState
         {
             get
             {
-                return IsEditModeEnabled || IsAddModeEnabled;
+                return !IsEditModeEnabled && !IsAddModeEnabled;
             }
         }
 
@@ -68,7 +81,7 @@ namespace View.ViewModel
         {
             get
             {
-                return (IsEditModeEnabled || IsAddModeEnabled) && CurrentContact?.Error == string.Empty;
+                return IsEditModeEnabled || IsAddModeEnabled;
             }
         }
 
@@ -101,7 +114,9 @@ namespace View.ViewModel
         public void Add()
         {
             Contact = new Contact();
-            CurrentContact = new Contact();
+            BindedName = Contact.Name;
+            BindedEmail = Contact.Email;
+            BindedPhoneNumber = Contact.PhoneNumber;
             IsAddModeEnabled = true;
             IsEditModeEnabled = false;
         }
@@ -121,7 +136,9 @@ namespace View.ViewModel
         /// </summary>
         private void ClearBindedValues()
         {
-            CurrentContact = null;
+            BindedName = "";
+            BindedEmail = "";
+            BindedPhoneNumber = "";
         }
 
         /// <summary>
@@ -143,9 +160,9 @@ namespace View.ViewModel
         [RelayCommand]
         public void Apply()
         {
-            Contact.Name = CurrentContact.Name;
-            Contact.Email = CurrentContact.Email;
-            Contact.PhoneNumber = CurrentContact.PhoneNumber;
+            Contact.Name = BindedName;
+            Contact.Email = BindedEmail;
+            Contact.PhoneNumber = BindedPhoneNumber;
 
             if (IsAddModeEnabled && !(Contact is null)) 
             {
@@ -172,7 +189,9 @@ namespace View.ViewModel
             if (args.AddedItems.Count > 0)
             {
                 Contact = Contacts[Contacts.IndexOf((Contact)args.AddedItems[0])];
-                CurrentContact = new Contact(Contact.Name, Contact.PhoneNumber, Contact.Email);
+                BindedName = Contact.Name;
+                BindedEmail = Contact.Email;
+                BindedPhoneNumber = Contact.PhoneNumber;
                 IsAddModeEnabled = false;
                 IsEditModeEnabled = false;
             }
