@@ -1,7 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
-using View.ViewModel;
+﻿using System.Windows;
 
 namespace View
 {
