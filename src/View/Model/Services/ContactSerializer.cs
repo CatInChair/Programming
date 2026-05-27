@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace View.Model.Services
 {
@@ -23,10 +19,10 @@ namespace View.Model.Services
         static private string _filename = "contacts.json";
 
         /// <summary>
-        /// Сохраняет данные контакта в файл в формате JSON
+        /// Сохраняет данные коллекции контактов в файл в формате JSON
         /// </summary>
         /// <param name="contact">Объект контакта</param>
-        static public void SaveContact(object contact)
+        static public void SaveContacts(ObservableCollection<Contact> contacts)
         {
             DirectoryInfo dir = new DirectoryInfo(_path);
             if (!dir.Exists)
@@ -34,23 +30,23 @@ namespace View.Model.Services
                 dir.Create();
             }
             
-            File.WriteAllText(_path + _filename, JObject.FromObject(contact).ToString());
+            File.WriteAllText(_path + _filename, JsonConvert.SerializeObject(contacts));
         }
 
         /// <summary>
-        /// Читает данные контакта из файла
+        /// Читает данные контактов из файла
         /// </summary>
-        /// <returns>Экземпляр <see cref="Contact"/>, хранящий данные о контакте</returns>
-        static public Contact ReadContact() 
+        /// <returns>Экземпляр <see cref="ObservableCollection{Contact}"/>, хранящий данные о контактах</returns>
+        static public ObservableCollection<Contact> ReadContacts() 
         {
-            Contact data;
+            ObservableCollection<Contact> data;
             try
             {
-                data = JObject.Parse(File.ReadAllText(_path + _filename)).ToObject<Contact>();
+                data = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(File.ReadAllText(_path + _filename));
             }
             catch
             {
-                return new Contact();
+                return data = new ObservableCollection<Contact>();
             }
 
             return data;

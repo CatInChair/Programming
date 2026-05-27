@@ -1,102 +1,200 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using View.Model;
+﻿using View.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
+using View.Model.Services;
+using System.Windows.Controls;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// Класс, содержащий основную логику ViewModel и данные для привязки
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public partial class MainVM : ObservableObject
     {
-        /// <summary>
-        /// Ссылка на экзмепляр <see cref="Contact"/>
-        /// </summary>
-        private Contact _contact = new Contact();
 
         /// <summary>
-        /// Контакт
+        /// Ссылка на выбранный экзмепляр <see cref="Contact"/>
         /// </summary>
-        public Contact Contact
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsRemoveButtonEnabled))]
+        [NotifyPropertyChangedFor(nameof(IsEditButtonEnabled))]
+        private Contact? _contact = null;
+
+        /// <summary>
+        /// Привязанная переменная имени контакта
+        /// </summary>
+        [ObservableProperty]
+        private string _bindedName;
+
+        /// <summary>
+        /// Привязанная переменная телефона контакта
+        /// </summary>
+        [ObservableProperty]
+        private string _bindedPhoneNumber;
+
+        /// <summary>
+        /// Привязанная переменная почты контакта
+        /// </summary>
+        [ObservableProperty]
+        private string _bindedEmail;
+
+        /// <summary>
+        /// Список ссылок на экземпляры существующих контактов
+        /// </summary>
+        [ObservableProperty]
+        private ObservableCollection<Contact> _contacts = null;
+
+        /// <summary>
+        /// Флаг состояния перехода в режим создания контакта
+        /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsRemoveButtonEnabled))]
+        [NotifyPropertyChangedFor(nameof(IsEditButtonEnabled))]
+        [NotifyPropertyChangedFor(nameof(IsApplyButtonEnabled))]
+        [NotifyPropertyChangedFor(nameof(TextBoxesReadOnlyState))]
+        private Boolean _isAddModeEnabled = false;
+
+        /// <summary>
+        /// Флаг состояния перехода в режим редактирования контакта
+        /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsApplyButtonEnabled))]
+        [NotifyPropertyChangedFor(nameof(TextBoxesReadOnlyState))]
+        private Boolean _isEditModeEnabled = false;
+
+        /// <summary>
+        /// Флаг, определяющий являются ли поля ввода правого окна доступными
+        /// </summary>
+        public Boolean TextBoxesReadOnlyState
         {
             get
             {
-                return _contact;
+                return !IsEditModeEnabled && !IsAddModeEnabled;
             }
         }
 
         /// <summary>
-        /// Имя контакта
+        /// Флаг, определяющий доступность кнопки подтверждения
         /// </summary>
-        public string Name
+        public Boolean IsApplyButtonEnabled
         {
             get
             {
-                return _contact.Name;
-            }
-            set
-            {
-                _contact.Name = value;
-                OnPropertyChanged("Name");
+                return IsEditModeEnabled || IsAddModeEnabled;
             }
         }
 
         /// <summary>
-        /// Телефонный номер контакта
+        /// Флаг, определяющий доступность кнопки редактирования
         /// </summary>
-        public string PhoneNumber
+        public Boolean IsEditButtonEnabled
         {
             get
             {
-                return _contact.PhoneNumber;
-            }
-            set
-            {
-                _contact.PhoneNumber = value;
-                OnPropertyChanged("PhoneNumber");
+                return !(Contact is null) && !IsAddModeEnabled;
             }
         }
 
         /// <summary>
-        /// Электронный адрес контакта
+        /// Флаг, определяющий доступность кнопки удаления
         /// </summary>
-        public string Email
+        public Boolean IsRemoveButtonEnabled
         {
             get
             {
-                return _contact.Email;
-            }
-            set
-            {
-                _contact.Email = value;
-                OnPropertyChanged("Email");
+                return !(Contact is null) && !IsAddModeEnabled;
             }
         }
 
         /// <summary>
-        /// Экземпляр <see cref="LoadCommand"/>, используемый для работы кнопки "Load"
+        /// Команда для перехода в режим добавления контакта
         /// </summary>
-        public LoadCommand LoadCommand { get; set; }
-        /// <summary>
-        /// Экземпляр <see cref="SaveCommand"/>, используемый для работы кнопки "Save"
-        /// </summary>
-        public SaveCommand SaveCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Тригер, вызываемый при изменении данных о контакте
-        /// </summary>
-        /// <param name="prop">Имя свойства</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        [RelayCommand]
+        public void Add()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            Contact = new Contact();
+            BindedName = Contact.Name;
+            BindedEmail = Contact.Email;
+            BindedPhoneNumber = Contact.PhoneNumber;
+            IsAddModeEnabled = true;
+            IsEditModeEnabled = false;
+        }
+
+        /// <summary>
+        /// Команда для перехода в режим редактирования контакта
+        /// </summary>
+        [RelayCommand]
+        public void Edit()
+        {
+            IsAddModeEnabled = false;
+            IsEditModeEnabled = true;
+        }
+
+        /// <summary>
+        /// Вспомогательный метод для очистки значений свойств, привязанных к текстовым полям
+        /// </summary>
+        private void ClearBindedValues()
+        {
+            BindedName = "";
+            BindedEmail = "";
+            BindedPhoneNumber = "";
+        }
+
+        /// <summary>
+        /// Команда для удаления контакта
+        /// </summary>
+        [RelayCommand]
+        public void Remove()
+        {
+            Contacts.Remove(Contact);
+            ClearBindedValues();
+            Contact = null;
+
+            ContactSerializer.SaveContacts(Contacts);
+        }
+
+        /// <summary>
+        /// Команда для кнопки подтверждения
+        /// </summary>
+        [RelayCommand]
+        public void Apply()
+        {
+            Contact.Name = BindedName;
+            Contact.Email = BindedEmail;
+            Contact.PhoneNumber = BindedPhoneNumber;
+
+            if (IsAddModeEnabled && !(Contact is null)) 
+            {
+                Contacts.Add(Contact);
+                IsAddModeEnabled = false;
+            }
+            else
+            {
+                IsEditModeEnabled = false;
+            }
+
+            Contact = null;
+            ClearBindedValues();
+
+            ContactSerializer.SaveContacts(Contacts);
+        }
+
+        /// <summary>
+        /// Событие выбора контакта в списке
+        /// </summary>
+        [RelayCommand]
+        public void ListBox_SelectionChanged(SelectionChangedEventArgs args)
+        {
+            if (args.AddedItems.Count > 0)
+            {
+                Contact = Contacts[Contacts.IndexOf((Contact)args.AddedItems[0])];
+                BindedName = Contact.Name;
+                BindedEmail = Contact.Email;
+                BindedPhoneNumber = Contact.PhoneNumber;
+                IsAddModeEnabled = false;
+                IsEditModeEnabled = false;
+            }
         }
 
         /// <summary>
@@ -104,8 +202,7 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            LoadCommand = new LoadCommand(this);
-            SaveCommand = new SaveCommand();
+            Contacts = ContactSerializer.ReadContacts();
         }
     }
 }
