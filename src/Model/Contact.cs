@@ -2,7 +2,7 @@
 using FluentValidation;
 using System.ComponentModel;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Представление контакта

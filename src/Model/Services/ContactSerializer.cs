@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Сервисный класс, используемый для сохранения и чтения контактов
     /// </summary>
-    class ContactSerializer
+    public class ContactSerializer
     {
         /// <summary>
         /// Путь к папке сохранения контактов
