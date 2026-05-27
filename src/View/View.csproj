@@ -21,6 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Model">
+      <HintPath>..\ViewModel\bin\Debug\net8.0\Model.dll</HintPath>
+    </Reference>
+    <Reference Include="ViewModel">
+      <HintPath>..\ViewModel\bin\Debug\net8.0\ViewModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Recources\ContactsApp_96x96.ico" />
     <Resource Include="Recources\photo_placeholder_100x100.png" />
   </ItemGroup>
